@@ -9,11 +9,10 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\Modules\Charts;
+namespace Sportlog\GoogleCharts;
 
 /**
  * Google chart types
- * (currently only a subset)
  */
 enum ChartType: string {
     case Area = 'Area';

@@ -1,0 +1,33 @@
+{
+  "name": "sportlog/google-charts",
+  "description": "PHP Wrapper for Google charts",
+  "type": "project",
+  "keywords": ["google", "charts", "graphs"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Johannes Aberidis"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Sportlog\\GoogleCharts\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+    }
+  },
+  "require": {
+    "php": ">=8.1"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require-dev": {
+    "phpstan/phpstan": "^1.6"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit --testsuite google-charts",
+    "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon"
+  }
+}

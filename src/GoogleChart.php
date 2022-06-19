@@ -9,13 +9,13 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\Modules\Charts;
+namespace Sportlog\GoogleCharts;
 
 use InvalidArgumentException;
 use JsonSerializable;
 
 /**
- * Abstract base class for charts.
+ * Google chart class holding columns and rows.
  */
 class GoogleChart implements JsonSerializable
 {

@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\Modules\Charts;
+namespace Sportlog\GoogleCharts;
 
 use DateTimeInterface;
 use JsonSerializable;
