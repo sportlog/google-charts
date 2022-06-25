@@ -24,10 +24,11 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "phpstan/phpstan": "^1.6"
+    "phpstan/phpstan": "^1.6",
+    "phpunit/phpunit": "^9.5"
   },
   "scripts": {
-    "test": "vendor/bin/phpunit --testsuite google-charts",
+    "test": "vendor/bin/phpunit --testsuite googlecharts",
     "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon"
   }
 }

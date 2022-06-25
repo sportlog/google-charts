@@ -49,13 +49,13 @@ enum Color: string
     case C31 = '#743411';
 
     /**
-     * Gets a color by index
+     * Gets a color from index
      *
      * @param integer $index
      * @return self
      */
-    public static function byIndex(int $index): self {
+    public static function fromIndex(int $index): self {
         $cases = self::cases();
-        return $cases[$index % (count($cases) - 1)];
+        return $cases[$index % count($cases)];
     }
 }

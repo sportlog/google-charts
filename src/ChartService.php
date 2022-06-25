@@ -28,7 +28,7 @@ class ChartService
     private array $charts = [];
     private bool $loaded = false;
 
-    public function __construct(private readonly ?ScriptNonceProviderInterface $scriptNonceProvider)
+    public function __construct(private readonly ?ScriptNonceProviderInterface $scriptNonceProvider = null)
     {
     }
 
