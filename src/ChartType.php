@@ -36,5 +36,4 @@ enum ChartType: string {
     case Table = 'Table';
     case Timeline = 'Timeline';
     case TreeMap = 'TreeMap';
-    case WordTree = 'WordTree';
 }

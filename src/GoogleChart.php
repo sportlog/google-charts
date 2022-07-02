@@ -13,6 +13,7 @@ namespace Sportlog\GoogleCharts;
 
 use InvalidArgumentException;
 use JsonSerializable;
+use Sportlog\GoogleCharts\Charts\Options\BaseOptions;
 
 /**
  * Google chart class holding columns and rows.
@@ -33,9 +34,9 @@ class GoogleChart implements JsonSerializable
     *
     * @param string $id
     * @param ChartType $chartType
-    * @param array $options
+    * @param BaseOptions $options
     */
-    public function __construct(private readonly string $id, private readonly ChartType $chartType, private array $options = [])
+    public function __construct(private readonly string $id, private readonly ChartType $chartType, private readonly BaseOptions $options)
     {
     }
 

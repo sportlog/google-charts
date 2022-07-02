@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@types/google.visualization": "^0.0.68"
+  }
+}

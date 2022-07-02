@@ -2,6 +2,7 @@
 /files
 /logs
 /vendor
+/node_modules
 
 # IDE - VSCode
 .vscode/*
