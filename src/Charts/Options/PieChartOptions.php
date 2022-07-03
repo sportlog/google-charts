@@ -28,6 +28,36 @@ class PieChartOptions extends BaseOptions
         $this->setOption('chartArea', $value);
     }
 
+    public function setColors(?array $value): void
+    {
+        $this->setOption('colors', $value);
+    }
+
+    public function setEnableInteractivity(?bool $value): void
+    {
+        $this->setOption('enableInteractivity', $value);
+    }
+
+    public function setFontName(?string $value): void
+    {
+        $this->setOption('fontName', $value);
+    }
+
+    public function setFontSize(?int $value): void
+    {
+        $this->setOption('fontSize', $value);
+    }
+
+    public function setForceIFrame(?bool $value): void
+    {
+        $this->setOption('forceIFrame', $value);
+    }
+
+    public function is3D(?bool $value): void
+    {
+        $this->setOption('is3D', $value);
+    }
+
     /**
      * Undocumented function
      *
