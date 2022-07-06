@@ -13,7 +13,7 @@ namespace Sportlog\GoogleCharts\Charts\Options;
 
 use JsonSerializable;
 
-abstract class BaseOptions implements JsonSerializable
+abstract class BaseOptions
 {
     private array $options = [];
 
@@ -25,14 +25,6 @@ abstract class BaseOptions implements JsonSerializable
     public function setWidth(?int $value): void
     {
         $this->setOption('width', $value);
-    }
-
-    /**
-     * Get json serializable
-     */
-    public function jsonSerialize(): mixed
-    {
-        return $this->options;
     }
 
     protected function setOption(string $key, mixed $value): void

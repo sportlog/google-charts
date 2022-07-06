@@ -9,9 +9,10 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options;
+namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
 use JsonSerializable;
+use Sportlog\GoogleCharts\Charts\Options\BackgroundColor;
 
 class ChartArea implements JsonSerializable
 {

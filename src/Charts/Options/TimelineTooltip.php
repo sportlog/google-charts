@@ -11,12 +11,9 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options;
 
-class LabelStyle
+class TimelineTooltip
 {
-    public function __construct(
-        public readonly string $color,
-        public readonly string $fontName,
-        public readonly string $fontSize
-    ) {
+    public function __construct(public readonly bool $isHtml, public readonly TimelineTrigger $trigger)
+    {
     }
 }

@@ -9,9 +9,10 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options;
+namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
-enum TimelineTrigger: string {
+enum PieChartTrigger: string {
     case None = 'none';
     case Focus = 'focus';
+    case Selection = 'selection';
 }

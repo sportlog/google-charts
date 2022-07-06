@@ -9,9 +9,8 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options;
-
-enum TimelineTrigger: string {
-    case None = 'none';
-    case Focus = 'focus';
+enum LegendAlignment: string {
+    case Start = 'start';
+    case Center = 'center';
+    case End = 'end';
 }
