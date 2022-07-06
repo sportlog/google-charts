@@ -4,7 +4,7 @@ require_once 'vendor/autoload.php';
 
 use Sportlog\GoogleCharts\Charts\{Options\BackgroundColor, PieChart, TimelineChart};
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieSlice;
-use Sportlog\GoogleCharts\Charts\Options\TimelineOptions;
+use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineOptions;
 
 $timelineChart = new TimelineChart('bikeUsage');
 $timelineChart->options->backgroundColor = new BackgroundColor('23', 233, '234');
