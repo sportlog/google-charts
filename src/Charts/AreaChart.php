@@ -14,6 +14,10 @@ namespace Sportlog\GoogleCharts\Charts;
 use Sportlog\GoogleCharts\Charts\AreaChart\AreaChartOptions;
 use Sportlog\GoogleCharts\{ChartType, GoogleChart};
 
+/**
+ * Area chart
+ * @see https://developers.google.com/chart/interactive/docs/gallery/areachart
+ */
 class AreaChart extends GoogleChart {
     public function __construct(string $id, public readonly AreaChartOptions $options = new AreaChartOptions())
     {

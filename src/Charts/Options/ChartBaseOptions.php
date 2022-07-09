@@ -13,24 +13,11 @@ namespace Sportlog\GoogleCharts\Charts\Options;
 
 abstract class ChartBaseOptions
 {
-    private array $options = [];
-
-    public function setHeight(?int $value): void
-    {
-        $this->setOption('height', $value);
-    }
-
-    public function setWidth(?int $value): void
-    {
-        $this->setOption('width', $value);
-    }
-
-    protected function setOption(string $key, mixed $value): void
-    {
-        if (is_null($value) || (is_array($value) && count($value) === 0)) {
-            unset($this->options[$key]);
-        } else {
-            $this->options[$key] = $value;
-        }
-    }
+    public ?int $width = null;
+    public ?int $height = null;
+    public ?array $colors = null;
+    public ?bool $enableInteractivity = null;
+    public ?string $fontName = null;
+    public ?string $fontSize = null;
+    public ?bool $forceIFrame = null;
 }

@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\AreaChart;
 
-use Sportlog\GoogleCharts\Charts\Options\{ChartAnimation, ChartBaseOptions};
+use Sportlog\GoogleCharts\Charts\Options\{ChartAnimation, ChartAnnotations, ChartArea, ChartAxisTitlePosition, ChartBackgroundColor, ChartBaseOptions, ChartExplorer, ChartFocusTarget, ChartLegend};
 
 /**
  * AreaChart ptions.
@@ -21,4 +21,22 @@ use Sportlog\GoogleCharts\Charts\Options\{ChartAnimation, ChartBaseOptions};
 class AreaChartOptions extends ChartBaseOptions {
     public ?AreaChartAggregationTarget $aggregationTarget = null;
     public ?ChartAnimation $animation = null;
+    public ?ChartAnnotations $annotations = null;
+    public ?float $areaOpacity = null;
+    public ?ChartAxisTitlePosition $axisTitlesPosition = null;
+    public ?ChartBackgroundColor $backgroundColor = null;
+    public ?ChartArea $area = null;
+    /**
+     * Colors
+     *
+     * @var string[]|null
+     */
+    // public ?array $colors = null;
+    // public ?bool $enableInteractivity = null;
+    public ?ChartExplorer $explorer = null;
+    public ?ChartFocusTarget $focusTarget = null;
+    // TODO: hAxis
+    public AreaChartStacked|bool|null $isStacked = null;
+    public ?ChartLegend $legend = null;
+    
 }

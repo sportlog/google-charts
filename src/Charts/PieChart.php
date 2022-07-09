@@ -14,6 +14,10 @@ namespace Sportlog\GoogleCharts\Charts;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\{ChartType, GoogleChart};
 
+/**
+ * Pie chart
+ * @see https://developers.google.com/chart/interactive/docs/gallery/piechart
+ */
 class PieChart extends GoogleChart {
     public function __construct(string $id, public readonly PieChartOptions $options = new PieChartOptions())
     {

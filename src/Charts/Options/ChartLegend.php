@@ -9,19 +9,18 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
-
-use Sportlog\GoogleCharts\Charts\Options\{ChartLegendAlignment, ChartLegendPosition, ChartTextStyle};
+namespace Sportlog\GoogleCharts\Charts\Options;
 
 /**
  * An object with members to configure various aspects of the legend.
  */
-class PieChartLegend {
+class ChartLegend {
     public function __construct(
         public ?ChartLegendAlignment $alignment = null,
         public ?ChartLegendPosition $position = null,
         public ?int $maxLines = null,
-        public ?ChartTextStyle $textStyle = null
+        public ?ChartTextStyle $textStyle = null,
+        public ?int $pageIndex = null
     )
     {
     }

@@ -18,7 +18,7 @@ use Sportlog\GoogleCharts\Charts\Options\{BaseOptions, ChartBaseOptions};
 /**
  * Google chart class holding columns and rows.
  */
-class GoogleChart implements JsonSerializable
+abstract class GoogleChart implements JsonSerializable
 {
     /**
      * Chart columns

@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
-use Sportlog\GoogleCharts\Charts\Options\{ChartBackgroundColor, ChartBaseOptions, ChartTextStyle};
+use Sportlog\GoogleCharts\Charts\Options\{ChartBackgroundColor, ChartBaseOptions, ChartLegend, ChartTextStyle};
 
 /**
  * PieChart options.
@@ -22,12 +22,13 @@ class PieChartOptions extends ChartBaseOptions
 {
     public ?ChartBackgroundColor $backgroundColor = null;
     public ?PieChartArea $chartArea = null;
-    public ?array $colors = null;
-    public ?bool $enableInteractivity = null;
-    public ?string $fontName = null;
-    public ?string $fontSize = null;
-    public ?bool $forceIFrame = null;
+    // public ?array $colors = null;
+    // public ?bool $enableInteractivity = null;
+    // public ?string $fontName = null;
+    // public ?string $fontSize = null;
+    // public ?bool $forceIFrame = null;
     public ?bool $is3D = null;
+    public ?ChartLegend $legend = null;
     public int|float|null $pieHole = null;
     public ?string $pieSliceBorderColor = null;
     public ?PieChartSliceText $pieSliceText = null;

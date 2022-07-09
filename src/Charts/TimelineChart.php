@@ -14,6 +14,10 @@ namespace Sportlog\GoogleCharts\Charts;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
 use Sportlog\GoogleCharts\{ChartType, GoogleChart};
 
+/**
+ * Timeline chart
+ * @see https://developers.google.com/chart/interactive/docs/gallery/timeline
+ */
 class TimelineChart extends GoogleChart {
     public function __construct(string $id, public readonly TimelineChartOptions $options = new TimelineChartOptions())
     {

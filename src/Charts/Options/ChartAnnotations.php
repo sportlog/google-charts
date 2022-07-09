@@ -22,13 +22,7 @@ class ChartAnnotations
         public readonly ?bool $highContrast = null,
         public readonly ?ChartStem $stem = null,
         public readonly ?ChartAnnotationStyle $style = null,
-        public readonly ?ChartTextStyle $textStyle = null,
-        public readonly ?float $areaOpacity = null,
-        public readonly ?ChartAxisTitlePosition $axisTitlesPosition = null,
-        public readonly ?ChartBackgroundColor $backgroundColor = null
+        public readonly ?ChartTextStyle $textStyle = null
     ) {
-        if (!is_null($areaOpacity) && ($areaOpacity < 0 || $areaOpacity > 1)) {
-            throw new InvalidArgumentException('areaOpacity must be between 0.0 and 1.0');
-        }
     }
 }
