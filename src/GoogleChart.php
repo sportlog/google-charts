@@ -13,7 +13,7 @@ namespace Sportlog\GoogleCharts;
 
 use InvalidArgumentException;
 use JsonSerializable;
-use Sportlog\GoogleCharts\Charts\Options\BaseOptions;
+use Sportlog\GoogleCharts\Charts\Options\{BaseOptions, ChartBaseOptions};
 
 /**
  * Google chart class holding columns and rows.
@@ -22,21 +22,26 @@ class GoogleChart implements JsonSerializable
 {
     /**
      * Chart columns
+     *
+     * @var Column[]
      */
     private array $cols = [];
+
     /**
      * Chart rows
+     *
+     * @var Row[]
      */
     private array $rows = [];
 
-   /**
-    * Creates a new chart.
-    *
-    * @param string $id
-    * @param ChartType $chartType
-    * @param BaseOptions $options
-    */
-    public function __construct(private readonly string $id, private readonly ChartType $chartType, private readonly BaseOptions $options)
+    /**
+     * Creates a new chart.
+     *
+     * @param string $id
+     * @param ChartType $chartType
+     * @param BaseOptions $options
+     */
+    public function __construct(private readonly string $id, private readonly ChartType $chartType, private readonly ChartBaseOptions $options)
     {
     }
 
@@ -48,19 +53,6 @@ class GoogleChart implements JsonSerializable
     public function getId(): string
     {
         return $this->id;
-    }
-
-    /**
-     * Sets a chart option. If an option with the given
-     * key already exists, it is overwritten.
-     *
-     * @param string $key
-     * @param mixed $value
-     * @return void
-     */
-    public function setOption(string $key, mixed $value): void
-    {
-        $this->options[$key] = $value;
     }
 
     /**
@@ -99,7 +91,7 @@ class GoogleChart implements JsonSerializable
             ],
             'options' => $this->options,
             'id' => $this->getId(),
-            'chartType' => $this->chartType->value
+            'chartType' => $this->chartType
         ];
     }
 }

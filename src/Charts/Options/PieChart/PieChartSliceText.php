@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
-enum PieSliceText: string {
+enum PieChartSliceText: string {
     case Percentage = 'percentage';
     case Value = 'value';
     case Label = 'label';

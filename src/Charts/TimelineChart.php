@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts;
 
-use Sportlog\GoogleCharts\Charts\Options\TimelineChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
 use Sportlog\GoogleCharts\{ChartType, GoogleChart};
 
 class TimelineChart extends GoogleChart {

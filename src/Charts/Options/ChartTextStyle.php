@@ -9,10 +9,12 @@
 
 declare(strict_types=1);
 
+namespace Sportlog\GoogleCharts\Charts\Options;
+
 /**
  * An object that specifies the legend text style.
  */
-class TextStyle
+class ChartTextStyle
 {
     public function __construct(
         public ?string $fontName,

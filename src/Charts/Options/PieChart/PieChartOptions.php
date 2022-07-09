@@ -11,18 +11,17 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
-use Sportlog\GoogleCharts\Charts\Options\{BackgroundColor, BaseOptions};
-use TextStyle;
+use Sportlog\GoogleCharts\Charts\Options\{ChartBackgroundColor, ChartBaseOptions, ChartTextStyle};
 
 /**
- * Options for PieChart
+ * PieChart options.
  * 
  * @see https://developers.google.com/chart/interactive/docs/gallery/piechart#configuration-options
  */
-class PieChartOptions extends BaseOptions
+class PieChartOptions extends ChartBaseOptions
 {
-    public ?BackgroundColor $backgroundColor = null;
-    public ?ChartArea $chartArea = null;
+    public ?ChartBackgroundColor $backgroundColor = null;
+    public ?PieChartArea $chartArea = null;
     public ?array $colors = null;
     public ?bool $enableInteractivity = null;
     public ?string $fontName = null;
@@ -31,8 +30,8 @@ class PieChartOptions extends BaseOptions
     public ?bool $is3D = null;
     public int|float|null $pieHole = null;
     public ?string $pieSliceBorderColor = null;
-    public ?PieSliceText $pieSliceText = null;
-    public ?TextStyle $pieSliceTextStyle = null;
+    public ?PieChartSliceText $pieSliceText = null;
+    public ?ChartTextStyle $pieSliceTextStyle = null;
     public int|float|null $pieStartAngle = null;
     public ?bool $reverseCategories = null;
     public ?string $pieResidueSliceColor = null;
@@ -45,6 +44,6 @@ class PieChartOptions extends BaseOptions
     public ?array $slices = null;
     public ?float $sliceVisibilityThreshold = null;
     public ?string $title = null;
-    public ?TextStyle $titleTextStyle = null;
+    public ?ChartTextStyle $titleTextStyle = null;
     public ?PieChartTooltip $tooltip = null;
 }

@@ -9,7 +9,9 @@
 
 declare(strict_types=1);
 
-enum LegendAlignment: string {
+namespace Sportlog\GoogleCharts\Charts\Options;
+
+enum ChartLegendAlignment: string {
     case Start = 'start';
     case Center = 'center';
     case End = 'end';

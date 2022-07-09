@@ -11,10 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
-use ArrayObject;
-use JsonSerializable;
-
-class PieSlice
+class PieChartSlice
 {
     public function __construct(
         public readonly ?string $color = null,

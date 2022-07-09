@@ -11,14 +11,14 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
-use TextStyle;
+use Sportlog\GoogleCharts\Charts\Options\ChartTextStyle;
 
 class PieChartTooltip
 {
     public function __construct(
         public readonly bool $isHtml,
         public readonly PieChartTrigger $trigger,
-        public readonly ?TextStyle $textStyle = null
+        public readonly ?ChartTextStyle $textStyle = null
     ) {
     }
 }

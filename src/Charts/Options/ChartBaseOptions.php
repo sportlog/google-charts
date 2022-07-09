@@ -11,9 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options;
 
-use JsonSerializable;
-
-abstract class BaseOptions
+abstract class ChartBaseOptions
 {
     private array $options = [];
 

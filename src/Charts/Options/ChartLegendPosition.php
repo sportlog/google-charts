@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options;
 
-enum LegendPosition: string {
+enum ChartLegendPosition: string {
     case Bottom = 'bottom';
     case Labeled = 'labeled';
     case Left = 'left';

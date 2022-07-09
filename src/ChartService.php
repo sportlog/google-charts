@@ -13,6 +13,9 @@ namespace Sportlog\GoogleCharts;
 
 use Exception;
 use InvalidArgumentException;
+use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
+use Sportlog\GoogleCharts\Charts\{AreaChart\AreaChartOptions, AreaChart, PieChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -33,24 +36,39 @@ class ChartService
     }
 
     /**
-     * Creates a new Google chart.
+     * Creates a new Area chart.
      *
      * @param string $id
-     * @param ChartType $charttype
-     * @param array $options
+     * @param AreaChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
-     * @return GoogleChart
      */
-    public function createGoogleChart(string $id, ChartType $charttype, array $options = []): GoogleChart
+    public function createAreaChart(string $id, AreaChartOptions $options = new AreaChartOptions()): AreaChart
     {
-        if (isset($this->charts[$id])) {
-            throw new InvalidArgumentException("A chart with id '{$id}' already exists; ids must be unique");
-        }
+        return $this->addChart(new AreaChart($id, $options));
+    }
 
-        $chart = new GoogleChart($id, $charttype, $options);
-        $this->charts[$id] = $chart;
+    /**
+     * Creates a new Pie chart.
+     *
+     * @param string $id
+     * @param AreaChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createPieChart(string $id, PieChartOptions $options = new PieChartOptions()): PieChart
+    {
+        return $this->addChart(new PieChart($id, $options));
+    }
 
-        return $chart;
+    /**
+     * Creates a new Timeline chart.
+     *
+     * @param string $id
+     * @param AreaChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createTimelineChart(string $id, TimelineChartOptions $options = new TimelineChartOptions()): TimelineChart
+    {
+        return $this->addChart(new TimelineChart($id, $options));
     }
 
     /**
@@ -107,6 +125,17 @@ class ChartService
         ];
     }
 
+    private function addChart(GoogleChart $chart): GoogleChart
+    {
+        $id = $chart->getId();
+        if (!isset($this->charts[$id])) {
+            throw new InvalidArgumentException("No chart with id '{$id}' found");
+        }
+
+        $this->charts[$id] = $chart;
+        return $chart;
+    }
+
     private function getScriptTag(string $fileOrContent, bool $isFile = true): string
     {
         $content = '';
@@ -116,8 +145,7 @@ class ChartService
         }
         if ($isFile) {
             $attrs .= " src=\"{$fileOrContent}\"";
-        }
-        else {
+        } else {
             $content = $fileOrContent;
         }
 

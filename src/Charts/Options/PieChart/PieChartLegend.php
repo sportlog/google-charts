@@ -11,19 +11,17 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
-use LegendAlignment;
-use Sportlog\GoogleCharts\Charts\Options\LegendPosition;
-use TextStyle;
+use Sportlog\GoogleCharts\Charts\Options\{ChartLegendAlignment, ChartLegendPosition, ChartTextStyle};
 
 /**
  * An object with members to configure various aspects of the legend.
  */
 class PieChartLegend {
     public function __construct(
-        public ?LegendAlignment $alignment = null,
-        public ?LegendPosition $position = null,
+        public ?ChartLegendAlignment $alignment = null,
+        public ?ChartLegendPosition $position = null,
         public ?int $maxLines = null,
-        public ?TextStyle $textStyle = null
+        public ?ChartTextStyle $textStyle = null
     )
     {
     }
