@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Sportlog\GoogleCharts\Charts;
 
 use Sportlog\GoogleCharts\Charts\AreaChart\AreaChartOptions;
-use Sportlog\GoogleCharts\{ChartType, GoogleChart};
+use Sportlog\GoogleCharts\Charts\Base\{ChartType, GoogleChart};
 
 /**
  * Area chart

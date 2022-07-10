@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts;
+namespace Sportlog\GoogleCharts\Charts\Base;
 
 /**
  * Google chart types

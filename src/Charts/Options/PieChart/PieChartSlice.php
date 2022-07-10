@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
-use Sportlog\GoogleCharts\NotNullSerializer;
+use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 
 class PieChartSlice extends NotNullSerializer
 {

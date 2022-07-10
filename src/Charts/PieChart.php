@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts;
 
+use Sportlog\GoogleCharts\Charts\Base\{ChartType, GoogleChart};
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
-use Sportlog\GoogleCharts\{ChartType, GoogleChart};
 
 /**
  * Pie chart
