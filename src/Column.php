@@ -11,9 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts;
 
-use JsonSerializable;
-
-class Column implements JsonSerializable
+class Column extends NotNullSerializer
 {
     /**
      * Creates a new tooltip column.
@@ -25,31 +23,11 @@ class Column implements JsonSerializable
     }
 
     public function __construct(
-        private ColumnType $type,
-        private ?string $label = null,
-        private ?string $id = null,
-        private ?string $role = null,
-        private ?string $pattern = null
+        public readonly ColumnType $type,
+        public readonly  ?string $label = null,
+        public readonly  ?string $id = null,
+        public readonly  ?string $role = null,
+        public readonly  ?string $pattern = null
     ) {
-    }
-
-    public function jsonSerialize(): mixed {
-        $result = [
-            'type' => $this->type
-        ];
-        if (!is_null($this->id)) {
-            $result['id'] = $this->id;
-        }
-        if (!is_null($this->label)) {
-            $result['label'] = $this->label;
-        }
-        if (!is_null($this->pattern)) {
-            $result['pattern'] = $this->pattern;
-        }
-        if (!is_null($this->role)) {
-            $result['role'] = $this->role;
-        }
-
-        return $result;
     }
 }

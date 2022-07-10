@@ -19,6 +19,12 @@ use Sportlog\GoogleCharts\{ChartType, GoogleChart};
  * @see https://developers.google.com/chart/interactive/docs/gallery/timeline
  */
 class TimelineChart extends GoogleChart {
+    /**
+     * Creates a new timeline chart instance
+     *
+     * @param string $id
+     * @param TimelineChartOptions $options
+     */
     public function __construct(string $id, public readonly TimelineChartOptions $options = new TimelineChartOptions())
     {
         parent::__construct($id, ChartType::Timeline, $options);

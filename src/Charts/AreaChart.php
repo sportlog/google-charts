@@ -19,6 +19,12 @@ use Sportlog\GoogleCharts\{ChartType, GoogleChart};
  * @see https://developers.google.com/chart/interactive/docs/gallery/areachart
  */
 class AreaChart extends GoogleChart {
+    /**
+     * Creates a new area chart instance
+     *
+     * @param string $id
+     * @param AreaChartOptions $options
+     */
     public function __construct(string $id, public readonly AreaChartOptions $options = new AreaChartOptions())
     {
         parent::__construct($id, ChartType::Area, $options);

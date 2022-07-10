@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
-use Sportlog\GoogleCharts\Charts\Options\{ChartArea, ChartBackgroundColor};
+use Sportlog\GoogleCharts\Charts\Options\Common\{ChartArea, ChartBackgroundColor};
 
 class PieChartArea extends ChartArea
 {

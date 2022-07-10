@@ -40,7 +40,7 @@ class PieChartOptions extends ChartBaseOptions
     /**
      * An array of objects, each describing the format of the corresponding slice in the pie.
      *
-     * @var PieSlice[]|null
+     * @var PieChartSlice[]|null
      */
     public ?array $slices = null;
     public ?float $sliceVisibilityThreshold = null;

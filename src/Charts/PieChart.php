@@ -19,6 +19,12 @@ use Sportlog\GoogleCharts\{ChartType, GoogleChart};
  * @see https://developers.google.com/chart/interactive/docs/gallery/piechart
  */
 class PieChart extends GoogleChart {
+    /**
+     * Creates a new pie chart instance
+     *
+     * @param string $id
+     * @param PieChartOptions $options
+     */
     public function __construct(string $id, public readonly PieChartOptions $options = new PieChartOptions())
     {
         parent::__construct($id, ChartType::Pie, $options);

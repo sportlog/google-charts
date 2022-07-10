@@ -39,7 +39,7 @@ abstract class GoogleChart implements JsonSerializable
      *
      * @param string $id
      * @param ChartType $chartType
-     * @param BaseOptions $options
+     * @param ChartBaseOptions $options
      */
     public function __construct(private readonly string $id, private readonly ChartType $chartType, private readonly ChartBaseOptions $options)
     {

@@ -11,7 +11,9 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
-class PieChartSlice
+use Sportlog\GoogleCharts\NotNullSerializer;
+
+class PieChartSlice extends NotNullSerializer
 {
     public function __construct(
         public readonly ?string $color = null,

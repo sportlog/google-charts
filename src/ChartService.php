@@ -44,31 +44,37 @@ class ChartService
      */
     public function createAreaChart(string $id, AreaChartOptions $options = new AreaChartOptions()): AreaChart
     {
-        return $this->addChart(new AreaChart($id, $options));
+        $chart = new AreaChart($id, $options);
+        $this->addChart($chart);
+        return $chart;
     }
 
     /**
      * Creates a new Pie chart.
      *
      * @param string $id
-     * @param AreaChartOptions $options
+     * @param PieChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
     public function createPieChart(string $id, PieChartOptions $options = new PieChartOptions()): PieChart
     {
-        return $this->addChart(new PieChart($id, $options));
+        $chart = new PieChart($id, $options);
+        $this->addChart($chart);
+        return $chart;
     }
 
     /**
      * Creates a new Timeline chart.
      *
      * @param string $id
-     * @param AreaChartOptions $options
+     * @param TimelineChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
     public function createTimelineChart(string $id, TimelineChartOptions $options = new TimelineChartOptions()): TimelineChart
     {
-        return $this->addChart(new TimelineChart($id, $options));
+        $chart = new TimelineChart($id, $options);
+        $this->addChart($chart);
+        return $chart;
     }
 
     /**

@@ -36,10 +36,10 @@ final class ColumnTest extends TestCase
         $expectedJson = <<<EOL
         {
             "type": "string",
-            "id": "#123",
             "label": "Some label",
-            "pattern": "pattern",
-            "role": "column"
+            "id": "#123",
+            "role": "column",
+            "pattern": "pattern"
         }
         EOL;
 

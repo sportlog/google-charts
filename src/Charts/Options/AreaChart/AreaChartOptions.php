@@ -11,8 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\AreaChart;
 
-use Sportlog\GoogleCharts\Charts\Options\Common\{ChartLegend\ChartLegend, Tooltip\ChartTooltip, ChartAnimation, ChartAnnotations, ChartArea, ChartAxisTitlePosition, ChartBackgroundColor, ChartBaseOptions, ChartExplorer, ChartFocusTarget, ChartOrientation, ChartPointShape, ChartSelectionMode, ChartSeriesOptions, ChartTextStyle};
-use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartTooltip;
+use Sportlog\GoogleCharts\Charts\Options\Common\{ChartLegend\ChartLegend, ChartAnimation, ChartAnnotations, ChartArea, ChartAxisTitlePosition, ChartBackgroundColor, ChartBaseOptions, ChartExplorer, ChartFocusTarget, ChartOrientation, ChartPointShape, ChartSelectionMode, ChartSeriesOptions, ChartTextStyle};
 
 /**
  * AreaChart ptions.
@@ -27,11 +26,6 @@ class AreaChartOptions extends ChartBaseOptions {
     public ?ChartAxisTitlePosition $axisTitlesPosition = null;
     public ?ChartBackgroundColor $backgroundColor = null;
     public ?ChartArea $area = null;
-    /**
-     * Colors
-     *
-     * @var string[]|null
-     */
     // public ?array $colors = null;
     // public ?bool $enableInteractivity = null;
     public ?ChartExplorer $explorer = null;
