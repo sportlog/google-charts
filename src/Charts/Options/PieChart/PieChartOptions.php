@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
-use Sportlog\GoogleCharts\Charts\Options\Common\{ChartLegend\ChartLegend, ChartBackgroundColor, ChartBaseOptions, ChartTextStyle};
+use Sportlog\GoogleCharts\Charts\Options\Common\{ChartLegend\ChartLegend, Tooltip\ChartTooltip, ChartBackgroundColor, ChartBaseOptions, ChartTextStyle};
 
 /**
  * PieChart options.
@@ -46,5 +46,5 @@ class PieChartOptions extends ChartBaseOptions
     public ?float $sliceVisibilityThreshold = null;
     public ?string $title = null;
     public ?ChartTextStyle $titleTextStyle = null;
-    public ?PieChartTooltip $tooltip = null;
+    public ?ChartTooltip $tooltip = null;
 }

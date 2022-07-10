@@ -23,7 +23,7 @@ class ChartTextStyle
         public ?bool $italic,
         public ?string $color,
         public ?string $auraColor,
-        public int|float|null $opacity
+        public ?float $opacity
     ) {
     }
 }

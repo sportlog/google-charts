@@ -9,15 +9,15 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
+namespace Sportlog\GoogleCharts\Charts\Options\Common\Tooltip;
 
-use Sportlog\GoogleCharts\Charts\Options\ChartTextStyle;
+use Sportlog\GoogleCharts\Charts\Options\Common\ChartTextStyle;
 
-class PieChartTooltip
+class ChartTooltip
 {
     public function __construct(
         public readonly bool $isHtml,
-        public readonly PieChartTrigger $trigger,
+        public readonly ChartTrigger $trigger,
         public readonly ?ChartTextStyle $textStyle = null
     ) {
     }

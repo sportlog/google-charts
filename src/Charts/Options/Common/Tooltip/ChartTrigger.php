@@ -9,9 +9,9 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
+namespace Sportlog\GoogleCharts\Charts\Options\Common\Tooltip;;
 
-enum PieChartTrigger: string {
+enum ChartTrigger: string {
     case None = 'none';
     case Focus = 'focus';
     case Selection = 'selection';
