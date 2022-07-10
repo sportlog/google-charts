@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\PieChart;
 
-use Sportlog\GoogleCharts\Charts\Options\{ChartBackgroundColor, ChartBaseOptions, ChartLegend, ChartTextStyle};
+use Sportlog\GoogleCharts\Charts\Options\Common\{ChartLegend\ChartLegend, ChartBackgroundColor, ChartBaseOptions, ChartTextStyle};
 
 /**
  * PieChart options.

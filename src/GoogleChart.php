@@ -13,7 +13,7 @@ namespace Sportlog\GoogleCharts;
 
 use InvalidArgumentException;
 use JsonSerializable;
-use Sportlog\GoogleCharts\Charts\Options\{BaseOptions, ChartBaseOptions};
+use Sportlog\GoogleCharts\Charts\Options\Common\ChartBaseOptions;
 
 /**
  * Google chart class holding columns and rows.

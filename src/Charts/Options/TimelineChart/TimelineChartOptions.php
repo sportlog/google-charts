@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\TimelineChart;
 
-use Sportlog\GoogleCharts\Charts\Options\{ChartBackgroundColor, ChartBaseOptions};
+use Sportlog\GoogleCharts\Charts\Options\Common\{ChartBackgroundColor, ChartBaseOptions};
 
 /**
  * TimelineChart options.

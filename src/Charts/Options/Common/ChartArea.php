@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options;
+namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
 class ChartArea
 {

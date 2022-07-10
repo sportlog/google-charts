@@ -9,7 +9,9 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options;
+namespace Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend;
+
+use Sportlog\GoogleCharts\Charts\Options\Common\ChartTextStyle;
 
 /**
  * An object with members to configure various aspects of the legend.
