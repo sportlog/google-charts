@@ -12,7 +12,8 @@ declare(strict_types=1);
 namespace Sportlog\GoogleCharts;
 
 /**
- * Abstract base class for charts.
+ * Service to provide nonces for securing script-src tags
+ * for js files.
  */
 interface ScriptNonceProviderInterface {
     /**

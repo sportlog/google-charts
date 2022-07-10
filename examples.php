@@ -3,18 +3,19 @@
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartBackgroundColor;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartSlice;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineOptions;
-use Sportlog\GoogleCharts\Charts\{PieChart, TimelineChart};
+use Sportlog\GoogleCharts\ChartService;
 
 require_once 'vendor/autoload.php';
 
+$chartService = new ChartService();
 
-$timelineChart = new TimelineChart('bikeUsage');
+$timelineChart = $chartService->createTimelineChart('bikeUsage');
 $timelineChart->options->backgroundColor = new ChartBackgroundColor('23', 233, '234');
 $timelineChart->options->timeline = new TimelineOptions();
 $timelineChart->options->timeline->showRowLabels = true;
 echo json_encode($timelineChart, JSON_PRETTY_PRINT);
 
-$pieChart = new PieChart('pieBikeUsage');
+$pieChart = $chartService->createPieChart('pieBikeUsage');
 $pieChart->options->slices = [
     new PieChartSlice('red', 1.0),
     new PieChartSlice(),

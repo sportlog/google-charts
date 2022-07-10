@@ -13,7 +13,7 @@ namespace Sportlog\GoogleCharts\Test;
 
 use DateTime;
 use PHPUnit\Framework\TestCase;
-use Sportlog\GoogleCharts\{Column, ColumnType};
+use Sportlog\GoogleCharts\Charts\Base\{Column, ColumnType};
 
 final class ColumnTest extends TestCase
 {

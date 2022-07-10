@@ -22,15 +22,30 @@ use Sportlog\GoogleCharts\Charts\{AreaChart\AreaChartOptions, Base\GoogleChart, 
  */
 class ChartService
 {
-    private const GOOGLE_CHART_LODER_SCRIPT = 'https://www.gstatic.com/charts/loader.js';
+    private const GOOGLE_CHART_LOADER_SCRIPT = 'https://www.gstatic.com/charts/loader.js';
     private const CHART_TEMPLATE_SCRIPT = '/js/google_chart.js';
     private const CHART_LOAD_SCRIPT = 'GoogleCharts.loadCharts(%s);';
     private const CHART_DIV = '<div id="%s"></div>';
     private const SCRIPT_TAG = '<script%s">%s</script>';
 
+    /**
+     * List of created charts
+     *
+     * @var GoogleChart[]
+     */
     private array $charts = [];
+    /**
+     * Indicates if the javascript files haven been loaded.
+     *
+     * @var boolean
+     */
     private bool $loaded = false;
 
+    /**
+     * Creates a new chart service instance
+     *
+     * @param ScriptNonceProviderInterface|null $scriptNonceProvider 
+     */
     public function __construct(private readonly ?ScriptNonceProviderInterface $scriptNonceProvider = null)
     {
     }
@@ -125,7 +140,7 @@ class ChartService
         $this->loaded = true;
 
         return [
-            $this->getScriptTag(self::GOOGLE_CHART_LODER_SCRIPT),
+            $this->getScriptTag(self::GOOGLE_CHART_LOADER_SCRIPT),
             $this->getScriptTag($chartTemplateJs, false),
             $this->getScriptTag($chartJs, false)
         ];
