@@ -13,9 +13,10 @@ namespace Sportlog\GoogleCharts;
 
 use Exception;
 use InvalidArgumentException;
+use Sportlog\GoogleCharts\Charts\Options\AreaChart\AreaChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{AreaChart\AreaChartOptions, Base\GoogleChart, AreaChart, PieChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\GoogleChart, AreaChart, PieChart, TimelineChart};
 
 /**
  * Service for creating and loading charts

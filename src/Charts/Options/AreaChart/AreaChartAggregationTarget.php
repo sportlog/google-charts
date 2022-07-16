@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\AreaChart;
+namespace Sportlog\GoogleCharts\Charts\Options\AreaChart;
 
 enum AreaChartAggregationTarget: string {
     case Categories = 'categories';

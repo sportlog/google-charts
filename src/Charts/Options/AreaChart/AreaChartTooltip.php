@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\AreaChart;
+namespace Sportlog\GoogleCharts\Charts\Options\AreaChart;
 
 use Sportlog\GoogleCharts\Charts\Options\Common\{Tooltip\ChartTooltip, Tooltip\ChartTrigger, ChartTextStyle};
 
