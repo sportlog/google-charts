@@ -11,7 +11,9 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
-class ChartBoxStyle
+use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
+
+class ChartBoxStyle extends NotNullSerializer
 {
     public function __construct(
         public readonly string $stroke,

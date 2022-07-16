@@ -11,7 +11,9 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
-class ChartExplorer
+use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
+
+class ChartExplorer extends NotNullSerializer
 {
     /**
      * Ctor

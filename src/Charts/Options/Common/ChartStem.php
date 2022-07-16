@@ -11,7 +11,9 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
-class ChartStem
+use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
+
+class ChartStem extends NotNullSerializer
 {
     public function __construct(public readonly string $color, public readonly int $length)
     {

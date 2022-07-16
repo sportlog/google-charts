@@ -11,7 +11,9 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
-class ChartGradient
+use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
+
+class ChartGradient extends NotNullSerializer
 {
     public function __construct(
         public readonly string $color1,

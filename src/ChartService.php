@@ -149,8 +149,8 @@ class ChartService
     private function addChart(GoogleChart $chart): GoogleChart
     {
         $id = $chart->getId();
-        if (!isset($this->charts[$id])) {
-            throw new InvalidArgumentException("No chart with id '{$id}' found");
+        if (isset($this->charts[$id])) {
+            throw new InvalidArgumentException("A chart with id '{$id}' already exists");
         }
 
         $this->charts[$id] = $chart;

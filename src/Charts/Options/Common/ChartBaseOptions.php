@@ -11,7 +11,9 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
-abstract class ChartBaseOptions
+use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
+
+abstract class ChartBaseOptions extends NotNullSerializer
 {
     public ?int $width = null;
     public ?int $height = null;

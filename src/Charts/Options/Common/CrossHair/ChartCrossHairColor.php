@@ -11,11 +11,13 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options;
 
-class ChartCrossHairColor {
+use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
+
+class ChartCrossHairColor extends NotNullSerializer
+{
     public function __construct(
         public readonly ?string $color = null,
         public readonly ?float $opacity = null
-    )
-    {
+    ) {
     }
 }

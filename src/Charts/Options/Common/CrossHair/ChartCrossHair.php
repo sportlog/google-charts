@@ -11,7 +11,9 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options;
 
-class ChartCrossHair
+use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
+
+class ChartCrossHair extends NotNullSerializer
 {
     public function __construct(
         public readonly ?ChartCrossHairTrigger $trigger = null,

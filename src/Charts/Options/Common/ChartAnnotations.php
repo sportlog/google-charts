@@ -11,9 +11,9 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
-use InvalidArgumentException;
+use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 
-class ChartAnnotations
+class ChartAnnotations extends NotNullSerializer
 {
     public function __construct(
         public readonly ?ChartBoxStyle $boxStyle = null,

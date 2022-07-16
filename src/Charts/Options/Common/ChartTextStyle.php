@@ -11,10 +11,12 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
+use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
+
 /**
  * An object that specifies the legend text style.
  */
-class ChartTextStyle
+class ChartTextStyle extends NotNullSerializer
 {
     public function __construct(
         public ?string $fontName,
