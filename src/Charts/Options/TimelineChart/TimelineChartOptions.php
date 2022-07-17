@@ -22,11 +22,6 @@ class TimelineChartOptions extends ChartBaseOptions
 {
     public ?bool $avoidOverlappingGridLines = null;
     public ?ChartBackgroundColor $backgroundColor = null;
-    // public ?array $colors = null;
-    // public ?bool $enableInteractivity = null;
-    // public ?string $fontName = null;
-    // public ?string $fontSize = null;
-    // public ?bool $forceIFrame = null;
     public ?TimelineOptions $timeline = null;
     public ?TimelineTooltip $tooltip = null;
 

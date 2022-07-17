@@ -71,14 +71,14 @@ class GoogleCharts {
             case 'WordTree':
                 return 'wordtree';
             default: {
-                switch (design) {
-                    case 'classic':
-                        return 'corechart';
-                    case 'material':
-                        return this.getMaterialPackage(chartType);
-                    default:
-                        throw new Error(`invalid chart design '${design}'`)
+                if (design === 'classic') {
+                    return 'corechart';
                 }
+                else if (design === 'material') {
+                    return this.getMaterialPackage(chartType);
+                }
+                 
+                throw new Error(`invalid chart design '${design}'`);
             }
         }
     }

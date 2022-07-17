@@ -9,9 +9,9 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options\AreaChart;
+namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
-enum AreaChartStacked : string {
+enum ChartStacked : string {
     case Percent = 'percent';
     case Relative = 'relative';
     case Absolute = 'absolute';

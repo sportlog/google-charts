@@ -17,9 +17,11 @@ use Sportlog\GoogleCharts\Charts\Options\Common\ChartTextStyle;
 class ChartTooltip extends NotNullSerializer
 {
     public function __construct(
-        public readonly bool $isHtml,
-        public readonly ChartTrigger $trigger,
-        public readonly ?ChartTextStyle $textStyle = null
+        public bool $isHtml,
+        public ChartTrigger $trigger,
+        public ?ChartTextStyle $textStyle = null,
+        public ?bool $showColorCode = null,
+        public ?bool $ignoreBounds = null
     ) {
     }
 }
