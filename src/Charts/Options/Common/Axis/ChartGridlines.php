@@ -16,12 +16,12 @@ use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 class ChartGridlines extends NotNullSerializer
 {
     public function __construct(
-        public readonly ?string $color = null,
-        public readonly ?int $count = null,
-        public readonly ?array $interval = null,
-        public readonly ?float $minSpacing = null,
-        public readonly ?int $multiple = null,
-        public readonly ?ChartGridlinesUnit $units = null
+        public ?string $color = null,
+        public ?int $count = null,
+        public ?array $interval = null,
+        public ?float $minSpacing = null,
+        public ?int $multiple = null,
+        public ?ChartGridlinesUnit $units = null
     ) {
     }
 }

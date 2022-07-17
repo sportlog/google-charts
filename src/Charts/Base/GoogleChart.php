@@ -40,9 +40,14 @@ abstract class GoogleChart implements JsonSerializable
      * @param string $id
      * @param ChartType $chartType
      * @param ChartBaseOptions $options
+     * @param ChartDesign $design
      */
-    public function __construct(private readonly string $id, private readonly ChartType $chartType, private readonly ChartBaseOptions $options)
-    {
+    public function __construct(
+        private readonly string $id,
+        private readonly ChartType $chartType,
+        private readonly ChartBaseOptions $options,
+        private readonly ChartDesign $design = ChartDesign::Classic
+    ) {
     }
 
     /**
@@ -91,7 +96,8 @@ abstract class GoogleChart implements JsonSerializable
             ],
             'options' => $this->options,
             'id' => $this->getId(),
-            'chartType' => $this->chartType
+            'type' => $this->chartType,
+            'design' => $this->design
         ];
     }
 }

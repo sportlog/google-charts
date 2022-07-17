@@ -1,6 +1,6 @@
 <?php
 
-use Sportlog\GoogleCharts\Charts\Options\Common\ChartBackgroundColor;
+use Sportlog\GoogleCharts\Charts\Options\Common\{Axis\ChartAxis, Axis\ChartGridlines, Axis\ChartGridlinesFormat, Axis\ChartGridlinesUnit, ChartBackgroundColor};
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartSlice;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineOptions;
 use Sportlog\GoogleCharts\ChartService;
@@ -25,4 +25,6 @@ echo json_encode($pieChart, JSON_PRETTY_PRINT);
 
 
 $areaChart = $chartService->createAreaChart('areaChart');
+$areaChart->options->vAxis = new ChartAxis(title: 'some title');
+$areaChart->options->vAxis->gridlines = new ChartGridlines(units: new ChartGridlinesUnit(seconds: new ChartGridlinesFormat('ss')));
 echo json_encode($areaChart, JSON_PRETTY_PRINT);

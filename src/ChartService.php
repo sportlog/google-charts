@@ -14,9 +14,10 @@ namespace Sportlog\GoogleCharts;
 use Exception;
 use InvalidArgumentException;
 use Sportlog\GoogleCharts\Charts\Options\AreaChart\AreaChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\BarChart\BarChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\GoogleChart, AreaChart, PieChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, PieChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -61,6 +62,20 @@ class ChartService
     public function createAreaChart(string $id, AreaChartOptions $options = new AreaChartOptions()): AreaChart
     {
         $chart = new AreaChart($id, $options);
+        $this->addChart($chart);
+        return $chart;
+    }
+
+    /**
+     * Creates a new Area chart.
+     *
+     * @param string $id
+     * @param BarChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createBarChart(string $id, BarChartOptions $options = new BarChartOptions(), ChartDesign $design = ChartDesign::Classic): BarChart
+    {
+        $chart = new BarChart($id, $options, $design);
         $this->addChart($chart);
         return $chart;
     }

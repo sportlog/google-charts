@@ -15,7 +15,7 @@ use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 
 class ChartGridlinesFormat extends NotNullSerializer
 {
-    public function __construct(public readonly ?string $format = null)
+    public function __construct(public ?string $format = null)
     {
     }
 }

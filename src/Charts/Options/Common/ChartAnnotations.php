@@ -22,7 +22,8 @@ class ChartAnnotations extends NotNullSerializer
         public readonly ?bool $highContrast = null,
         public readonly ?ChartStem $stem = null,
         public readonly ?ChartAnnotationStyle $style = null,
-        public readonly ?ChartTextStyle $textStyle = null
+        public readonly ?ChartTextStyle $textStyle = null,
+        public readonly ?bool $alwaysOutside = null
     ) {
     }
 }

@@ -9,13 +9,13 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options\Common\Axis;
+namespace Sportlog\GoogleCharts\Charts\Options\BarChart;
 
 use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 
-class ChartViewWindow extends NotNullSerializer
+class BarChartGroupWidth extends NotNullSerializer
 {
-    public function __construct(public ?int $min = null, public ?int $max = null)
+    public function __construct(public string|int $groupWidth)
     {
     }
 }
