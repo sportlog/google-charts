@@ -28,7 +28,7 @@ class ChartService
     private const CHART_TEMPLATE_SCRIPT = '/js/google_chart.js';
     private const CHART_LOAD_SCRIPT = 'GoogleCharts.loadCharts(%s);';
     private const CHART_DIV = '<div id="%s"></div>';
-    private const SCRIPT_TAG = '<script%s">%s</script>';
+    private const SCRIPT_TAG = '<script%s>%s</script>';
 
     /**
      * List of created charts

@@ -29,7 +29,7 @@ class BarChart extends GoogleChart
     public function __construct(
         string $id,
         public readonly BarChartOptions $options = new BarChartOptions(),
-        public readonly ChartDesign $design = ChartDesign::Classic
+        ChartDesign $design = ChartDesign::Classic
     ) {
         parent::__construct($id, ChartType::Bar, $options, $design);
     }

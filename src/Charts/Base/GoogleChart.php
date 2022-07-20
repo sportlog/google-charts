@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Base;
 
+use DateTimeInterface;
 use InvalidArgumentException;
 use JsonSerializable;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartBaseOptions;
@@ -66,7 +67,21 @@ abstract class GoogleChart implements JsonSerializable
     public function addRow(array $values, array $formatted = []): void
     {
         if (count($this->cols) === 0) {
-            throw new InvalidArgumentException("Must add columns before adding rows");
+            throw new InvalidArgumentException('Must add columns before adding rows');
+        }
+        // Google charts do not draw if column count does not match the values count.
+        if (count($values) !== count($this->cols)) {
+            throw new InvalidArgumentException('Must provide exactly one value per column');
+        }
+        if (!array_is_list($values)) {
+            throw new InvalidArgumentException('Values must not be an associative array');
+        }
+
+        foreach ($values as $key => $value) {
+            $columnType = $this->cols[$key]->type;
+            if (!$this->matchType($columnType, $value)) {
+                throw new InvalidArgumentException("Value with index {$key} does not match the column type. Expected columnType is {$columnType->value}");
+            }
         }
 
         $this->rows[] = new Row($values, $formatted);
@@ -83,6 +98,32 @@ abstract class GoogleChart implements JsonSerializable
     {
         $this->cols[] = new Column($type, $label);
     }
+
+    private function matchType(ColumnType $colType, mixed $value): bool {
+        switch ($colType) {
+            case ColumnType::Bool:
+                return is_bool($value);
+
+            case ColumnType::String:
+                return is_string($value);
+
+            case ColumnType::Date:
+            case ColumnType::DateTime:
+                return ($value instanceof DateTimeInterface);
+
+            case ColumnType::Number:
+                // do not use is_numeric as it allows numeric strings
+                // which would not be handled correctly by google charts library
+                return is_int($value) || is_float($value);
+
+            case ColumnType::TimeOfDay:
+                // TODO: all values in array must be int
+                return is_array($value) && (count($value) === 3 || count($value) === 4);
+        }
+
+        return false;
+    }
+
 
     /**
      * Get json serializable

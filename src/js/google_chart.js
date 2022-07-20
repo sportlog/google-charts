@@ -12,6 +12,8 @@ class GoogleCharts {
      * @param [] chartsData Array of charts to draw
      */
     static loadCharts(chartsData) {
+        console.log('loading chart', chartsData);
+
         // get distinct list of packages
         const packages = [
             ...new Set(chartsData.map((c) => this.getPackage(c.type, c.design))),
@@ -29,12 +31,14 @@ class GoogleCharts {
      */
     static drawCharts(charts) {
         charts.forEach((chart) => {
+            
             var data = new google.visualization.DataTable(chart.data);
             var options = chart.options;
             var element = document.getElementById(chart.id);
             if (element === null) {
                 throw new Error(`could not find HTMLElement with ${chart.id}`);
             }
+        
             this.drawChart(chart.type, chart.design, data, options, element);
         });
     }
