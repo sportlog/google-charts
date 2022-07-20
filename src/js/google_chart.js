@@ -12,8 +12,6 @@ class GoogleCharts {
      * @param [] chartsData Array of charts to draw
      */
     static loadCharts(chartsData) {
-        console.log('loading chart', chartsData);
-
         // get distinct list of packages
         const packages = [
             ...new Set(chartsData.map((c) => this.getPackage(c.type, c.design))),
