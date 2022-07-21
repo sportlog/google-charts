@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Sportlog\GoogleCharts\Charts\Base;
 
 use DateTimeInterface;
+use Exception;
 use InvalidArgumentException;
 use JsonSerializable;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartBaseOptions;
@@ -87,6 +88,12 @@ abstract class GoogleChart implements JsonSerializable
         $this->rows[] = new Row($values, $formatted);
     }
 
+    public function addRows(array ...$values): void {
+        foreach ($values as $value) {
+            $this->addRow($value);
+        }
+    }
+
     /**
      * Adds a column.
      *
@@ -99,7 +106,25 @@ abstract class GoogleChart implements JsonSerializable
         $this->cols[] = new Column($type, $label);
     }
 
-    private function matchType(ColumnType $colType, mixed $value): bool {
+    /**
+     * Get json serializable
+     */
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'data' => [
+                'cols' => $this->cols,
+                'rows' => $this->rows
+            ],
+            'options' => $this->options,
+            'id' => $this->getId(),
+            'type' => $this->chartType,
+            'design' => $this->design
+        ];
+    }
+
+    private function matchType(ColumnType $colType, mixed $value): bool
+    {
         switch ($colType) {
             case ColumnType::Bool:
                 return is_bool($value);
@@ -117,28 +142,14 @@ abstract class GoogleChart implements JsonSerializable
                 return is_int($value) || is_float($value);
 
             case ColumnType::TimeOfDay:
-                // TODO: all values in array must be int
-                return is_array($value) && (count($value) === 3 || count($value) === 4);
+                // The DataTable timeofday column data type takes an array of either 3 or 4 numbers, 
+                // representing hours, minutes, seconds, and optionally milliseconds, respectively. 
+                return is_array($value) &&
+                    (count($value) === 3 || count($value) === 4) &&
+                    array_reduce($value, fn ($acc, $item) => $acc && is_int($item), true);
+
+            default:
+                throw new Exception("unhandled column type {$colType}");
         }
-
-        return false;
-    }
-
-
-    /**
-     * Get json serializable
-     */
-    public function jsonSerialize(): mixed
-    {
-        return [
-            'data' => [
-                'cols' => $this->cols,
-                'rows' => $this->rows
-            ],
-            'options' => $this->options,
-            'id' => $this->getId(),
-            'type' => $this->chartType,
-            'design' => $this->design
-        ];
     }
 }

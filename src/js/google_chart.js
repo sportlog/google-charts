@@ -29,15 +29,16 @@ class GoogleCharts {
      */
     static drawCharts(charts) {
         charts.forEach((chart) => {
-            
+            console.log('drawing chart', chart.id);
             var data = new google.visualization.DataTable(chart.data);
             var options = chart.options;
             var element = document.getElementById(chart.id);
-            if (element === null) {
-                throw new Error(`could not find HTMLElement with ${chart.id}`);
+            if (element) {
+                this.drawChart(chart.type, chart.design, data, options, element);
             }
-        
-            this.drawChart(chart.type, chart.design, data, options, element);
+            else {
+                console.warn(`could not find HTMLElement with ${chart.id}`);
+            }
         });
     }
 

@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options;
+namespace Sportlog\GoogleCharts\Charts\Options\CrossHair;
 
 use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 

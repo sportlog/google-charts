@@ -37,12 +37,7 @@ class PieChartOptions extends ChartBaseOptions
     public ?bool $reverseCategories = null;
     public ?string $pieResidueSliceColor = null;
     public ?string $pieResidueSliceLabel = null;
-    /**
-     * An array of objects, each describing the format of the corresponding slice in the pie.
-     *
-     * @var PieChartSlice[]|null
-     */
-    public ?array $slices = null;
+    public ?PieChartSliceCollection $slices = null;
     public ?float $sliceVisibilityThreshold = null;
     public ?string $title = null;
     public ?ChartTextStyle $titleTextStyle = null;
