@@ -71,10 +71,10 @@ $languagePie->options->slices->add(new PieChartSlice(offset: 0.4), 14);
 $languagePie->options->slices->add(new PieChartSlice(offset: 0.5), 15);
 
 // Pizza
-$languagePie = $chartService->createPieChart('pizza');
-$languagePie->addColumn('Pizza', ColumnType::String);
-$languagePie->addColumn('Populartiy', ColumnType::Number);
-$languagePie->addRows(
+$pizzaPie = $chartService->createPieChart('pizza');
+$pizzaPie->addColumn('Pizza', ColumnType::String);
+$pizzaPie->addColumn('Populartiy', ColumnType::Number);
+$pizzaPie->addRows(
     ['Pepperoni', 33],
     ['Hawaiian', 26],
     ['Mushroom', 22],
@@ -82,11 +82,10 @@ $languagePie->addRows(
     ['Anchovies', 9]
 );
 
-
-$languagePie->options->title = 'Popularity of Types of Pizza';
-$languagePie->options->height = 285;
-$languagePie->options->width = 900;
-$languagePie->options->sliceVisibilityThreshold = 0.2;
+$pizzaPie->options->title = 'Popularity of Types of Pizza';
+$pizzaPie->options->height = 285;
+$pizzaPie->options->width = 900;
+$pizzaPie->options->sliceVisibilityThreshold = 0.2;
 
 echo $chartService->render('dailyActivities');
 echo $chartService->render('languageUse');
