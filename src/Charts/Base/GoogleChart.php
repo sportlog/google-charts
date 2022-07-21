@@ -88,6 +88,13 @@ abstract class GoogleChart implements JsonSerializable
         $this->rows[] = new Row($values, $formatted);
     }
 
+    /**
+     * Add multiple rows at once.
+     * Use addRow() if you need to supply formatted values.
+     *
+     * @param array ...$values
+     * @return void
+     */
     public function addRows(array ...$values): void {
         foreach ($values as $value) {
             $this->addRow($value);
@@ -137,7 +144,7 @@ abstract class GoogleChart implements JsonSerializable
                 return ($value instanceof DateTimeInterface);
 
             case ColumnType::Number:
-                // do not use is_numeric as it allows numeric strings
+                // Do not use is_numeric as it allows numeric strings
                 // which would not be handled correctly by google charts library
                 return is_int($value) || is_float($value);
 
