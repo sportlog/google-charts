@@ -29,15 +29,11 @@ class GoogleCharts {
      */
     static drawCharts(charts) {
         charts.forEach((chart) => {
-            console.log('drawing chart', chart.id);
             var data = new google.visualization.DataTable(chart.data);
             var options = chart.options;
             var element = document.getElementById(chart.id);
             if (element) {
                 this.drawChart(chart.type, chart.design, data, options, element);
-            }
-            else {
-                console.warn(`could not find HTMLElement with ${chart.id}`);
             }
         });
     }
@@ -97,6 +93,9 @@ class GoogleCharts {
             case 'Bar':
                 return 'bar';
 
+            case 'Column':
+                return 'bar';
+
             default:
                 throw new Error(`material design not supported for chart type '${chartType}'`);
         }
@@ -148,8 +147,15 @@ class GoogleCharts {
                 break;
             }
             case 'Column': {
-                const chart = new google.visualization.ColumnChart(element);
-                chart.draw(dataTable, options);
+                if (isMaterialDesign) {
+                    // Yes, bar chart!
+                    const chart = new google.charts.Bar(element);
+                    chart.draw(dataTable, google.charts.Bar.convertOptions(options));
+                }
+                else {
+                    const chart = new google.visualization.ColumnChart(element);
+                    chart.draw(dataTable, options);
+                }
                 break;
             }
             case 'Combo': {

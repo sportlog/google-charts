@@ -10,52 +10,20 @@ use Sportlog\GoogleCharts\Charts\Base\ChartDesign;
 use Sportlog\GoogleCharts\Charts\Base\Column;
 use Sportlog\GoogleCharts\Charts\Base\ColumnType;
 use Sportlog\GoogleCharts\Charts\Options\Common\Axis\ChartAxis;
-use Sportlog\GoogleCharts\Charts\Options\Common\ChartArea;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegend;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegendPosition;
-use Sportlog\GoogleCharts\Charts\Options\Common\ChartOrientation;
-use Sportlog\GoogleCharts\Charts\Options\Common\ChartTextStyle;
-use Sportlog\GoogleCharts\Charts\Options\Common\ChartTitle;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartGroupWidth;
+use Sportlog\GoogleCharts\Charts\Options\Common\ChartOrientation;
+use Sportlog\GoogleCharts\Charts\Options\Common\ChartStacked;
+use Sportlog\GoogleCharts\Charts\Options\Common\ChartTitle;
 use Sportlog\GoogleCharts\ChartService;
 
 $chartService = new ChartService();
 
 // ********************************
-// Population-Chart
+// Genre-Chart, 100% stacked
 // ********************************
-$chart = $chartService->createBarChart('population');
-$chart->addColumn(new Column(ColumnType::String, 'City'));
-$chart->addColumn(new Column(ColumnType::Number, '2010 Population'));
-$chart->addColumn(new Column(ColumnType::Number, '2020 Population'));
-$chart->addRows(
-    ['New York City, NY', 8175000, 8008000],
-    ['Los Angeles, CA', 3792000, 3694000],
-    ['Chicago, IL', 2695000, 2896000],
-    ['Houston, TX', 2099000, 1953000],
-    ['Philadelphia, PA', 1526000, 1517000]
-);
-
-$chart->options->height = 300;
-$chart->options->width = 713;
-$chart->options->title = 'Population of Largest U.S. Cities';
-$chart->options->chartArea = new ChartArea(width: '50%');
-$chart->options->hAxis = new ChartAxis(
-    title: 'Total Population',
-    minValue: 0,
-    textStyle: new ChartTextStyle(bold: true, fontSize: 12, color: '#4d4d4d'),
-    titleTextStyle: new ChartTextStyle(bold: true, fontSize: 18, color: '#4d4d4d')
-);
-$chart->options->vAxis = new ChartAxis(
-    title: 'City',
-    textStyle: new ChartTextStyle(bold: true, fontSize: 14, color: '#848484'),
-    titleTextStyle: new ChartTextStyle(bold: true, fontSize: 14, color: '#848484')
-);
-
-// ********************************
-// Genre-Chart
-// ********************************
-$chart = $chartService->createBarChart('genre');
+$chart = $chartService->createColumnChart('genre');
 $chart->addColumn(new Column(ColumnType::String, 'Genre'));
 $chart->addColumn(new Column(ColumnType::Number, 'Fantasy & Sci Fi'));
 $chart->addColumn(new Column(ColumnType::Number, 'Romance'));
@@ -70,17 +38,16 @@ $chart->addRows(
     ['2030', 28, 19, 29, 30, 12, 13, '']
 );
 
-$chart->options->height = 400;
-$chart->options->width = 600;
-$chart->options->isStacked = true;
+$chart->options->height = 300;
+$chart->options->width = 411;
+$chart->options->isStacked = ChartStacked::Percent;
 $chart->options->legend = new ChartLegend(position: ChartLegendPosition::Top, maxLines: 3);
-$chart->options->bar = new ChartGroupWidth('75%');
-
+$chart->options->vAxis = new ChartAxis(minValue: 0, ticks: [0, .3, .6, .9, 1]);
 
 // ********************************
 // Sales-Chart using Material design
 // ********************************
-$chart = $chartService->createBarChart('element', design: ChartDesign::Material);
+$chart = $chartService->createColumnChart('element', design: ChartDesign::Material);
 $chart->addColumn(new Column(ColumnType::String, 'Element'));
 $chart->addColumn(new Column(ColumnType::Number, 'Sales'));
 $chart->addColumn(new Column(ColumnType::Number, 'Expenses'));
@@ -93,12 +60,9 @@ $chart->addRows(
 );
 
 $chart->options->height = 500;
-$chart->options->width = 900;
+$chart->options->width = 800;
 $chart->options->chart = new ChartTitle('Company Performance', 'Sales, Expenses, and Profit: 2014-2017');
-// When set to 'horizontal', the orientation will resemble the traditional Classic Bar Chart; otherwise, the bars will be vertical.
-$chart->options->bars = ChartOrientation::Horizontal;
 
 // Draw all charts
-echo $chartService->render('population');
 echo $chartService->render('genre');
 echo $chartService->render('element');

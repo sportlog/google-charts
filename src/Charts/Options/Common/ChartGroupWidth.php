@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options\Commons;
+namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
 use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 
