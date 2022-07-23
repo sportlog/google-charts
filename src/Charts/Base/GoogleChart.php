@@ -104,13 +104,11 @@ abstract class GoogleChart implements JsonSerializable
     /**
      * Adds a column.
      *
-     * @param string $label
-     * @param ColumnType $type
      * @return void
      */
-    public function addColumn(string $label, ColumnType $type): void
+    public function addColumn(Column $column): void
     {
-        $this->cols[] = new Column($type, $label);
+        $this->cols[] = $column;
     }
 
     /**

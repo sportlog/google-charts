@@ -4,6 +4,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+require_once '../vendor/autoload.php';
+
+use Sportlog\GoogleCharts\Charts\Base\Column;
 use Sportlog\GoogleCharts\Charts\Base\ColumnType;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegend;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegendPosition;
@@ -12,12 +15,10 @@ use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartSliceCollection;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartSliceText;
 use Sportlog\GoogleCharts\ChartService;
 
-require_once '../vendor/autoload.php';
-
 $chartService = new ChartService();
 $pieChart = $chartService->createPieChart('dailyActivities');
-$pieChart->addColumn('Task', ColumnType::String);
-$pieChart->addColumn('Hours per Day', ColumnType::Number);
+$pieChart->addColumn(new Column(ColumnType::String, 'Task'));
+$pieChart->addColumn(new Column(ColumnType::Number, 'Hours per Day'));
 
 $pieChart->addRow(['Work',     11]);
 $pieChart->addRow(['Eat',      2]);
@@ -32,8 +33,8 @@ $pieChart->options->pieHole = 0.4;
 
 // Slices
 $languagePie = $chartService->createPieChart('languageUse');
-$languagePie->addColumn('Task', ColumnType::String);
-$languagePie->addColumn('Hours per Day', ColumnType::Number);
+$languagePie->addColumn(new Column(ColumnType::String, 'Language'));
+$languagePie->addColumn(new Column(ColumnType::Number, 'Speakers (in millions)'));
 $languagePie->addRows(
     ['Assamese', 13],
     ['Bengali', 83],
@@ -72,8 +73,8 @@ $languagePie->options->slices->add(new PieChartSlice(offset: 0.5), 15);
 
 // Pizza
 $pizzaPie = $chartService->createPieChart('pizza');
-$pizzaPie->addColumn('Pizza', ColumnType::String);
-$pizzaPie->addColumn('Populartiy', ColumnType::Number);
+$pizzaPie->addColumn(new Column(ColumnType::String, 'Pizza'));
+$pizzaPie->addColumn(new Column(ColumnType::Number, 'Populartiy'));
 $pizzaPie->addRows(
     ['Pepperoni', 33],
     ['Hawaiian', 26],

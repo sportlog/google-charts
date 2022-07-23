@@ -19,13 +19,13 @@ use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 class ChartTextStyle extends NotNullSerializer
 {
     public function __construct(
-        public ?string $fontName,
-        public ?int $fontSize,
-        public ?bool $bold,
-        public ?bool $italic,
-        public ?string $color,
-        public ?string $auraColor,
-        public ?float $opacity
+        public ?string $fontName = null,
+        public ?int $fontSize = null,
+        public ?bool $bold = null,
+        public ?bool $italic = null,
+        public ?string $color = null,
+        public ?string $auraColor = null,
+        public ?float $opacity = null
     ) {
     }
 }
