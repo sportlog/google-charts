@@ -9,7 +9,6 @@ require_once '../vendor/autoload.php';
 use Sportlog\GoogleCharts\Charts\Base\ChartDesign;
 use Sportlog\GoogleCharts\Charts\Base\Column;
 use Sportlog\GoogleCharts\Charts\Base\ColumnType;
-use Sportlog\GoogleCharts\Charts\Options\BarChart\BarChartGroupWidth;
 use Sportlog\GoogleCharts\Charts\Options\Common\Axis\ChartAxis;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartArea;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegend;
@@ -17,6 +16,7 @@ use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegendPosition;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartOrientation;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartTextStyle;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartTitle;
+use Sportlog\GoogleCharts\Charts\Options\Commons\ChartGroupWidth;
 use Sportlog\GoogleCharts\ChartService;
 
 $chartService = new ChartService();
@@ -74,7 +74,7 @@ $chart->options->height = 400;
 $chart->options->width = 600;
 $chart->options->isStacked = true;
 $chart->options->legend = new ChartLegend(position: ChartLegendPosition::Top, maxLines: 3);
-$chart->options->bar = new BarChartGroupWidth('75%');
+$chart->options->bar = new ChartGroupWidth('75%');
 
 
 // ********************************

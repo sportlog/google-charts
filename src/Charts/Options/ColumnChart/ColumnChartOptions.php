@@ -9,17 +9,17 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options\BarChart;
+namespace Sportlog\GoogleCharts\Charts\Options\ColumnChart;
 
 use Sportlog\GoogleCharts\Charts\Options\Common\{Axis\ChartAxis, ChartLegend\ChartLegend, Tooltip\ChartTooltip, Trendline\ChartTrendlineCollection, ChartAnimation, ChartAnnotations, ChartArea, ChartAxisTitlePosition, ChartBackgroundColor, ChartBaseOptions, ChartExplorer, ChartFocusTarget, ChartOrientation, ChartSeriesOptions, ChartStacked, ChartTextStyle, ChartTitle};
 use Sportlog\GoogleCharts\Charts\Options\Commons\ChartGroupWidth;
 
 /**
- * BarChart options.
+ * ColumnChart options.
  * 
- * @see https://developers.google.com/chart/interactive/docs/gallery/barchart#configuration-options
+ * @see https://developers.google.com/chart/interactive/docs/gallery/columnchart#configuration-options
  */
-class BarChartOptions extends ChartBaseOptions
+class ColumnChartOptions extends ChartBaseOptions
 {
     public ?ChartAnimation $animation = null;
     public ?ChartAnnotations $annotations = null;
@@ -32,13 +32,12 @@ class BarChartOptions extends ChartBaseOptions
     public ?float $dataOpacity = null;
     public ?ChartExplorer $explorer = null;
     public ?ChartFocusTarget $focusTarget = null;
-    public mixed $hAyes = null;
     public ?ChartAxis $hAxis = null;
     public ChartStacked|bool|null $isStacked = null;
     public ?ChartLegend $legend = null;
-    public ?bool $reverseCategories = null;
     public ?ChartOrientation $orientation = null;
-     /**
+    public ?bool $reverseCategories = null;
+      /**
      * An array of objects, each describing the format of the corresponding series in the chart.
      *
      * @var ChartSeriesOptions[]|null

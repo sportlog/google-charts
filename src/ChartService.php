@@ -15,9 +15,10 @@ use Exception;
 use InvalidArgumentException;
 use Sportlog\GoogleCharts\Charts\Options\AreaChart\AreaChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\BarChart\BarChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\ColumnChart\ColumnChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, PieChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, ColumnChart, PieChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -67,7 +68,7 @@ class ChartService
     }
 
     /**
-     * Creates a new Area chart.
+     * Creates a new Bar chart.
      *
      * @param string $id
      * @param BarChartOptions $options
@@ -76,6 +77,20 @@ class ChartService
     public function createBarChart(string $id, BarChartOptions $options = new BarChartOptions(), ChartDesign $design = ChartDesign::Classic): BarChart
     {
         $chart = new BarChart($id, $options, $design);
+        $this->addChart($chart);
+        return $chart;
+    }
+
+    /**
+     * Creates a new Column chart.
+     *
+     * @param string $id
+     * @param ColumnChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createColumnChart(string $id, ColumnChartOptions $options = new ColumnChartOptions(), ChartDesign $design = ChartDesign::Classic): ColumnChart
+    {
+        $chart = new ColumnChart($id, $options, $design);
         $this->addChart($chart);
         return $chart;
     }

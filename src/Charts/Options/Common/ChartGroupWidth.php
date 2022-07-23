@@ -9,11 +9,11 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options\BarChart;
+namespace Sportlog\GoogleCharts\Charts\Options\Commons;
 
 use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 
-class BarChartGroupWidth extends NotNullSerializer
+class ChartGroupWidth extends NotNullSerializer
 {
     public function __construct(public string|int $groupWidth)
     {

@@ -15,6 +15,7 @@ use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 
 class ChartSeriesOptions extends NotNullSerializer {
     public function __construct(
+        public readonly ?ChartAnnotations $annotations = null,
         public readonly ?float $areaOpacity = null,
         public readonly ?string $color = null,
         public readonly ?string $labelInLegend = null,

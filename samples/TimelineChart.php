@@ -8,7 +8,6 @@ require_once '../vendor/autoload.php';
 
 use Sportlog\GoogleCharts\Charts\Base\Column;
 use Sportlog\GoogleCharts\Charts\Base\ColumnType;
-use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineOptions;
 use Sportlog\GoogleCharts\ChartService;
 
 $chartService = new ChartService();

@@ -154,7 +154,7 @@ abstract class GoogleChart implements JsonSerializable
                     array_reduce($value, fn ($acc, $item) => $acc && is_int($item), true);
 
             default:
-                throw new Exception("unhandled column type {$colType}");
+                throw new Exception("unhandled column type {$colType->value}");
         }
     }
 }
