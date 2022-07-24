@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\BarChart;
 
-use Sportlog\GoogleCharts\Charts\Options\Common\{Axis\ChartAxis, ChartLegend\ChartLegend, Tooltip\ChartTooltip, Trendline\ChartTrendlineCollection, ChartAnimation, ChartAnnotations, ChartArea, ChartAxisTitlePosition, ChartBackgroundColor, ChartBaseOptions, ChartExplorer, ChartFocusTarget, ChartGroupWidth, ChartOrientation, ChartSeriesOptions, ChartStacked, ChartTextStyle, ChartTitle};
+use Sportlog\GoogleCharts\Charts\Options\Common\{Axis\ChartAxis, ChartLegend\ChartLegend, Tooltip\ChartTooltip, Trendline\ChartTrendlineCollection, ChartAnimation, ChartAnnotations, ChartArea, ChartAxisTitlePosition, ChartBackgroundColor, ChartBaseOptions, ChartExplorer, ChartFocusTarget, ChartGroupWidth, ChartOrientation, ChartSeriesOptions, ChartSeriesOptionsCollection, ChartStacked, ChartTextStyle, ChartTitle};
 
 /**
  * BarChart options.
@@ -36,12 +36,7 @@ class BarChartOptions extends ChartBaseOptions
     public ?ChartLegend $legend = null;
     public ?bool $reverseCategories = null;
     public ?ChartOrientation $orientation = null;
-     /**
-     * An array of objects, each describing the format of the corresponding series in the chart.
-     *
-     * @var ChartSeriesOptions[]|null
-     */
-    public ?array $series = null;
+    public ?ChartSeriesOptionsCollection $series = null;
     public ?string $theme = null; // can only be 'maximized'
     public ?string $title = null;
     public ?ChartAxisTitlePosition $titlePosition = null;

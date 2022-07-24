@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\AreaChart;
 
-use Sportlog\GoogleCharts\Charts\Options\Common\{Axis\ChartAxis, ChartLegend\ChartLegend, Tooltip\ChartTooltip, ChartAnimation, ChartAnnotations, ChartArea, ChartAxisTitlePosition, ChartBackgroundColor, ChartBaseOptions, ChartExplorer, ChartFocusTarget, ChartOrientation, ChartPointShape, ChartSelectionMode, ChartSeriesOptions, ChartStacked, ChartTextStyle};
+use Sportlog\GoogleCharts\Charts\Options\Common\{Axis\ChartAxis, ChartLegend\ChartLegend, Tooltip\ChartTooltip, ChartAnimation, ChartAnnotations, ChartArea, ChartAxisTitlePosition, ChartBackgroundColor, ChartBaseOptions, ChartExplorer, ChartFocusTarget, ChartOrientation, ChartPointShape, ChartSelectionMode, ChartSeriesOptions, ChartSeriesOptionsCollection, ChartStacked, ChartTextStyle};
 
 /**
  * AreaChart ptions.
@@ -47,12 +47,7 @@ class AreaChartOptions extends ChartBaseOptions {
     public ?bool $pointsVisible = null;
     public ?bool $reverseCategories = null;
     public ?ChartSelectionMode $selectionMode = null;
-    /**
-     * An array of objects, each describing the format of the corresponding series in the chart.
-     *
-     * @var ChartSeriesOptions[]|null
-     */
-    public ?array $series = null;
+    public ?ChartSeriesOptionsCollection $series = null;
     public ?string $theme = null; // can only be 'maximized'
     public ?string $title = null;
     public ?ChartAxisTitlePosition $titlePosition = null;
