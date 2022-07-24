@@ -9,32 +9,31 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts\Charts\Options\ComboChart;
+namespace Sportlog\GoogleCharts\Charts\Options\LineChart;
 
 use Sportlog\GoogleCharts\Charts\Options\AreaChart\AreaChartAggregationTarget;
-use Sportlog\GoogleCharts\Charts\Options\Common\{Axis\ChartAxis, ChartLegend\ChartLegend, Tooltip\ChartTooltip, ChartAnimation, ChartArea, ChartAxisTitlePosition, ChartBackgroundColor, ChartBaseOptions, ChartCurveType, ChartFocusTarget, ChartOrientation, ChartPointShape, ChartSelectionMode, ChartSeriesOptions, ChartSeriesOptionsCollection, ChartSeriesType, ChartTextStyle};
+use Sportlog\GoogleCharts\Charts\Options\Common\{Axis\ChartAxis, ChartLegend\ChartLegend, Tooltip\ChartTooltip, Trendline\ChartTrendlineCollection, ChartAnimation, ChartArea, ChartAxisTitlePosition, ChartBackgroundColor, ChartBaseOptions, ChartCurveType, ChartExplorer, ChartFocusTarget, ChartOrientation, ChartPointShape, ChartSelectionMode, ChartSeriesOptions, ChartSeriesOptionsCollection, ChartSeriesType, ChartTextStyle};
 use Sportlog\GoogleCharts\Charts\Options\CrossHair\ChartCrossHair;
 
 /**
- * ColumnChart options.
+ * LineChart options.
  * 
- * @see https://developers.google.com/chart/interactive/docs/gallery/combochart#configuration-options
+ * @see https://developers.google.com/chart/interactive/docs/gallery/linechart#configuration-options
  */
-class ComboChartOptions extends ChartBaseOptions
+class LineChartOptions extends ChartBaseOptions
 {
     public ?AreaChartAggregationTarget $aggregationTarget = null;
     public ?ChartAnimation $animation = null;
-    public ?float $areaOpacity = null;
     public ?ChartAxisTitlePosition $axisTitlesPosition = null;
     public ?ChartBackgroundColor $backgroundColor = null;
     public ?ChartArea $chartArea = null;
     public ?ChartCrossHair $crosshair = null;
     public ?ChartCurveType $curveType = null;
     public ?float $dataOpacity = null;
+    public ?ChartExplorer $explorer = null;
     public ?ChartFocusTarget $focusTarget = null;
     public ?ChartAxis $hAxis = null;
     public ?bool $interpolateNulls = null;
-    public ?bool $isStacked = null;
     public ?ChartLegend $legend = null;
     public ?array $lineDashStyle = null;
     public ?int $lineWidth = null;
@@ -51,6 +50,7 @@ class ComboChartOptions extends ChartBaseOptions
     public ?ChartAxisTitlePosition $titlePosition = null;
     public ?ChartTextStyle $titleTextStyle = null;
     public ?ChartTooltip $tooltip = null;
+    public ?ChartTrendlineCollection $trendlines = null;
     public mixed $vAxes = null; 
     public ?ChartAxis $vAxis = null; 
 }

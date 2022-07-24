@@ -25,7 +25,7 @@ class AreaChartOptions extends ChartBaseOptions {
     public ?float $areaOpacity = null;
     public ?ChartAxisTitlePosition $axisTitlesPosition = null;
     public ?ChartBackgroundColor $backgroundColor = null;
-    public ?ChartArea $area = null;
+    public ?ChartArea $chartArea = null;
     // public ?array $colors = null;
     // public ?bool $enableInteractivity = null;
     public ?ChartExplorer $explorer = null;

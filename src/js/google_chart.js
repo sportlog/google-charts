@@ -96,6 +96,9 @@ class GoogleCharts {
             case 'Column':
                 return 'bar';
 
+            case 'Line':
+                return 'line';
+
             default:
                 throw new Error(`material design not supported for chart type '${chartType}'`);
         }
@@ -189,9 +192,15 @@ class GoogleCharts {
                 break;
             }
             case 'Line': {
-                const chart = new google.visualization.LineChart(element);
-                chart.draw(dataTable, options);
-                break;
+                if (isMaterialDesign) {
+                    const chart = new google.charts.Line(element);
+                    chart.draw(dataTable, google.charts.Line.convertOptions(options));
+                }
+                else {
+                    const chart = new google.visualization.LineChart(element);
+                    chart.draw(dataTable, options);
+                    break;
+                }
             }
             case 'Org': {
                 const chart = new google.visualization.OrgChart(element);
