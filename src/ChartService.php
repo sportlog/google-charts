@@ -17,9 +17,10 @@ use Sportlog\GoogleCharts\Charts\Options\AreaChart\AreaChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\BarChart\BarChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\BubbleChart\BubbleChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\ColumnChart\ColumnChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\ComboChart\ComboChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, BubbleChart, ColumnChart, PieChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, BubbleChart, ColumnChart, ComboChart, PieChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -106,6 +107,20 @@ class ChartService
     public function createColumnChart(string $id, ColumnChartOptions $options = new ColumnChartOptions(), ChartDesign $design = ChartDesign::Classic): ColumnChart
     {
         $chart = new ColumnChart($id, $options, $design);
+        $this->addChart($chart);
+        return $chart;
+    }
+
+    /**
+     * Creates a new Combo chart.
+     *
+     * @param string $id
+     * @param ComboChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createComboChart(string $id, ComboChartOptions $options = new ComboChartOptions()): ComboChart
+    {
+        $chart = new ComboChart($id, $options);
         $this->addChart($chart);
         return $chart;
     }

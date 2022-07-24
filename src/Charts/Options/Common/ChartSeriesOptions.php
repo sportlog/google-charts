@@ -25,7 +25,8 @@ class ChartSeriesOptions extends NotNullSerializer {
         public readonly ?float $pointSize = null,
         public readonly ?bool $pointsVisible = null,
         public readonly ?float $targetAxisIndex = null,
-        public readonly ?bool $visibleInLegend = null
+        public readonly ?bool $visibleInLegend = null,
+        public readonly ?ChartSeriesType $type = null
     )
     {
     }
