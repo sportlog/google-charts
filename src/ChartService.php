@@ -15,10 +15,11 @@ use Exception;
 use InvalidArgumentException;
 use Sportlog\GoogleCharts\Charts\Options\AreaChart\AreaChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\BarChart\BarChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\BubbleChart\BubbleChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\ColumnChart\ColumnChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, ColumnChart, PieChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, BubbleChart, ColumnChart, PieChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -77,6 +78,20 @@ class ChartService
     public function createBarChart(string $id, BarChartOptions $options = new BarChartOptions(), ChartDesign $design = ChartDesign::Classic): BarChart
     {
         $chart = new BarChart($id, $options, $design);
+        $this->addChart($chart);
+        return $chart;
+    }
+
+    /**
+     * Creates a new Bubble chart.
+     *
+     * @param string $id
+     * @param BubbleChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createBubbleChart(string $id, BubbleChartOptions $options = new BubbleChartOptions()): BubbleChart
+    {
+        $chart = new BubbleChart($id, $options);
         $this->addChart($chart);
         return $chart;
     }

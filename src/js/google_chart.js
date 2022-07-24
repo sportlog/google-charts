@@ -47,6 +47,8 @@ class GoogleCharts {
      */
     static getPackage(chartType, design) {
         switch (chartType) {
+            case 'Annotation':
+                return 'annotationchart';
             case 'Calendar':
                 return 'calendar';
             case 'Gantt':
@@ -91,8 +93,6 @@ class GoogleCharts {
     static getMaterialPackage(chartType) {
         switch (chartType) {
             case 'Bar':
-                return 'bar';
-
             case 'Column':
                 return 'bar';
 
@@ -115,6 +115,11 @@ class GoogleCharts {
         const isMaterialDesign = design === 'material';
 
         switch (chartType) {
+            case 'Annotation': {
+                const chart = new google.visualization.AnnotationChart(element);
+                chart.draw(dataTable, options);
+                break;
+            }
             case 'Area': {
                 const chart = new google.visualization.AreaChart(element);
                 chart.draw(dataTable, options);
