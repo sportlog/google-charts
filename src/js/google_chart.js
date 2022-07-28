@@ -115,8 +115,24 @@ class GoogleCharts {
      * @param HtmlElement element 
      */
     static drawChart(chartType, design, dataTable, options, element) {
-        const isMaterialDesign = design === 'material';
+        switch (design) {
+            case 'classic':
+                this.drawClassicChart(chartType, dataTable, options, element);
+                break;
 
+            case 'material':
+                this.drawMaterialChart(chartType, dataTable, options, element);
+                break;
+
+            default:
+                throw new Error(`unhandled design type ${design}`)
+        }
+    }
+
+    /**
+     * Draws chart in classic style.
+     */
+    static drawClassicChart(chartType, dataTable, options, element) {
         switch (chartType) {
             case 'Annotation': {
                 const chart = new google.visualization.AnnotationChart(element);
@@ -129,14 +145,8 @@ class GoogleCharts {
                 break;
             }
             case 'Bar': {
-                if (isMaterialDesign) {
-                    const chart = new google.charts.Bar(element);
-                    chart.draw(dataTable, google.charts.Bar.convertOptions(options));
-                }
-                else {
-                    const chart = new google.visualization.BarChart(element);
-                    chart.draw(dataTable, options);
-                }
+                const chart = new google.visualization.BarChart(element);
+                chart.draw(dataTable, options);
                 break;
             }
             case 'Bubble': {
@@ -155,15 +165,8 @@ class GoogleCharts {
                 break;
             }
             case 'Column': {
-                if (isMaterialDesign) {
-                    // Yes, bar chart!
-                    const chart = new google.charts.Bar(element);
-                    chart.draw(dataTable, google.charts.Bar.convertOptions(options));
-                }
-                else {
-                    const chart = new google.visualization.ColumnChart(element);
-                    chart.draw(dataTable, options);
-                }
+                const chart = new google.visualization.ColumnChart(element);
+                chart.draw(dataTable, options);
                 break;
             }
             case 'Combo': {
@@ -192,15 +195,9 @@ class GoogleCharts {
                 break;
             }
             case 'Line': {
-                if (isMaterialDesign) {
-                    const chart = new google.charts.Line(element);
-                    chart.draw(dataTable, google.charts.Line.convertOptions(options));
-                }
-                else {
-                    const chart = new google.visualization.LineChart(element);
-                    chart.draw(dataTable, options);
-                    break;
-                }
+                const chart = new google.visualization.LineChart(element);
+                chart.draw(dataTable, options);
+                break;
             }
             case 'Org': {
                 const chart = new google.visualization.OrgChart(element);
@@ -251,6 +248,29 @@ class GoogleCharts {
             //   return new google.visualization.W(element);
             default:
                 throw new Error(`chart not supported: ${chartType}`);
+        }
+    }
+
+    /**
+     * Draws chart in material design.
+     * All core charts are supported.
+     */
+    static drawMaterialChart(chartType, dataTable, options, element) {
+        switch (chartType) {
+            case 'Bar':
+            case 'Column': {
+                const chart = new google.charts.Bar(element);
+                chart.draw(dataTable, google.charts.Bar.convertOptions(options));
+                break;
+            }
+
+            case 'Line': {
+                const chart = new google.charts.Line(element);
+                chart.draw(dataTable, google.charts.Line.convertOptions(options));
+            }
+
+            default:
+                throw new Error(`material design not supported for chart type '${chartType}'`);
         }
     }
 }
