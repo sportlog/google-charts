@@ -46,6 +46,25 @@ class GoogleCharts {
      * @returns
      */
     static getPackage(chartType, design) {
+        switch (design) {
+            case 'classic':
+                return this.getClassicPackage(chartType);
+
+            case 'material':
+                return this.getMaterialPackage(chartType);
+
+            default:
+                throw new Error(`unhandled design type ${design}`)
+        }
+    }
+
+      /**
+     * Gets the classic design package for the chart type.
+     * 
+     * @param string chartType 
+     * @returns 
+     */
+    static getClassicPackage(chartType) {
         switch (chartType) {
             case 'Annotation':
                 return 'annotationchart';
@@ -72,14 +91,7 @@ class GoogleCharts {
             case 'WordTree':
                 return 'wordtree';
             default: {
-                if (design === 'classic') {
-                    return 'corechart';
-                }
-                else if (design === 'material') {
-                    return this.getMaterialPackage(chartType);
-                }
-                 
-                throw new Error(`invalid chart design '${design}'`);
+                return 'corechart';
             }
         }
     }
