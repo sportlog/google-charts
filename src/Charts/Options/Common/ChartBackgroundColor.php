@@ -16,9 +16,9 @@ use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 class ChartBackgroundColor extends NotNullSerializer
 {
     public function __construct(
-        public readonly string $stroke,
-        public readonly int $strokeWidth,
-        public readonly string $fill
+        public readonly ?string $stroke = null,
+        public readonly ?int $strokeWidth = null,
+        public readonly ?string $fill = null
     ) {
     }
 }

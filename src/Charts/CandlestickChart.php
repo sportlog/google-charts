@@ -30,6 +30,6 @@ class CandlestickChart extends GoogleChart
         string $id,
         public readonly CandlestickChartOptions $options = new CandlestickChartOptions()
     ) {
-        parent::__construct($id, ChartType::Bubble, $options);
+        parent::__construct($id, ChartType::Candlestick, $options);
     }
 }
