@@ -11,13 +11,12 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
-class ChartBackgroundColor extends ChartFill
+use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
+
+class ChartFill extends NotNullSerializer
 {
     public function __construct(
-        public readonly ?string $stroke = null,
-        public readonly ?int $strokeWidth = null,
-        ?string $fill = null
+        public readonly ?string $fill = null
     ) {
-        parent::__construct($fill);
     }
 }

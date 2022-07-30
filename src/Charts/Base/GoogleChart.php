@@ -79,6 +79,10 @@ abstract class GoogleChart implements JsonSerializable
         }
 
         foreach ($values as $key => $value) {
+            if (is_null($value)) {
+                continue;
+            }
+
             $columnType = $this->cols[$key]->type;
             if (!$this->matchType($columnType, $value)) {
                 throw new InvalidArgumentException("Value with index {$key} does not match the column type. Expected columnType is {$columnType->value}");

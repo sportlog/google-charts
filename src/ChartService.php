@@ -19,10 +19,11 @@ use Sportlog\GoogleCharts\Charts\Options\BubbleChart\BubbleChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\CandlestickChart\CandlestickChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\ColumnChart\ColumnChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\ComboChart\ComboChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\GanttChart\GanttChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\LineChart\LineChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, LineChart, PieChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, LineChart, PieChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -103,7 +104,7 @@ class ChartService
      * Creates a new CandlestickChart chart.
      *
      * @param string $id
-     * @param ColumnChartOptions $options
+     * @param CandlestickChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
     public function createCandlestickChart(string $id, CandlestickChartOptions $options = new CandlestickChartOptions()): CandlestickChart
@@ -137,6 +138,20 @@ class ChartService
     public function createComboChart(string $id, ComboChartOptions $options = new ComboChartOptions()): ComboChart
     {
         $chart = new ComboChart($id, $options);
+        $this->addChart($chart);
+        return $chart;
+    }
+
+    /**
+     * Creates a new Gantt chart.
+     *
+     * @param string $id
+     * @param GanttChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createGanttChart(string $id, GanttChartOptions $options = new GanttChartOptions()): GanttChart
+    {
+        $chart = new GanttChart($id, $options);
         $this->addChart($chart);
         return $chart;
     }
