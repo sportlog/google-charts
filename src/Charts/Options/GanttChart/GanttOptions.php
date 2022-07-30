@@ -20,14 +20,16 @@ use Sportlog\GoogleCharts\Charts\Options\Common\{ChartBackgroundColor, ChartFill
  */
 class GanttOptions extends NotNullSerializer
 {
+    public readonly ?int $defaultStartDate;
+
     public function __construct(
         public ?GanttArrow $arrow = null,
         public ?int $barCornerRadius = null,
         public ?int $barHeight = null,
         public ?bool $criticalPathEnabled = null,
-        public ?ChartBackgroundColor $criticalPathStyle = null,// todo: no fill
-        public DateTimeInterface|int|null $defaultStartDate = null,
-        public ?ChartBackgroundColor $innerGridHorizLine = null,    // todo: no fill
+        public ?ChartBackgroundColor $criticalPathStyle = null,
+        DateTimeInterface|int|null $defaultStartDate = null,
+        public ?ChartBackgroundColor $innerGridHorizLine = null,
         public ?ChartFill $innerGridTrack = null, 
         public ?ChartFill $innerGridDarkTrack = null,
         public ?int $labelMaxWidth = null,
@@ -40,5 +42,11 @@ class GanttOptions extends NotNullSerializer
         public ?bool $sortTasks = null,
         public ?int $trackHeight = null
     ) {
+        if ($defaultStartDate instanceof DateTimeInterface) {
+            $this->defaultStartDate = $defaultStartDate->getTimestamp();
+        }
+        else {
+            $this->defaultStartDate = $defaultStartDate;
+        }
     }
 }

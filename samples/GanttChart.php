@@ -142,7 +142,6 @@ $chart->addRows(
 $chart->options->height = 275;
 $chart->options->width = 856;
 $chart->options->gantt = new GanttOptions(defaultStartDate: new DateTime('2015-03-28'));
-// echo "<pre>" . json_encode($chart, JSON_PRETTY_PRINT) . "</pre>";
 
 // Draw all charts
 echo $chartService->render('paper');

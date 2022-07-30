@@ -60,7 +60,7 @@ class Row implements JsonSerializable
             'Date(%d, %d, %d, %d, %d, %d)',
             date('Y', $timestamp),
             date('n', $timestamp),
-            date('d', $timestamp),
+            date('j', $timestamp),
             date('H', $timestamp),
             date('i', $timestamp),
             date('s', $timestamp)
