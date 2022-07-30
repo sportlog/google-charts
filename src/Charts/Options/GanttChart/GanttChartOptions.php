@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Options\GanttChart;
 
-use Sportlog\GoogleCharts\Charts\Options\Common\{ChartBackgroundColor, ChartBaseOptions, ChartSizeable};
+use Sportlog\GoogleCharts\Charts\Options\Common\{ChartBackgroundColor, ChartSizeable};
 
 /**
  * GanttChart options.

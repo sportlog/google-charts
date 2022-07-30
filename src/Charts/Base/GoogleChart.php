@@ -15,7 +15,7 @@ use DateTimeInterface;
 use Exception;
 use InvalidArgumentException;
 use JsonSerializable;
-use Sportlog\GoogleCharts\Charts\Options\Common\ChartBaseOptions;
+use Sportlog\GoogleCharts\Charts\Options\Common\ChartSizeable;
 
 /**
  * Google chart class holding columns and rows.
@@ -41,13 +41,13 @@ abstract class GoogleChart implements JsonSerializable
      *
      * @param string $id
      * @param ChartType $chartType
-     * @param ChartBaseOptions $options
+     * @param ChartSizeable $options
      * @param ChartDesign $design
      */
     public function __construct(
         private readonly string $id,
         private readonly ChartType $chartType,
-        private readonly ChartBaseOptions $options,
+        private readonly ChartSizeable $options,
         private readonly ChartDesign $design = ChartDesign::Classic
     ) {
     }
