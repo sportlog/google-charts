@@ -32,11 +32,7 @@ use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart,
  */
 class ChartService
 {
-    private const GOOGLE_CHART_LOADER_SCRIPT = 'https://www.gstatic.com/charts/loader.js';
-    private const CHART_TEMPLATE_SCRIPT = '/js/google_chart.js';
-    private const CHART_LOAD_SCRIPT = 'GoogleCharts.loadCharts(%s);';
     private const CHART_DIV = '<div id="%s"></div>';
-    private const SCRIPT_TAG = '<script%s>%s</script>';
 
     /**
      * List of created charts
@@ -50,6 +46,7 @@ class ChartService
      * @var boolean
      */
     private bool $loaded = false;
+    private readonly ChartLoader $chartLoader;
 
     /**
      * Creates a new chart service instance
@@ -59,8 +56,9 @@ class ChartService
      */
     public function __construct(
         private readonly ?ChartSettings $chartSettings = null,
-        private readonly ?ScriptNonceProviderInterface $scriptNonceProvider = null
+        ?ScriptNonceProviderInterface $scriptNonceProvider = null
     ) {
+        $this->chartLoader = new ChartLoader($scriptNonceProvider);
     }
 
     /**
@@ -246,7 +244,12 @@ class ChartService
             throw new InvalidArgumentException("No chart with id '{$id}' found");
         }
 
-        $buffer = $this->load();
+        $buffer = [];
+        if (!$this->loaded) {
+            $buffer = $this->load();
+            $this->loaded = true;
+        }
+        
         $buffer[] = sprintf(self::CHART_DIV, $id);
 
         return implode($buffer);
@@ -257,16 +260,14 @@ class ChartService
      * This method is automatically called on chart rendering, so
      * usually you don't need to call it manually.
      *
+     * @throws Exception Charts have already been loaded.
      * @return array
      */
     public function load(): array
     {
         if ($this->loaded) {
-            return [];
+            throw new Exception('scripts have already been loaded');
         }
-
-        $chartTemplateJsFile = realpath(__DIR__ . self::CHART_TEMPLATE_SCRIPT);
-        $chartTemplateJs = file_get_contents($chartTemplateJsFile);
 
         // Charts is an associative array which would get encoded as on object.
         // So only take the values to encode it as an array.
@@ -275,19 +276,7 @@ class ChartService
             $data['settings'] = $this->chartSettings;
         }
 
-        $serializedData = json_encode($data);
-        if ($serializedData === false) {
-            throw new Exception('failed to encode chart data to JSON');
-        }
-        $chartJs = sprintf(self::CHART_LOAD_SCRIPT, $serializedData);
-
-        $this->loaded = true;
-
-        return [
-            $this->getScriptTag(self::GOOGLE_CHART_LOADER_SCRIPT),
-            $this->getScriptTag($chartTemplateJs, false),
-            $this->getScriptTag($chartJs, false)
-        ];
+        return $this->chartLoader->load($data);
     }
 
     private function addChart(GoogleChart $chart): GoogleChart
@@ -299,21 +288,5 @@ class ChartService
 
         $this->charts[$id] = $chart;
         return $chart;
-    }
-
-    private function getScriptTag(string $fileOrContent, bool $isFile = true): string
-    {
-        $content = '';
-        $attrs = '';
-        if (!is_null($this->scriptNonceProvider)) {
-            $attrs .= " nonce=\"{$this->scriptNonceProvider->storeNonce()}\"";
-        }
-        if ($isFile) {
-            $attrs .= " src=\"{$fileOrContent}\"";
-        } else {
-            $content = $fileOrContent;
-        }
-
-        return sprintf(self::SCRIPT_TAG, $attrs, $content);
     }
 }
