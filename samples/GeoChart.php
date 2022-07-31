@@ -1,0 +1,67 @@
+<?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once '../vendor/autoload.php';
+
+use Sportlog\GoogleCharts\Charts\Base\Column;
+use Sportlog\GoogleCharts\Charts\Base\ColumnType;
+use Sportlog\GoogleCharts\Charts\Options\Common\ChartColorAxis;
+use Sportlog\GoogleCharts\Charts\Options\GeoChart\GeoChartDisplayMode;
+use Sportlog\GoogleCharts\ChartService;
+
+
+$chartService = new ChartService();
+
+// ********************************
+// Popularity-Chart
+// ********************************
+$chart = $chartService->createGeoChart('popularity');
+$chart->addColumn(new Column(ColumnType::String, 'Country'));
+$chart->addColumn(new Column(ColumnType::Number, 'Popularity'));
+
+$chart->addRows(
+    ['Germany', 200],
+    ['United States', 300],
+    ['Brazil', 400],
+    ['Canada', 500],
+    ['France', 600],
+    ['RU', 700]
+);
+
+$chart->options->width = 900;
+$chart->options->height = 500;
+
+// ********************************
+// Popularity-Chart
+// ********************************
+$chart = $chartService->createGeoChart('population');
+$chart->addColumn(new Column(ColumnType::String, 'Country'));
+$chart->addColumn(new Column(ColumnType::Number, 'Population'));
+$chart->addColumn(new Column(ColumnType::Number, 'Area'));
+
+$chart->addRows(
+    ['Rome',      2761477,    1285.31],
+    ['Milan',     1324110,    181.76],
+    ['Naples',    959574,     117.27],
+    ['Turin',     907563,     130.17],
+    ['Palermo',   655875,     158.9],
+    ['Genoa',     607906,     243.60],
+    ['Bologna',   380181,     140.7],
+    ['Florence',  371282,     102.41],
+    ['Fiumicino', 67370,      213.44],
+    ['Anzio',     52192,      43.43],
+    ['Ciampino',  38262,      11]
+);
+
+$chart->options->width = 900;
+$chart->options->height = 500;
+$chart->options->region = 'IT';
+$chart->options->displayMode = GeoChartDisplayMode::Markers;
+$chart->options->colorAxis = new ChartColorAxis(colors: ['green', 'blue']);
+
+// Draw all charts
+echo $chartService->render('popularity');
+echo $chartService->render('population');

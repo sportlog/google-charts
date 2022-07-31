@@ -21,10 +21,11 @@ use Sportlog\GoogleCharts\Charts\Options\ColumnChart\ColumnChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\ComboChart\ComboChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\GanttChart\GanttChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\GaugeChart\GaugeChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\GeoChart\GeoChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\LineChart\LineChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, LineChart, PieChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, LineChart, PieChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -167,6 +168,20 @@ class ChartService
     public function createGaugeChart(string $id, GaugeChartOptions $options = new GaugeChartOptions()): GaugeChart
     {
         $chart = new GaugeChart($id, $options);
+        $this->addChart($chart);
+        return $chart;
+    }
+
+    /**
+     * Creates a new Geo chart.
+     *
+     * @param string $id
+     * @param GeoChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createGeoChart(string $id, GeoChartOptions $options = new GeoChartOptions()): GeoChart
+    {
+        $chart = new GeoChart($id, $options);
         $this->addChart($chart);
         return $chart;
     }
