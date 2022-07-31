@@ -25,11 +25,14 @@ class GoogleCharts {
     static loadCharts(chartsData) {
         // get distinct list of packages
         const packages = [
-            ...new Set(chartsData.map((c) => this.getPackage(c.type, c.design))),
+            ...new Set(chartsData.charts.map((c) => this.getPackage(c.type, c.design))),
         ];
+
+        const mapsApiKey = chartsData?.settings?.mapsApiKey;
+
         // Load the Visualization API and the packages.
-        google.charts.load('current', { packages }).then(() => {
-            this.drawCharts(chartsData);
+        google.charts.load('current', { packages, mapsApiKey }).then(() => {
+            this.drawCharts(chartsData.charts);
         });
     }
 

@@ -11,9 +11,12 @@ use Sportlog\GoogleCharts\Charts\Base\ColumnType;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartColorAxis;
 use Sportlog\GoogleCharts\Charts\Options\GeoChart\GeoChartDisplayMode;
 use Sportlog\GoogleCharts\ChartService;
+use Sportlog\GoogleCharts\ChartSettings;
 
-
-$chartService = new ChartService();
+// Attention: In order to user markers (second chart), you must specify an mapsApiKey.
+// This one is taken from https://developers.google.com/chart/interactive/docs/gallery/geochart
+// and won't work.
+$chartService = new ChartService(new ChartSettings('AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'));
 
 // ********************************
 // Popularity-Chart

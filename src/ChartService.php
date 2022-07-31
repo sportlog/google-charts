@@ -54,10 +54,13 @@ class ChartService
     /**
      * Creates a new chart service instance
      *
+     * @param ChartSettings|null $chartSettings 
      * @param ScriptNonceProviderInterface|null $scriptNonceProvider 
      */
-    public function __construct(private readonly ?ScriptNonceProviderInterface $scriptNonceProvider = null)
-    {
+    public function __construct(
+        private readonly ?ChartSettings $chartSettings = null,
+        private readonly ?ScriptNonceProviderInterface $scriptNonceProvider = null
+    ) {
     }
 
     /**
@@ -267,7 +270,12 @@ class ChartService
 
         // Charts is an associative array which would get encoded as on object.
         // So only take the values to encode it as an array.
-        $serializedData = json_encode(array_values($this->charts));
+        $data = ['charts' => array_values($this->charts)];
+        if (!is_null($this->chartSettings)) {
+            $data['settings'] = $this->chartSettings;
+        }
+
+        $serializedData = json_encode($data);
         if ($serializedData === false) {
             throw new Exception('failed to encode chart data to JSON');
         }
