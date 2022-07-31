@@ -54,8 +54,6 @@ class ChartLoader
         }
         $chartJs = sprintf(self::CHART_LOAD_SCRIPT, $serializedData);
 
-        $this->loaded = true;
-
         return [
             $this->getScriptTag(self::GOOGLE_CHART_LOADER_SCRIPT),
             $this->getScriptTag($chartTemplateJs, false),
