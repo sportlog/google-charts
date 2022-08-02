@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts;
 
-use Sportlog\GoogleCharts\Charts\Base\{ChartType, GoogleChart};
+use Sportlog\GoogleCharts\Charts\Base\{ChartType, DataTable, GoogleChart};
 use Sportlog\GoogleCharts\Charts\Options\GanttChart\GanttChartOptions;
 
 /**
@@ -24,12 +24,14 @@ class GanttChart extends GoogleChart
      * Creates a new Gantt chart instance
      *
      * @param string $id
+     * @param DataTable $data
      * @param GanttChartOptions $options
      */
     public function __construct(
         string $id,
+        DataTable $data,
         public readonly GanttChartOptions $options = new GanttChartOptions()
     ) {
-        parent::__construct($id, ChartType::Gantt, $options);
+        parent::__construct($id, ChartType::Gantt, $data, $options);
     }
 }

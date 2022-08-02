@@ -8,14 +8,15 @@ require_once '../vendor/autoload.php';
 
 use Sportlog\GoogleCharts\Charts\Base\Column;
 use Sportlog\GoogleCharts\Charts\Base\ColumnType;
+use Sportlog\GoogleCharts\Charts\Base\DataTable;
 use Sportlog\GoogleCharts\ChartService;
 
-$chartService = new ChartService();
-$chart = $chartService->createHistogramChart('dinosaurs');
-$chart->addColumn(new Column(ColumnType::String, 'Dinosaur'));
-$chart->addColumn(new Column(ColumnType::Number, 'Length'));
+$data = new DataTable();
+$data = $chartService->createHistogramChart('dinosaurs');
+$data->addColumn(new Column(ColumnType::String, 'Dinosaur'));
+$data->addColumn(new Column(ColumnType::Number, 'Length'));
 
-$chart->addRows(
+$data->addRows(
     ['Acrocanthosaurus (top-spined lizard)', 12.2],
     ['Albertosaurus (Alberta lizard)', 9.1],
     ['Allosaurus (other lizard)', 12.2],
@@ -46,7 +47,8 @@ $chart->addRows(
     ['Velociraptor (swift robber)', 1.8]
 );
 
+$chartService = new ChartService();
 $chart->options->width = 900;
 $chart->options->height = 500;
 
-echo $chartService->render('dinosaurs');
+echo $chartService->render('dinosaurs', $data);

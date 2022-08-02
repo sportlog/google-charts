@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts;
 
-use Sportlog\GoogleCharts\Charts\Base\{ChartType, GoogleChart};
+use Sportlog\GoogleCharts\Charts\Base\{ChartType, DataTable, GoogleChart};
 use Sportlog\GoogleCharts\Charts\Options\ComboChart\ComboChartOptions;
 
 /**
@@ -24,12 +24,14 @@ class ComboChart extends GoogleChart
      * Creates a new combo chart instance
      *
      * @param string $id
+     * @param DataTable $data
      * @param ComboChartOptions $options
      */
     public function __construct(
         string $id,
+        DataTable $data,
         public readonly ComboChartOptions $options = new ComboChartOptions()
     ) {
-        parent::__construct($id, ChartType::Column, $options);
+        parent::__construct($id, ChartType::Column, $data, $options);
     }
 }

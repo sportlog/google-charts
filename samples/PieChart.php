@@ -8,6 +8,7 @@ require_once '../vendor/autoload.php';
 
 use Sportlog\GoogleCharts\Charts\Base\Column;
 use Sportlog\GoogleCharts\Charts\Base\ColumnType;
+use Sportlog\GoogleCharts\Charts\Base\DataTable;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegend;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegendPosition;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartSlice;
@@ -16,26 +17,28 @@ use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartSliceText;
 use Sportlog\GoogleCharts\ChartService;
 
 $chartService = new ChartService();
-$chart = $chartService->createPieChart('dailyActivities');
-$chart->addColumn(new Column(ColumnType::String, 'Task'));
-$chart->addColumn(new Column(ColumnType::Number, 'Hours per Day'));
 
-$chart->addRow(['Work',     11]);
-$chart->addRow(['Eat',      2]);
-$chart->addRow(['Commute',  2]);
-$chart->addRow(['Watch TV', 2]);
-$chart->addRow(['Sleep',    7]);
+$data = new DataTable();
+$data->addColumn(new Column(ColumnType::String, 'Task'));
+$data->addColumn(new Column(ColumnType::Number, 'Hours per Day'));
 
+$data->addRow(['Work',     11]);
+$data->addRow(['Eat',      2]);
+$data->addRow(['Commute',  2]);
+$data->addRow(['Watch TV', 2]);
+$data->addRow(['Sleep',    7]);
+
+$chart = $chartService->createPieChart('dailyActivities', $data);
 $chart->options->title = 'My Daily Activities';
 $chart->options->width = 900;
 $chart->options->height = 500;
 $chart->options->pieHole = 0.4;
 
 // Slices
-$chart = $chartService->createPieChart('languageUse');
-$chart->addColumn(new Column(ColumnType::String, 'Language'));
-$chart->addColumn(new Column(ColumnType::Number, 'Speakers (in millions)'));
-$chart->addRows(
+$data = new DataTable();
+$data->addColumn(new Column(ColumnType::String, 'Language'));
+$data->addColumn(new Column(ColumnType::Number, 'Speakers (in millions)'));
+$data->addRows(
     ['Assamese', 13],
     ['Bengali', 83],
     ['Bodo', 1.4],
@@ -60,6 +63,7 @@ $chart->addRows(
     ['Urdu', 52]
 );
 
+$chart = $chartService->createPieChart('languageUse', $data);
 $chart->options->title = 'Indian Language Use';
 $chart->options->width = 900;
 $chart->options->height = 500;
@@ -72,10 +76,10 @@ $chart->options->slices->add(new PieChartSlice(offset: 0.4), 14);
 $chart->options->slices->add(new PieChartSlice(offset: 0.5), 15);
 
 // Pizza
-$chart = $chartService->createPieChart('pizza');
-$chart->addColumn(new Column(ColumnType::String, 'Pizza'));
-$chart->addColumn(new Column(ColumnType::Number, 'Populartiy'));
-$chart->addRows(
+$data = new DataTable();
+$data->addColumn(new Column(ColumnType::String, 'Pizza'));
+$data->addColumn(new Column(ColumnType::Number, 'Populartiy'));
+$data->addRows(
     ['Pepperoni', 33],
     ['Hawaiian', 26],
     ['Mushroom', 22],
@@ -83,6 +87,7 @@ $chart->addRows(
     ['Anchovies', 9]
 );
 
+$chart = $chartService->createPieChart('pizza', $data);
 $chart->options->title = 'Popularity of Types of Pizza';
 $chart->options->height = 285;
 $chart->options->width = 900;

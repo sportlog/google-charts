@@ -53,6 +53,13 @@ class Row implements JsonSerializable
         return $result;
     }
 
+    /**
+     * Convert Date to string
+     * https://developers.google.com/chart/interactive/docs/datesandtimes?hl=en#datestring
+     *
+     * @param DateTimeInterface $value
+     * @return mixed
+     */
     private function getDateString(DateTimeInterface $value): mixed
     {
         $timestamp = $value->getTimestamp();

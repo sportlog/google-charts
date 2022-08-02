@@ -8,6 +8,7 @@ require_once '../vendor/autoload.php';
 
 use Sportlog\GoogleCharts\Charts\Base\Column;
 use Sportlog\GoogleCharts\Charts\Base\ColumnType;
+use Sportlog\GoogleCharts\Charts\Base\DataTable;
 use Sportlog\GoogleCharts\ChartService;
 
 
@@ -16,16 +17,16 @@ $chartService = new ChartService();
 // ********************************
 // Computational resources-Chart
 // ********************************
-$chart = $chartService->createGaugeChart('compresources');
-$chart->addColumn(new Column(ColumnType::String, 'Label'));
-$chart->addColumn(new Column(ColumnType::Number, 'Value'));
-
-$chart->addRows(
+$data = new DataTable();
+$data->addColumn(new Column(ColumnType::String, 'Label'));
+$data->addColumn(new Column(ColumnType::Number, 'Value'));
+$data->addRows(
     ['Memory', 80],
     ['CPU', 55],
     ['Network', 68]
 );
 
+$chart = $chartService->createGaugeChart('compresources', $data);
 $chart->options->height = 120;
 $chart->options->width = 400;
 $chart->options->redFrom = 90;

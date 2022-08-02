@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts;
 
-use Sportlog\GoogleCharts\Charts\Base\{ChartType, GoogleChart};
+use Sportlog\GoogleCharts\Charts\Base\{ChartType, DataTable, GoogleChart};
 use Sportlog\GoogleCharts\Charts\Options\AreaChart\AreaChartOptions;
 
 /**
@@ -23,10 +23,11 @@ class AreaChart extends GoogleChart {
      * Creates a new area chart instance
      *
      * @param string $id
+     * @param DataTable $data
      * @param AreaChartOptions $options
      */
-    public function __construct(string $id, public readonly AreaChartOptions $options = new AreaChartOptions())
+    public function __construct(string $id, DataTable $data, public readonly AreaChartOptions $options = new AreaChartOptions())
     {
-        parent::__construct($id, ChartType::Area, $options);
+        parent::__construct($id, ChartType::Area, $data, $options);
     }
 }

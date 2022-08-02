@@ -26,7 +26,7 @@ use Sportlog\GoogleCharts\Charts\Options\HistogramChart\HistogramChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\LineChart\LineChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, PieChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, PieChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -69,9 +69,9 @@ class ChartService
      * @param AreaChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createAreaChart(string $id, AreaChartOptions $options = new AreaChartOptions()): AreaChart
+    public function createAreaChart(string $id, DataTable $data, AreaChartOptions $options = new AreaChartOptions()): AreaChart
     {
-        $chart = new AreaChart($id, $options);
+        $chart = new AreaChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }
@@ -83,9 +83,9 @@ class ChartService
      * @param BarChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createBarChart(string $id, BarChartOptions $options = new BarChartOptions(), ChartDesign $design = ChartDesign::Classic): BarChart
+    public function createBarChart(string $id, DataTable $data, BarChartOptions $options = new BarChartOptions(), ChartDesign $design = ChartDesign::Classic): BarChart
     {
-        $chart = new BarChart($id, $options, $design);
+        $chart = new BarChart($id, $data, $options, $design);
         $this->addChart($chart);
         return $chart;
     }
@@ -97,9 +97,9 @@ class ChartService
      * @param BubbleChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createBubbleChart(string $id, BubbleChartOptions $options = new BubbleChartOptions()): BubbleChart
+    public function createBubbleChart(string $id, DataTable $data, BubbleChartOptions $options = new BubbleChartOptions()): BubbleChart
     {
-        $chart = new BubbleChart($id, $options);
+        $chart = new BubbleChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }
@@ -111,9 +111,9 @@ class ChartService
      * @param CandlestickChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createCandlestickChart(string $id, CandlestickChartOptions $options = new CandlestickChartOptions()): CandlestickChart
+    public function createCandlestickChart(string $id, DataTable $data, CandlestickChartOptions $options = new CandlestickChartOptions()): CandlestickChart
     {
-        $chart = new CandlestickChart($id, $options);
+        $chart = new CandlestickChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }
@@ -125,9 +125,9 @@ class ChartService
      * @param ColumnChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createColumnChart(string $id, ColumnChartOptions $options = new ColumnChartOptions(), ChartDesign $design = ChartDesign::Classic): ColumnChart
+    public function createColumnChart(string $id, DataTable $data, ColumnChartOptions $options = new ColumnChartOptions(), ChartDesign $design = ChartDesign::Classic): ColumnChart
     {
-        $chart = new ColumnChart($id, $options, $design);
+        $chart = new ColumnChart($id, $data, $options, $design);
         $this->addChart($chart);
         return $chart;
     }
@@ -139,9 +139,9 @@ class ChartService
      * @param ComboChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createComboChart(string $id, ComboChartOptions $options = new ComboChartOptions()): ComboChart
+    public function createComboChart(string $id, DataTable $data, ComboChartOptions $options = new ComboChartOptions()): ComboChart
     {
-        $chart = new ComboChart($id, $options);
+        $chart = new ComboChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }
@@ -153,9 +153,9 @@ class ChartService
      * @param GanttChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createGanttChart(string $id, GanttChartOptions $options = new GanttChartOptions()): GanttChart
+    public function createGanttChart(string $id, DataTable $data, GanttChartOptions $options = new GanttChartOptions()): GanttChart
     {
-        $chart = new GanttChart($id, $options);
+        $chart = new GanttChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }
@@ -167,9 +167,9 @@ class ChartService
      * @param GaugeChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createGaugeChart(string $id, GaugeChartOptions $options = new GaugeChartOptions()): GaugeChart
+    public function createGaugeChart(string $id, DataTable $data, GaugeChartOptions $options = new GaugeChartOptions()): GaugeChart
     {
-        $chart = new GaugeChart($id, $options);
+        $chart = new GaugeChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }
@@ -181,9 +181,9 @@ class ChartService
      * @param GeoChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createGeoChart(string $id, GeoChartOptions $options = new GeoChartOptions()): GeoChart
+    public function createGeoChart(string $id, DataTable $data, GeoChartOptions $options = new GeoChartOptions()): GeoChart
     {
-        $chart = new GeoChart($id, $options);
+        $chart = new GeoChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }
@@ -195,9 +195,9 @@ class ChartService
      * @param HistogramChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createHistogramChart(string $id, HistogramChartOptions $options = new HistogramChartOptions()): HistogramChart
+    public function createHistogramChart(string $id, DataTable $data, HistogramChartOptions $options = new HistogramChartOptions()): HistogramChart
     {
-        $chart = new HistogramChart($id, $options);
+        $chart = new HistogramChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }
@@ -209,9 +209,9 @@ class ChartService
      * @param LineChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createLineChart(string $id, LineChartOptions $options = new LineChartOptions(), ChartDesign $design = ChartDesign::Classic): LineChart
+    public function createLineChart(string $id, DataTable $data, LineChartOptions $options = new LineChartOptions(), ChartDesign $design = ChartDesign::Classic): LineChart
     {
-        $chart = new LineChart($id, $options, $design);
+        $chart = new LineChart($id, $data, $options, $design);
         $this->addChart($chart);
         return $chart;
     }
@@ -223,9 +223,9 @@ class ChartService
      * @param PieChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createPieChart(string $id, PieChartOptions $options = new PieChartOptions()): PieChart
+    public function createPieChart(string $id, DataTable $data, PieChartOptions $options = new PieChartOptions()): PieChart
     {
-        $chart = new PieChart($id, $options);
+        $chart = new PieChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }
@@ -237,9 +237,9 @@ class ChartService
      * @param TimelineChartOptions $options
      * @throws InvalidArgumentException A chart with the given id was already created.
      */
-    public function createTimelineChart(string $id, TimelineChartOptions $options = new TimelineChartOptions()): TimelineChart
+    public function createTimelineChart(string $id, DataTable $data, TimelineChartOptions $options = new TimelineChartOptions()): TimelineChart
     {
-        $chart = new TimelineChart($id, $options);
+        $chart = new TimelineChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }

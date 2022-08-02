@@ -8,6 +8,7 @@ require_once '../vendor/autoload.php';
 
 use Sportlog\GoogleCharts\Charts\Base\Column;
 use Sportlog\GoogleCharts\Charts\Base\ColumnType;
+use Sportlog\GoogleCharts\Charts\Base\DataTable;
 use Sportlog\GoogleCharts\Charts\Options\GanttChart\GanttOptions;
 use Sportlog\GoogleCharts\ChartService;
 
@@ -28,16 +29,16 @@ $chartService = new ChartService();
 // ********************************
 // Paper-Chart
 // ********************************
-$chart = $chartService->createGanttChart('paper');
-$chart->addColumn(new Column(ColumnType::String, 'Task ID'));
-$chart->addColumn(new Column(ColumnType::String, 'Task Name'));
-$chart->addColumn(new Column(ColumnType::Date, 'Start'));
-$chart->addColumn(new Column(ColumnType::Date, 'End'));
-$chart->addColumn(new Column(ColumnType::Number, 'Duration'));
-$chart->addColumn(new Column(ColumnType::Number, 'Percent Complete'));
-$chart->addColumn(new Column(ColumnType::String, 'Dependencies'));
+$data = new DataTable();
+$data->addColumn(new Column(ColumnType::String, 'Task ID'));
+$data->addColumn(new Column(ColumnType::String, 'Task Name'));
+$data->addColumn(new Column(ColumnType::Date, 'Start'));
+$data->addColumn(new Column(ColumnType::Date, 'End'));
+$data->addColumn(new Column(ColumnType::Number, 'Duration'));
+$data->addColumn(new Column(ColumnType::Number, 'Percent Complete'));
+$data->addColumn(new Column(ColumnType::String, 'Dependencies'));
 
-$chart->addRows(
+$data->addRows(
     [
         'Research', 'Find sources',
         $date(2015, 0, 1), $date(2015, 0, 5), null,  100,  null
@@ -60,23 +61,24 @@ $chart->addRows(
     ]
 );
 
+$chart = $chartService->createGanttChart('paper', $data);
 $chart->options->height = 275;
 $chart->options->width = 856;
 
 // ********************************
 // Trains-Chart
 // ********************************
-$chart = $chartService->createGanttChart('trains');
-$chart->addColumn(new Column(ColumnType::String, 'Task ID'));
-$chart->addColumn(new Column(ColumnType::String, 'Task Name'));
-$chart->addColumn(new Column(ColumnType::String, 'Resource'));
-$chart->addColumn(new Column(ColumnType::Date, 'Start'));
-$chart->addColumn(new Column(ColumnType::Date, 'End'));
-$chart->addColumn(new Column(ColumnType::Number, 'Duration'));
-$chart->addColumn(new Column(ColumnType::Number, 'Percent Complete'));
-$chart->addColumn(new Column(ColumnType::String, 'Dependencies'));
+$data = new DataTable();
+$data->addColumn(new Column(ColumnType::String, 'Task ID'));
+$data->addColumn(new Column(ColumnType::String, 'Task Name'));
+$data->addColumn(new Column(ColumnType::String, 'Resource'));
+$data->addColumn(new Column(ColumnType::Date, 'Start'));
+$data->addColumn(new Column(ColumnType::Date, 'End'));
+$data->addColumn(new Column(ColumnType::Number, 'Duration'));
+$data->addColumn(new Column(ColumnType::Number, 'Percent Complete'));
+$data->addColumn(new Column(ColumnType::String, 'Dependencies'));
 
-$chart->addRows(
+$data->addRows(
     [
         "toTrain",
         "Walk to train stop",
@@ -139,6 +141,7 @@ $chart->addRows(
     ]
 );
 
+$chart = $chartService->createGanttChart('trains', $data);
 $chart->options->height = 275;
 $chart->options->width = 856;
 $chart->options->gantt = new GanttOptions(defaultStartDate: new DateTime('2015-03-28'));
