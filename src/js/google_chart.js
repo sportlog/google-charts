@@ -11,7 +11,7 @@ class GoogleCharts {
     /**
      * A callback which is executed whenever a chart is drawn
      * 
-     * @param {*} callback A callback accepting 4 parameters (chartId, data, options)
+     * @param {*} callback A callback accepting 4 parameters (chartId, chart, data, options)
      */
     static setOnLoadCallback(callback) {
         this.chartLoadCallback = callback;
@@ -43,11 +43,11 @@ class GoogleCharts {
      */
     static drawCharts(charts) {
         charts.forEach((chart) => {
-            var data = new google.visualization.DataTable(chart.data);
-            var options = chart.options;
-            var element = document.getElementById(chart.id);
+            let data = new google.visualization.DataTable(chart.data);
+            let options = chart.options;
+            let element = document.getElementById(chart.id);
             if (element) {
-                var c = this.drawChart(chart.type, chart.design, data, options, element);
+                let c = this.drawChart(chart.type, chart.design, data, options, element);
                 if (this.chartLoadCallback) {
                     this.chartLoadCallback(chart.id, c, data, options);
                 }

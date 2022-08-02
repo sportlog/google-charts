@@ -22,10 +22,11 @@ use Sportlog\GoogleCharts\Charts\Options\ComboChart\ComboChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\GanttChart\GanttChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\GaugeChart\GaugeChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\GeoChart\GeoChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\HistogramChart\HistogramChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\LineChart\LineChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, LineChart, PieChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, PieChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -188,6 +189,20 @@ class ChartService
     }
 
     /**
+     * Creates a new Histogram chart.
+     *
+     * @param string $id
+     * @param HistogramChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createHistogramChart(string $id, HistogramChartOptions $options = new HistogramChartOptions()): HistogramChart
+    {
+        $chart = new HistogramChart($id, $options);
+        $this->addChart($chart);
+        return $chart;
+    }
+
+    /**
      * Creates a new Line chart.
      *
      * @param string $id
@@ -249,7 +264,7 @@ class ChartService
             $buffer = $this->load();
             $this->loaded = true;
         }
-        
+
         $buffer[] = sprintf(self::CHART_DIV, $id);
 
         return implode($buffer);

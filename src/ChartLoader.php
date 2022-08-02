@@ -35,7 +35,6 @@ class ChartLoader
     {
     }
 
-
     /**
      * Get array of script tags to load the required JS files.
      * This method is automatically called on chart rendering, so
