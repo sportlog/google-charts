@@ -9,12 +9,12 @@
 
 declare(strict_types=1);
 
-namespace Sportlog\GoogleCharts;
+namespace Sportlog\GoogleCharts\Charts\Base;
 
 /**
  * Google default colors.
  */
-enum Color: string
+enum ChartDefaultColor: string
 {
     case C1 = '#3366cc';
     case C2 = '#dc3912';

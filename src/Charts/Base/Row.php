@@ -61,7 +61,7 @@ class Row implements JsonSerializable
             return $this->getDateString($value);
         }
         if ($value instanceof Stringable) {
-            return  $value->__toString();
+            return $value->__toString();
         }
         return $value;
     }
