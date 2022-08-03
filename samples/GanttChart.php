@@ -41,23 +41,23 @@ $data->addColumn(new Column(ColumnType::String, 'Dependencies'));
 $data->addRows(
     [
         'Research', 'Find sources',
-        $date(2015, 0, 1), $date(2015, 0, 5), null,  100,  null
+        $date(2015, 1, 1), $date(2015, 1, 5), null,  100,  null
     ],
     [
         'Write', 'Write paper',
-        null, $date(2015, 0, 9), $daysToMilliseconds(3), 25, 'Research,Outline'
+        null, $date(2015, 1, 9), $daysToMilliseconds(3), 25, 'Research,Outline'
     ],
     [
         'Cite', 'Create bibliography',
-        null, $date(2015, 0, 7), $daysToMilliseconds(1), 20, 'Research'
+        null, $date(2015, 1, 7), $daysToMilliseconds(1), 20, 'Research'
     ],
     [
         'Complete', 'Hand in paper',
-        null, $date(2015, 0, 10), $daysToMilliseconds(1), 0, 'Cite,Write'
+        null, $date(2015, 1, 10), $daysToMilliseconds(1), 0, 'Cite,Write'
     ],
     [
         'Outline', 'Outline paper',
-        null, $date(2015, 0, 6), $daysToMilliseconds(1), 100, 'Research'
+        null, $date(2015, 1, 6), $daysToMilliseconds(1), 100, 'Research'
     ]
 );
 

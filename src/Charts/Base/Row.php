@@ -66,7 +66,7 @@ class Row implements JsonSerializable
         return sprintf(
             'Date(%d, %d, %d, %d, %d, %d)',
             date('Y', $timestamp),
-            date('n', $timestamp),
+            (int)date('n', $timestamp) - 1,
             date('j', $timestamp),
             date('H', $timestamp),
             date('i', $timestamp),
