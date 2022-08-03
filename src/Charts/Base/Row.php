@@ -13,6 +13,7 @@ namespace Sportlog\GoogleCharts\Charts\Base;
 
 use DateTimeInterface;
 use JsonSerializable;
+use Stringable;
 
 /**
  * Row
@@ -46,11 +47,23 @@ class Row implements JsonSerializable
     private function serializeValue(mixed $value, mixed $formatted): mixed
     {
         $result = [];
-        $result['v'] = $value instanceof DateTimeInterface ? $this->getDateString($value) : $value;
+        $result['v'] = $this->getValue($value);
+
         if (!is_null($formatted)) {
             $result['f'] = $formatted;
         }
         return $result;
+    }
+
+    private function getValue(mixed $value): mixed
+    {
+        if ($value instanceof DateTimeInterface) {
+            return $this->getDateString($value);
+        }
+        if ($value instanceof Stringable) {
+            return  $value->__toString();
+        }
+        return $value;
     }
 
     /**
@@ -66,7 +79,7 @@ class Row implements JsonSerializable
         return sprintf(
             'Date(%d, %d, %d, %d, %d, %d)',
             date('Y', $timestamp),
-            (int)date('n', $timestamp) - 1,
+            (int)date('n', $timestamp) - 1, // JS-Date month starts at zero
             date('j', $timestamp),
             date('H', $timestamp),
             date('i', $timestamp),

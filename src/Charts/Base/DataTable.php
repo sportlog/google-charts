@@ -15,6 +15,7 @@ use DateTimeInterface;
 use Exception;
 use InvalidArgumentException;
 use JsonSerializable;
+use Stringable;
 
 /**
  * Data table holding both rows and columns.    
@@ -107,7 +108,7 @@ class DataTable implements JsonSerializable
                 return is_bool($value);
 
             case ColumnType::String:
-                return is_string($value);
+                return is_string($value) || ($value instanceof Stringable);
 
             case ColumnType::Date:
             case ColumnType::DateTime:
