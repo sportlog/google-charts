@@ -11,11 +11,8 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Base;
 
-use DateTimeInterface;
-use Exception;
 use InvalidArgumentException;
 use JsonSerializable;
-use Stringable;
 
 /**
  * Data table holding both rows and columns.    
@@ -23,29 +20,47 @@ use Stringable;
 class DataTable implements JsonSerializable
 {
     /**
-     * Chart columns
+     * Creates columns and rows from the two dimensional array.
+     * Treats the first row as column labels and infers the column
+     * type from the second row (= first data row.)
      *
-     * @var Column[]
+     * @param array $data
+     * @return self
      */
-    private array $cols = [];
+    public static function fromArray(array $data): self
+    {
+        if (count($data) < 2) {
+            throw new InvalidArgumentException('$data must be a two dimensional array and contain at least to entries');
+        }
+
+        // First row contains the row labels and not data; pop it
+        $labels = array_shift($data);
+        // Infer the column type of the columsn from the first data row
+        $columns = array_map(fn (mixed $value, $label) => new Column(ColumnType::fromValue($value), $label), $data[0], $labels);
+
+        return new self($columns, array_map(fn (array $values) => new Row($values), $data));
+    }
 
     /**
-     * Chart rows
+     * Creates a new datatable
      *
-     * @var Row[]
+     * @param Column[] $columns
+     * @param Row[] $rows
      */
-    private array $rows = [];
+    public function __construct(private array $columns = [], private array $rows = [])
+    {
+    }
 
     /**
      * Adds a row.
      */
     public function addRow(array $values, array $formatted = []): void
     {
-        if (count($this->cols) === 0) {
+        if (count($this->columns) === 0) {
             throw new InvalidArgumentException('Must add columns before adding rows');
         }
         // Google charts do not draw if column count does not match the values count.
-        if (count($values) !== count($this->cols)) {
+        if (count($values) !== count($this->columns)) {
             throw new InvalidArgumentException('Must provide exactly one value per column');
         }
         if (!array_is_list($values)) {
@@ -57,8 +72,9 @@ class DataTable implements JsonSerializable
                 continue;
             }
 
-            $columnType = $this->cols[$key]->type;
-            if (!$this->matchType($columnType, $value)) {
+            /** @var ColumnType $columnType */
+            $columnType = $this->columns[$key]->type;
+            if (!$columnType->equalsValueType($value)) {                
                 throw new InvalidArgumentException("Value with index {$key} does not match the column type. Expected columnType is {$columnType->value}");
             }
         }
@@ -87,7 +103,7 @@ class DataTable implements JsonSerializable
      */
     public function addColumn(Column $column): void
     {
-        $this->cols[] = $column;
+        $this->columns[] = $column;
     }
 
     /**
@@ -96,38 +112,8 @@ class DataTable implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return [
-            'cols' => $this->cols,
+            'cols' => $this->columns,
             'rows' => $this->rows
         ];
-    }
-
-    private function matchType(ColumnType $colType, mixed $value): bool
-    {
-        switch ($colType) {
-            case ColumnType::Bool:
-                return is_bool($value);
-
-            case ColumnType::String:
-                return is_string($value) || ($value instanceof Stringable);
-
-            case ColumnType::Date:
-            case ColumnType::DateTime:
-                return ($value instanceof DateTimeInterface);
-
-            case ColumnType::Number:
-                // Do not use is_numeric as it allows numeric strings
-                // which would not be handled correctly by google charts library
-                return is_int($value) || is_float($value);
-
-            case ColumnType::TimeOfDay:
-                // The DataTable timeofday column data type takes an array of either 3 or 4 numbers, 
-                // representing hours, minutes, seconds, and optionally milliseconds, respectively. 
-                return is_array($value) &&
-                    (count($value) === 3 || count($value) === 4) &&
-                    array_reduce($value, fn ($acc, $item) => $acc && is_int($item), true);
-
-            default:
-                throw new Exception("unhandled column type {$colType->value}");
-        }
     }
 }
