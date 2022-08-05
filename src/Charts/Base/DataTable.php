@@ -20,6 +20,19 @@ use JsonSerializable;
 class DataTable implements JsonSerializable
 {
     /**
+     * Columns
+     *
+     * @var Column[]
+     */
+    private array $columns = [];
+    /**
+     * Rows
+     *
+     * @var Row[]
+     */
+    private array $rows = [];
+
+    /**
      * Creates columns and rows from the two dimensional array.
      * Treats the first row as column labels and infers the column
      * type from the second row (= first data row.)
@@ -30,7 +43,7 @@ class DataTable implements JsonSerializable
     public static function fromArray(array $data): self
     {
         if (count($data) < 2) {
-            throw new InvalidArgumentException('$data must be a two dimensional array and contain at least to entries');
+            throw new InvalidArgumentException('$data must be a two dimensional array and contain at least two entries');
         }
 
         // First row contains the row labels and not data; pop it
@@ -38,17 +51,21 @@ class DataTable implements JsonSerializable
         // Infer the column type of the columsn from the first data row
         $columns = array_map(fn (mixed $value, $label) => new Column(ColumnType::fromValue($value), $label), $data[0], $labels);
 
-        return new self($columns, array_map(fn (array $values) => new Row($values), $data));
+        return new self($columns, $data);
     }
 
     /**
      * Creates a new datatable
      *
      * @param Column[] $columns
-     * @param Row[] $rows
+     * @param mixed[][] $values
      */
-    public function __construct(private array $columns = [], private array $rows = [])
+    public function __construct(array $columns = [], array $values = [])
     {
+        foreach ($columns as $column) {
+            $this->addColumn($column);
+        }
+        $this->addRows(...$values);
     }
 
     /**
@@ -56,6 +73,9 @@ class DataTable implements JsonSerializable
      */
     public function addRow(array $values, array $formatted = []): void
     {
+        if (count($values) === 0) {
+            return;
+        }
         if (count($this->columns) === 0) {
             throw new InvalidArgumentException('Must add columns before adding rows');
         }

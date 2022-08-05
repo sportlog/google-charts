@@ -13,6 +13,7 @@ namespace Sportlog\GoogleCharts\Charts\Base;
 
 use DateTimeInterface;
 use Exception;
+use InvalidArgumentException;
 use Stringable;
 
 enum ColumnType: string
@@ -29,6 +30,7 @@ enum ColumnType: string
      *
      * @param mixed $value
      * @return self
+     * @throws InvalidArgumentException Column type cannot be inferred.
      */
     public static function fromValue(mixed $value): self
     {
@@ -41,11 +43,11 @@ enum ColumnType: string
                 array_reduce($value, fn ($acc, $item) => $acc &&
                     is_int($item), true) => self::TimeOfDay,
             $value instanceof DateTimeInterface => self::DateTime,
-            default => throw new Exception("cannot resolve ColumnType for {$type}")
+            default => throw new InvalidArgumentException("cannot resolve ColumnType for {$type}")
         };
     }
 
-    public function equalsValueType($value): bool
+    public function equalsValueType(mixed $value): bool
     {
         $columnType = self::fromValue($value);
         return $this === $columnType || ($this->isDate() && $columnType->isDate());

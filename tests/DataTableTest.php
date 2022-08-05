@@ -84,6 +84,19 @@ final class DataTableTest extends TestCase
         $data->addRow(['Test', new DateTime()]);
     }
 
+    public function testCreateFromArrayWithInvalidInput(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        DataTable::fromArray([
+            ['Task', 'Hours per Day'],
+            ['Work',     '11'],
+            ['Eat',      2],
+            ['Commute',  2],
+            ['Watch TV', 2],
+            ['Sleep',    7]
+        ]);
+    }
+
     public function testCreateFromArray(): void
     {
         $data = DataTable::fromArray([
