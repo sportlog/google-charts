@@ -33,7 +33,7 @@ class ChartSeriesOptionsCollection extends NotNullSerializer {
      * Must be encoded with the index as property name.
      * 
      * @example 
-     * "trendlines": {
+     * {
      *   "1": {
      *       "lineWidth": 2,
      *       "opacity": 3.1

@@ -8,12 +8,16 @@ require_once '../vendor/autoload.php';
 
 use Sportlog\GoogleCharts\Charts\Base\ChartDesign;
 use Sportlog\GoogleCharts\Charts\Base\Column;
+use Sportlog\GoogleCharts\Charts\Base\ColumnRole;
 use Sportlog\GoogleCharts\Charts\Base\ColumnType;
 use Sportlog\GoogleCharts\Charts\Base\DataTable;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartCurveType;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegend;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegendPosition;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartTitle;
+use Sportlog\GoogleCharts\Charts\Options\LineChart\LineChartInterval;
+use Sportlog\GoogleCharts\Charts\Options\LineChart\LineChartIntervalCollection;
+use Sportlog\GoogleCharts\Charts\Options\LineChart\LineChartIntervalStyle;
 use Sportlog\GoogleCharts\ChartService;
 
 $chartService = new ChartService();
@@ -69,6 +73,51 @@ $chart->options->chart = new ChartTitle('Box Office Earnings in First Two Weeks 
 $chart->options->height = 500;
 $chart->options->width = 900;
 
+// Intervals
+$data = new DataTable();
+$data->addColumn(new Column(ColumnType::Number, 'x'));
+$data->addColumn(new Column(ColumnType::Number, 'x'));
+$data->addColumn(new Column(ColumnType::Number, role: ColumnRole::Interval, id: 'i0'));
+$data->addColumn(new Column(ColumnType::Number, role: ColumnRole::Interval, id: 'i1'));
+$data->addColumn(new Column(ColumnType::Number, role: ColumnRole::Interval, id: 'i2'));
+$data->addColumn(new Column(ColumnType::Number, role: ColumnRole::Interval, id: 'i2'));
+$data->addColumn(new Column(ColumnType::Number, role: ColumnRole::Interval, id: 'i2'));
+$data->addColumn(new Column(ColumnType::Number, role: ColumnRole::Interval, id: 'i2'));
+$data->addRows(
+    [1, 100, 90, 110, 85, 96, 104, 120],
+    [2, 120, 95, 130, 90, 113, 124, 140],
+    [3, 130, 105, 140, 100, 117, 133, 139],
+    [4, 90, 85, 95, 85, 88, 92, 95],
+    [5, 70, 74, 63, 67, 69, 70, 72],
+    [6, 30, 39, 22, 21, 28, 34, 40],
+    [7, 80, 77, 83, 70, 77, 85, 90],
+    [8, 100, 90, 110, 85, 95, 102, 110]
+);
+
+$chart = $chartService->createLineChart('intervals', $data);
+$chart->options->title = 'Line intervals, default';
+$chart->options->height = 500;
+$chart->options->width = 900;
+$chart->options->curveType = ChartCurveType::Function;
+$chart->options->lineWidth = 4;
+$chart->options->legend = new ChartLegend(position: ChartLegendPosition::None);
+$chart->options->intervals = new LineChartInterval(LineChartIntervalStyle::Line);
+
+// Intervals, tailored
+$chart = $chartService->createLineChart('intervals_tailored', $data);   // use last created datatable
+$chart->options->title = 'Line intervals, tailored';
+$chart->options->height = 500;
+$chart->options->width = 900;
+$chart->options->curveType = ChartCurveType::Function;
+$chart->options->lineWidth = 4;
+$chart->options->legend = new ChartLegend(position: ChartLegendPosition::None);
+$chart->options->interval = new LineChartIntervalCollection();
+$chart->options->interval->add(new LineChartInterval(LineChartIntervalStyle::Line, '#D3362D', lineWidth: 0.5), 'i0');
+$chart->options->interval->add(new LineChartInterval(LineChartIntervalStyle::Line, '#F1CA3A', lineWidth: 1), 'i1');
+$chart->options->interval->add(new LineChartInterval(LineChartIntervalStyle::Line, '#5F9654', lineWidth: 2), 'i2');
+
 // Draw all charts
 echo $chartService->render('performance');
 echo $chartService->render('earnings');
+echo $chartService->render('intervals');
+echo $chartService->render('intervals_tailored');

@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Sportlog\GoogleCharts\Charts\Options\LineChart;
 
 use Sportlog\GoogleCharts\Charts\Options\AreaChart\AreaChartAggregationTarget;
-use Sportlog\GoogleCharts\Charts\Options\Common\{Axis\ChartAxis, ChartLegend\ChartLegend, Tooltip\ChartTooltip, Trendline\ChartTrendlineCollection, ChartAnimation, ChartArea, ChartAxisTitlePosition, ChartBackgroundColor, ChartBaseOptions, ChartCurveType, ChartExplorer, ChartFocusTarget, ChartOrientation, ChartPointShape, ChartSelectionMode, ChartSeriesOptions, ChartSeriesOptionsCollection, ChartSeriesType, ChartTextStyle};
+use Sportlog\GoogleCharts\Charts\Options\Common\{Axis\ChartAxis, ChartLegend\ChartLegend, Tooltip\ChartTooltip, Trendline\ChartTrendlineCollection, ChartAnimation, ChartArea, ChartAxisTitlePosition, ChartBackgroundColor, ChartBaseOptions, ChartCurveType, ChartExplorer, ChartFocusTarget, ChartOrientation, ChartPointShape, ChartSelectionMode, ChartSeriesOptionsCollection, ChartSeriesType, ChartTextStyle};
 use Sportlog\GoogleCharts\Charts\Options\CrossHair\ChartCrossHair;
 
 /**
@@ -34,6 +34,8 @@ class LineChartOptions extends ChartBaseOptions
     public ?ChartFocusTarget $focusTarget = null;
     public ?ChartAxis $hAxis = null;
     public ?bool $interpolateNulls = null;
+    public ?LineChartInterval $intervals = null;
+    public ?LineChartIntervalCollection $interval = null;
     public ?ChartLegend $legend = null;
     public ?array $lineDashStyle = null;
     public ?int $lineWidth = null;

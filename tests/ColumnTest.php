@@ -13,7 +13,7 @@ namespace Sportlog\GoogleCharts\Test;
 
 use DateTime;
 use PHPUnit\Framework\TestCase;
-use Sportlog\GoogleCharts\Charts\Base\{Column, ColumnType};
+use Sportlog\GoogleCharts\Charts\Base\{Column, ColumnRole, ColumnType};
 
 final class ColumnTest extends TestCase
 {
@@ -38,12 +38,12 @@ final class ColumnTest extends TestCase
             "type": "string",
             "label": "Some label",
             "id": "#123",
-            "role": "column",
+            "role": "style",
             "pattern": "pattern"
         }
         EOL;
 
-        $row = new Column(ColumnType::String, 'Some label', '#123', 'column', 'pattern');
+        $row = new Column(ColumnType::String, 'Some label', '#123', ColumnRole::Style, 'pattern');
         $json = json_encode($row, JSON_PRETTY_PRINT);
         $this->assertEquals($expectedJson, $json);
     }

@@ -24,7 +24,8 @@ class Row implements JsonSerializable
      * Creates a new row
      *
      * @param array $values The row values
-     * @param array $formatted The formatted values
+     * @param array $formatted The formatted values. It's length can be lower
+     * than $values, if formtting applies only to the starting values.
      */
     public function __construct(private array $values, private array $formatted = [])
     {

@@ -8,6 +8,7 @@ require_once '../vendor/autoload.php';
 
 use Sportlog\GoogleCharts\Charts\Base\ChartDesign;
 use Sportlog\GoogleCharts\Charts\Base\Column;
+use Sportlog\GoogleCharts\Charts\Base\ColumnRole;
 use Sportlog\GoogleCharts\Charts\Base\ColumnType;
 use Sportlog\GoogleCharts\Charts\Base\DataTable;
 use Sportlog\GoogleCharts\Charts\Options\Common\Axis\ChartAxis;
@@ -65,7 +66,7 @@ $data->addColumn(new Column(ColumnType::Number, 'Mystery/Crime'));
 $data->addColumn(new Column(ColumnType::Number, 'General'));
 $data->addColumn(new Column(ColumnType::Number, 'Western'));
 $data->addColumn(new Column(ColumnType::Number, 'Literature'));
-$data->addColumn(Column::annotation());
+$data->addColumn(new Column(ColumnType::String, role: ColumnRole::Annotation));
 $data->addRows(
     ['2010', 10, 24, 20, 32, 18, 5, ''],
     ['2020', 16, 22, 23, 30, 16, 9, ''],
