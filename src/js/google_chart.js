@@ -43,13 +43,12 @@ class GoogleCharts {
      */
     static drawCharts(charts) {
         charts.forEach((chart) => {
-            let data = new google.visualization.DataTable(chart.data);
-            let options = chart.options;
             let element = document.getElementById(chart.id);
             if (element) {
-                let c = this.drawChart(chart.type, chart.design, data, options, element);
+                let data = new google.visualization.DataTable(chart.data);
+                let c = this.drawChart(chart.type, chart.design, data, chart.options, element);
                 if (this.chartLoadCallback) {
-                    this.chartLoadCallback(chart.id, c, data, options);
+                    this.chartLoadCallback(chart.id, c, data, chart.options);
                 }
             }
         });
