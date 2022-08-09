@@ -72,33 +72,51 @@ final class MapOptionsTest extends TestCase
                     "name": "Styled Map",
                     "styles": [
                         {
-                            "stylers": {
-                                "color": "#fce8b2"
-                            },
+                            "stylers": [
+                                {
+                                    "color": "#fce8b2"
+                                }
+                            ],
                             "featureType": "poi.attraction"
                         },
                         {
-                            "stylers": {
-                                "hue": "#0277bd",
-                                "saturation": -50
-                            },
+                            "stylers": [
+                                {
+                                    "hue": "#0277bd"
+                                },
+                                {
+                                    "saturation": -50
+                                }
+                            ],
                             "featureType": "road.highway"
                         },
                         {
-                            "stylers": {
-                                "hue": "#000",
-                                "saturation": 100,
-                                "lightness": 50
-                            },
+                            "stylers": [
+                                {
+                                    "hue": "#000"
+                                },
+                                {
+                                    "saturation": 100
+                                },
+                                {
+                                    "lightness": 50
+                                }
+                            ],
                             "elementType": "labels.icon",
                             "featureType": "road.highway"
                         },
                         {
-                            "stylers": {
-                                "hue": "#259b24",
-                                "saturation": 10,
-                                "lightness": -22
-                            },
+                            "stylers": [
+                                {
+                                    "hue": "#259b24"
+                                },
+                                {
+                                    "saturation": 10
+                                },
+                                {
+                                    "lightness": -22
+                                }
+                            ],
                             "featureType": "landscape"
                         }
                     ]
