@@ -24,9 +24,10 @@ use Sportlog\GoogleCharts\Charts\Options\GaugeChart\GaugeChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\GeoChart\GeoChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\HistogramChart\HistogramChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\LineChart\LineChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\OrgChart\OrgChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, PieChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, OrgChart, PieChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -215,6 +216,21 @@ class ChartService
         $this->addChart($chart);
         return $chart;
     }
+
+    /**
+     * Creates a new Org chart.
+     *
+     * @param string $id
+     * @param OrgChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createOrgChart(string $id, DataTable $data, OrgChartOptions $options = new OrgChartOptions()): OrgChart
+    {
+        $chart = new OrgChart($id, $data, $options);
+        $this->addChart($chart);
+        return $chart;
+    }
+
 
     /**
      * Creates a new Pie chart.

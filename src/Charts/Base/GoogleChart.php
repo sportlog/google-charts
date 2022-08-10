@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace Sportlog\GoogleCharts\Charts\Base;
 
 use JsonSerializable;
-use Sportlog\GoogleCharts\Charts\Options\Common\ChartSizeable;
 
 /**
  * Google chart class holding columns and rows.
@@ -25,14 +24,14 @@ abstract class GoogleChart implements JsonSerializable
      * @param string $id
      * @param ChartType $chartType
      * @param DataTable $data
-     * @param ChartSizeable $options
+     * @param JsonSerializable $options
      * @param ChartDesign $design
      */
     public function __construct(
         private readonly string $id,
         private readonly ChartType $chartType,
         private readonly DataTable $data,
-        private readonly ChartSizeable $options,
+        private readonly JsonSerializable $options,
         private readonly ChartDesign $design = ChartDesign::Classic
     ) {
     }

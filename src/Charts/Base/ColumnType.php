@@ -40,8 +40,7 @@ enum ColumnType: string
             $type === 'string' || $value instanceof Stringable => self::String,
             $type === 'integer' || $type === 'double' => self::Number,
             $type === 'array' && (count($value) === 3 || count($value) === 4) &&
-                array_reduce($value, fn ($acc, $item) => $acc &&
-                    is_int($item), true) => self::TimeOfDay,
+                array_reduce($value, fn ($acc, $item) => $acc && is_int($item), true) => self::TimeOfDay,
             $value instanceof DateTimeInterface => self::DateTime,
             default => throw new InvalidArgumentException("cannot resolve ColumnType for {$type}")
         };
