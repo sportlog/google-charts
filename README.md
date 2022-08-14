@@ -30,7 +30,6 @@ Preferably use DI to for the service!
 Create a datatable and add columns and rows:
 ``` php
 $data = new DataTable();
-$data = new DataTable();
 $data->addColumn(new Column(ColumnType::String, 'Task'));
 $data->addColumn(new Column(ColumnType::Number, 'Hours per Day'));
 
@@ -57,6 +56,8 @@ $data = DataTable::fromArray(
 ```
 
 ## 3. Create the Chart
+Create the chart by using the factory functions on the ChartService.
+
 ``` php
 // pass a unique id to the chart; you will need it to draw it
 $chart = $chartService->createPieChart('dailyActivities', $data);
