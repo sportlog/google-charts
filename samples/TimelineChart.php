@@ -33,9 +33,9 @@ $data->addRows(
     ['Jefferson',  $date(1801, 2, 4),  $date(1809, 2, 4)]
 );
 
-$data = $chartService->createTimelineChart('presidents', $data);
-$data->options->height = 180;
-$data->options->width = 856;
+$chart = $chartService->createTimelineChart('presidents', $data);
+$chart->options->height = 180;
+$chart->options->width = 856;
 
 // Draw all charts
 echo $chartService->render('presidents');

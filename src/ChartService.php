@@ -28,8 +28,9 @@ use Sportlog\GoogleCharts\Charts\Options\OrgChart\OrgChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\ScatterChart\ScatterChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\SteppedAreaChart\SteppedAreaChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\TableChart\TableChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, OrgChart, PieChart, ScatterChart, SteppedAreaChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, OrgChart, PieChart, ScatterChart, SteppedAreaChart, TableChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -262,7 +263,7 @@ class ChartService
         return $chart;
     }
 
-     /**
+    /**
      * Creates a new stepped area chart.
      *
      * @param string $id
@@ -272,6 +273,20 @@ class ChartService
     public function createSteppedAreaChart(string $id, DataTable $data, SteppedAreaChartOptions $options = new SteppedAreaChartOptions()): SteppedAreaChart
     {
         $chart = new SteppedAreaChart($id, $data, $options);
+        $this->addChart($chart);
+        return $chart;
+    }
+
+    /**
+     * Creates a new Table chart.
+     *
+     * @param string $id
+     * @param TableChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createTableChart(string $id, DataTable $data, TableChartOptions $options = new TableChartOptions()): TableChart
+    {
+        $chart = new TableChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }
