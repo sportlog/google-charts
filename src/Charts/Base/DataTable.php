@@ -37,17 +37,19 @@ class DataTable implements JsonSerializable
      * Treats the first row as column labels and infers the column
      * type from the second row (= first data row.)
      *
-     * @param array $data
+     * @param array $data Array of arrays containing data
+     * @param bool $firstRowIsData Indicates if the first row is treated as data. If false
+     * first row is used for column labels.
      * @return self
      */
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data, $firstRowIsData = false): self
     {
         if (count($data) < 2) {
             throw new InvalidArgumentException('$data must be a two dimensional array and contain at least two entries');
         }
 
-        // First row contains the row labels and not data; pop it
-        $labels = array_shift($data);
+        // If first row does not contain data, pop it for labeling
+        $labels = $firstRowIsData ? [] : array_shift($data);
         // Infer the column type of the columsn from the first data row
         $columns = array_map(fn (mixed $value, $label) => new Column(ColumnType::fromValue($value), $label), $data[0], $labels);
 

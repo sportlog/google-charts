@@ -17,7 +17,6 @@ use Sportlog\GoogleCharts\Charts\Options\Common\ChartSizeable;
 class TableChartOptions extends ChartSizeable
 {
     public function __construct(
-
         public ?bool $allowHtml = null,
         public ?bool $alternatingRowStyle = null,
         public ?ArrayObject $cssClassNames = null,

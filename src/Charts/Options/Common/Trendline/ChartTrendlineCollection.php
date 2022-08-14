@@ -34,7 +34,7 @@ class ChartTrendlineCollection implements JsonSerializable
      * Must be encoded with the index as property name.
      * 
      * @example 
-     * "trendlines": {
+     * {
      *   "1": {
      *       "lineWidth": 2,
      *       "opacity": 3.1
@@ -53,6 +53,6 @@ class ChartTrendlineCollection implements JsonSerializable
      */
     public function jsonSerialize(): mixed
     {
-        return ['trendlines' => new ArrayObject($this->trendlines)];
+        return new ArrayObject($this->trendlines);
     }
 }

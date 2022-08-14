@@ -178,4 +178,137 @@ final class DataTableTest extends TestCase
         $json = json_encode($data, JSON_PRETTY_PRINT);
         $this->assertEquals($expectedJson, $json);
     }
+
+    public function testCreateFromArrayWhereFirstRowIsData(): void
+    {
+        $data = DataTable::fromArray([
+            ['Mon', 28, 28, 38, 38],
+            ['Tue', 38, 38, 55, 55],
+            ['Wed', 55, 55, 77, 77],
+            ['Thu', 77, 77, 66, 66],
+            ['Fri', 66, 66, 22, 22]
+        ], true);
+
+        $expectedJson = <<<EOL
+        {
+            "cols": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "number"
+                }
+            ],
+            "rows": [
+                {
+                    "c": [
+                        {
+                            "v": "Mon"
+                        },
+                        {
+                            "v": 28
+                        },
+                        {
+                            "v": 28
+                        },
+                        {
+                            "v": 38
+                        },
+                        {
+                            "v": 38
+                        }
+                    ]
+                },
+                {
+                    "c": [
+                        {
+                            "v": "Tue"
+                        },
+                        {
+                            "v": 38
+                        },
+                        {
+                            "v": 38
+                        },
+                        {
+                            "v": 55
+                        },
+                        {
+                            "v": 55
+                        }
+                    ]
+                },
+                {
+                    "c": [
+                        {
+                            "v": "Wed"
+                        },
+                        {
+                            "v": 55
+                        },
+                        {
+                            "v": 55
+                        },
+                        {
+                            "v": 77
+                        },
+                        {
+                            "v": 77
+                        }
+                    ]
+                },
+                {
+                    "c": [
+                        {
+                            "v": "Thu"
+                        },
+                        {
+                            "v": 77
+                        },
+                        {
+                            "v": 77
+                        },
+                        {
+                            "v": 66
+                        },
+                        {
+                            "v": 66
+                        }
+                    ]
+                },
+                {
+                    "c": [
+                        {
+                            "v": "Fri"
+                        },
+                        {
+                            "v": 66
+                        },
+                        {
+                            "v": 66
+                        },
+                        {
+                            "v": 22
+                        },
+                        {
+                            "v": 22
+                        }
+                    ]
+                }
+            ]
+        }
+        EOL;
+
+        $json = json_encode($data, JSON_PRETTY_PRINT);
+        $this->assertEquals($expectedJson, $json);
+    }
 }
