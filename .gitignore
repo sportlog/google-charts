@@ -13,3 +13,4 @@
 .history/*
 
 .phpunit.result.cache
+.vscode/*
