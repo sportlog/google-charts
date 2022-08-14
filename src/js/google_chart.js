@@ -273,8 +273,11 @@ class GoogleCharts {
                 chart.draw(dataTable, options);
                 return chart;
             }
-            // case 'WordTree':
-            //   return new google.visualization.W(element);
+            case 'WordTree': {
+                const chart = new google.visualization.WordTree(element);
+                chart.draw(dataTable, options);
+                return chart;
+            }
             default:
                 throw new Error(`chart not supported: ${chartType}`);
         }

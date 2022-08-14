@@ -14,8 +14,6 @@ use Sportlog\GoogleCharts\Charts\Options\Common\ChartCandleStick;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartGroupWidth;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegend;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegendPosition;
-use Sportlog\GoogleCharts\Charts\Options\Common\Trendline\ChartTrendline;
-use Sportlog\GoogleCharts\Charts\Options\Common\Trendline\ChartTrendlineCollection;
 use Sportlog\GoogleCharts\ChartService;
 
 $chartService = new ChartService();

@@ -30,10 +30,10 @@ enum ChartType: string {
     case Map = 'Map';
     case Org = 'Org';
     case Pie = 'Pie';
-    case Sankey = 'Sankey';
     case Scatter = 'Scatter';
     case SteppedArea = 'SteppedArea';
     case Table = 'Table';
     case Timeline = 'Timeline';
     case TreeMap = 'TreeMap';
+    case WordTree = 'WordTree';
 }

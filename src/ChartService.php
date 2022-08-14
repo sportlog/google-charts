@@ -30,7 +30,8 @@ use Sportlog\GoogleCharts\Charts\Options\ScatterChart\ScatterChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\SteppedAreaChart\SteppedAreaChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TableChart\TableChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, OrgChart, PieChart, ScatterChart, SteppedAreaChart, TableChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\Options\WordTreeChart\WordTreeChartOptions;
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, OrgChart, PieChart, ScatterChart, SteppedAreaChart, TableChart, TimelineChart, WordTreeChart};
 
 /**
  * Service for creating and loading charts
@@ -301,6 +302,20 @@ class ChartService
     public function createTimelineChart(string $id, DataTable $data, TimelineChartOptions $options = new TimelineChartOptions()): TimelineChart
     {
         $chart = new TimelineChart($id, $data, $options);
+        $this->addChart($chart);
+        return $chart;
+    }
+
+    /**
+     * Creates a new WordTree chart.
+     *
+     * @param string $id
+     * @param WordTreeChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createWordTreeChart(string $id, DataTable $data, WordTreeChartOptions $options = new WordTreeChartOptions()): WordTreeChart
+    {
+        $chart = new WordTreeChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }
