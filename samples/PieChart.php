@@ -19,15 +19,16 @@ use Sportlog\GoogleCharts\ChartService;
 
 $chartService = new ChartService();
 
-$data = new DataTable();
-$data->addColumn(new Column(ColumnType::String, 'Task'));
-$data->addColumn(new Column(ColumnType::Number, 'Hours per Day'));
-
-$data->addRow(['Work',     11]);
-$data->addRow(['Eat',      2]);
-$data->addRow(['Commute',  2]);
-$data->addRow(['Watch TV', 2]);
-$data->addRow(['Sleep',    7]);
+$data = DataTable::fromArray(
+    [
+        ['Task', 'Hours per Day'],
+        ['Work',     11],
+        ['Eat',      2],
+        ['Commute',  2],
+        ['Watch TV', 2],
+        ['Sleep',    7]
+    ]
+);
 
 $chart = $chartService->createPieChart('dailyActivities', $data);
 $chart->options->title = 'My Daily Activities';
