@@ -41,8 +41,6 @@ class ChartAxis extends NotNullSerializer
         public ?int $minValue = null,
         public ?ChartViewWindowMode $viewWindowMode = null,
         public ?ChartViewWindow $viewWindow = null
-    )
-    {
-        
+    ) {
     }
 }

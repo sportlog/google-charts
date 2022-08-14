@@ -26,8 +26,9 @@ use Sportlog\GoogleCharts\Charts\Options\HistogramChart\HistogramChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\LineChart\LineChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\OrgChart\OrgChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\ScatterChart\ScatterChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, OrgChart, PieChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, OrgChart, PieChart, ScatterChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -242,6 +243,20 @@ class ChartService
     public function createPieChart(string $id, DataTable $data, PieChartOptions $options = new PieChartOptions()): PieChart
     {
         $chart = new PieChart($id, $data, $options);
+        $this->addChart($chart);
+        return $chart;
+    }
+
+    /**
+     * Creates a new scatter chart.
+     *
+     * @param string $id
+     * @param ScatterChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createScatterChart(string $id, DataTable $data, ScatterChartOptions $options = new ScatterChartOptions(), ChartDesign $design = ChartDesign::Classic): ScatterChart
+    {
+        $chart = new ScatterChart($id, $data, $options, $design);
         $this->addChart($chart);
         return $chart;
     }

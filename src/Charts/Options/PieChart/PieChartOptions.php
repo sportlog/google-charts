@@ -22,11 +22,6 @@ class PieChartOptions extends ChartBaseOptions
 {
     public ?ChartBackgroundColor $backgroundColor = null;
     public ?PieChartArea $chartArea = null;
-    // public ?array $colors = null;
-    // public ?bool $enableInteractivity = null;
-    // public ?string $fontName = null;
-    // public ?string $fontSize = null;
-    // public ?bool $forceIFrame = null;
     public ?bool $is3D = null;
     public ?ChartLegend $legend = null;
     public int|float|null $pieHole = null;

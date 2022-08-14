@@ -127,6 +127,9 @@ class GoogleCharts {
             case 'Line':
                 return 'line';
 
+            case 'Scatter':
+                return 'scatter';
+
             default:
                 throw new Error(`material design not supported for chart type '${chartType}'`);
         }
@@ -293,6 +296,12 @@ class GoogleCharts {
             case 'Line': {
                 const chart = new google.charts.Line(element);
                 chart.draw(dataTable, google.charts.Line.convertOptions(options));
+                return chart;
+            }
+
+            case 'Scatter': {
+                const chart = new google.charts.Scatter(element);
+                chart.draw(dataTable, google.charts.Scatter.convertOptions(options));
                 return chart;
             }
 
