@@ -27,8 +27,9 @@ use Sportlog\GoogleCharts\Charts\Options\LineChart\LineChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\OrgChart\OrgChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\ScatterChart\ScatterChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\SteppedAreaChart\SteppedAreaChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, OrgChart, PieChart, ScatterChart, TimelineChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, OrgChart, PieChart, ScatterChart, SteppedAreaChart, TimelineChart};
 
 /**
  * Service for creating and loading charts
@@ -257,6 +258,20 @@ class ChartService
     public function createScatterChart(string $id, DataTable $data, ScatterChartOptions $options = new ScatterChartOptions(), ChartDesign $design = ChartDesign::Classic): ScatterChart
     {
         $chart = new ScatterChart($id, $data, $options, $design);
+        $this->addChart($chart);
+        return $chart;
+    }
+
+     /**
+     * Creates a new stepped area chart.
+     *
+     * @param string $id
+     * @param SteppedAreaChartOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createSteppedAreaChart(string $id, DataTable $data, SteppedAreaChartOptions $options = new SteppedAreaChartOptions()): SteppedAreaChart
+    {
+        $chart = new SteppedAreaChart($id, $data, $options);
         $this->addChart($chart);
         return $chart;
     }
