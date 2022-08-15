@@ -18,6 +18,7 @@ Minimum PHP version required is 8.1.
 ## 1. Create the chart service
 Create the chart service instance. You can optionally provide two parameters:
 * Settings: some charts require a mapsApiKey to work
+* Suports both Classic and Material design. Materal design is restriced to Bar, Column, Line and ScatterChart. (still in Beta from Google)
 * ScriptNonceProvider: The chart service needs to load the Google Charts API (https://www.gstatic.com/charts/loader.js). If you're using [CSP](https://en.wikipedia.org/wiki/Content_Security_Policy) you may want to provide a nonce for the script.
 
 ``` php
@@ -41,7 +42,7 @@ $data->addRow(['Watch TV', 2]);
 $data->addRow(['Sleep',    7]);
 ```
 
-Alternatively you can also a the factory function which will auto create the columns by inferring their type from the first data row. This leads to the same result as above:
+Alternatively you can also use the factory function which automatically creates the columns by inferring their type from the first data row. This leads to the same result as above:
 ``` php
 $data = DataTable::fromArray(
     [
@@ -63,16 +64,16 @@ Create the chart by using the factory functions on the ChartService.
 $chart = $chartService->createPieChart('dailyActivities', $data);
 // set options by using intellisense; for documentation see Google-Charts Homepage
 $chart->options->title = 'My Daily Activities';
+$chart->options->pieHole = 0.4;
 $chart->options->width = 900;
 $chart->options->height = 500;
-$chart->options->pieHole = 0.4;
 ```
 
 ## 4. Draw the chart
 Use the ChartService to render your chart. If you're using a templating enginge (like Latte, Twig, ...) you should add a filter for this.
 
 ``` php
-// draw the chart
+// draw the chart; you can omit the id if you want to draw all charts
 echo $chartService->render('dailyActivities');
 ```
 
