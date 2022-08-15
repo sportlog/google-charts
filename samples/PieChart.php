@@ -82,6 +82,4 @@ $chart = $chartService->createPieChart(
     $options
 );
 
-echo $chartService->render('dailyActivities');
-echo $chartService->render('languageUse');
-echo $chartService->render('pizza');
+echo $chartService->render();

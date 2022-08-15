@@ -325,23 +325,25 @@ class ChartService
      * Includes script tags to load the required javascript files, if this
      * is the first call to this function.
      *
-     * @param string $id
+     * @param string|GoogleChart|null $chartOrId Chart to draw. If omitted, all charts are drawn.
      * @throws InvalidArgumentException No chart with the given id exists.
      * @return string
      */
-    public function render(string $id): string
+    public function render(string|GoogleChart|null $chartOrId = null): string
     {
-        if (!isset($this->charts[$id])) {
-            throw new InvalidArgumentException("No chart with id '{$id}' found");
-        }
-
         $buffer = [];
         if (!$this->loaded) {
             $buffer = $this->load();
             $this->loaded = true;
         }
 
-        $buffer[] = sprintf(self::CHART_DIV, $id);
+        if (is_null($chartOrId)) {
+            foreach ($this->charts as $chart) {
+                $buffer[] = $this->renderChart($chart);
+            }
+        } else {
+            $buffer[] = $this->renderChart($chartOrId);
+        }
 
         return implode($buffer);
     }
@@ -368,6 +370,23 @@ class ChartService
         }
 
         return $this->chartLoader->load($data);
+    }
+
+    private function renderChart(string|GoogleChart $chartOrId): string
+    {
+        if (is_string($chartOrId)) {
+            if (!isset($this->charts[$chartOrId])) {
+                throw new InvalidArgumentException("No chart with id '{$chartOrId}' found");
+            }
+
+            return sprintf(self::CHART_DIV, $chartOrId);
+        } else {
+            if (!in_array($chartOrId, $this->charts)) {
+                throw new InvalidArgumentException("Chart is not handled by ChartService");
+            }
+
+            return sprintf(self::CHART_DIV, $chartOrId->getId());
+        }
     }
 
     private function addChart(GoogleChart $chart): GoogleChart
