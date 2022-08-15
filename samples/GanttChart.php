@@ -38,7 +38,7 @@ $data->addColumn(new Column(ColumnType::Number, 'Duration'));
 $data->addColumn(new Column(ColumnType::Number, 'Percent Complete'));
 $data->addColumn(new Column(ColumnType::String, 'Dependencies'));
 
-$data->addRows(
+$data->addRows([
     [
         'Research', 'Find sources',
         $date(2015, 1, 1), $date(2015, 1, 5), null,  100,  null
@@ -59,7 +59,7 @@ $data->addRows(
         'Outline', 'Outline paper',
         null, $date(2015, 1, 6), $daysToMilliseconds(1), 100, 'Research'
     ]
-);
+]);
 
 $chart = $chartService->createGanttChart('paper', $data);
 $chart->options->height = 275;
@@ -78,7 +78,7 @@ $data->addColumn(new Column(ColumnType::Number, 'Duration'));
 $data->addColumn(new Column(ColumnType::Number, 'Percent Complete'));
 $data->addColumn(new Column(ColumnType::String, 'Dependencies'));
 
-$data->addRows(
+$data->addRows([
     [
         "toTrain",
         "Walk to train stop",
@@ -139,7 +139,7 @@ $data->addRows(
         0,
         "toWork",
     ]
-);
+]);
 
 $chart = $chartService->createGanttChart('trains', $data);
 $chart->options->height = 275;

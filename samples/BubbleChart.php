@@ -27,7 +27,7 @@ $data->addColumn(new Column(ColumnType::Number, 'Fertility Rate'));
 $data->addColumn(new Column(ColumnType::String, 'Region'));
 $data->addColumn(new Column(ColumnType::Number, 'Population'));
 
-$data->addRows(
+$data->addRows([
     ['CAN',    80.66,              1.67,      'North America',  33739900],
     ['DEU',    79.84,              1.36,      'Europe',         81902307],
     ['DNK',    78.6,               1.84,      'Europe',         5523095],
@@ -38,7 +38,7 @@ $data->addRows(
     ['ISR',    81.55,              2.96,      'Middle East',    7485600],
     ['RUS',    68.6,               1.54,      'Europe',         141850000],
     ['USA',    78.09,              2.05,      'North America',  307007000]
-);
+]);
 
 $chart = $chartService->createBubbleChart('life', $data);
 $chart->options->height = 500;
@@ -57,7 +57,7 @@ $data->addColumn(new Column(ColumnType::Number, 'X'));
 $data->addColumn(new Column(ColumnType::Number, 'Y'));
 $data->addColumn(new Column(ColumnType::Number, 'Temperature'));
 
-$data->addRows(
+$data->addRows([
     ['',   80,  167,      120],
     ['',   79,  136,      130],
     ['',   78,  184,      50],
@@ -65,7 +65,7 @@ $data->addRows(
     ['',   81,  200,      210],
     ['',   72,  170,      100],
     ['',   68,  477,      80]
-);
+]);
 
 $chart = $chartService->createBubbleChart('temperature', $data);
 $chart->options->height = 500;

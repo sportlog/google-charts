@@ -30,13 +30,13 @@ $data = new DataTable();
 $data->addColumn(new Column(ColumnType::String, 'City'));
 $data->addColumn(new Column(ColumnType::Number, '2010 Population'));
 $data->addColumn(new Column(ColumnType::Number, '2020 Population'));
-$data->addRows(
+$data->addRows([
     ['New York City, NY', 8175000, 8008000],
     ['Los Angeles, CA', 3792000, 3694000],
     ['Chicago, IL', 2695000, 2896000],
     ['Houston, TX', 2099000, 1953000],
     ['Philadelphia, PA', 1526000, 1517000]
-);
+]);
 
 $chart = $chartService->createBarChart('population', $data);
 $chart->options->height = 300;
@@ -67,11 +67,11 @@ $data->addColumn(new Column(ColumnType::Number, 'General'));
 $data->addColumn(new Column(ColumnType::Number, 'Western'));
 $data->addColumn(new Column(ColumnType::Number, 'Literature'));
 $data->addColumn(new Column(ColumnType::String, role: ColumnRole::Annotation));
-$data->addRows(
+$data->addRows([
     ['2010', 10, 24, 20, 32, 18, 5, ''],
     ['2020', 16, 22, 23, 30, 16, 9, ''],
     ['2030', 28, 19, 29, 30, 12, 13, '']
-);
+]);
 
 $chart = $chartService->createBarChart('genre', $data);
 $chart->options->height = 400;
@@ -89,12 +89,12 @@ $data->addColumn(new Column(ColumnType::String, 'Element'));
 $data->addColumn(new Column(ColumnType::Number, 'Sales'));
 $data->addColumn(new Column(ColumnType::Number, 'Expenses'));
 $data->addColumn(new Column(ColumnType::Number, 'Profit'));
-$data->addRows(
+$data->addRows([
     ['2014', 1000, 400, 200],
     ['2015', 1170, 460, 250],
     ['2016', 660, 1120, 300],
     ['2017', 1030, 540, 350]
-);
+]);
 
 $chart = $chartService->createBarChart('element', $data, design: ChartDesign::Material);
 $chart->options->height = 500;

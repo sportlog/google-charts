@@ -20,10 +20,12 @@ $data->addColumn(new Column(ColumnType::String, 'Year'));
 $data->addColumn(new Column(ColumnType::Number, 'Sales'));
 $data->addColumn(new Column(ColumnType::Number, 'Expenses'));
 $data->addRows(
-    ['2013',  1000,      400],
-    ['2014',  1170,      460],
-    ['2015',  660,       1120],
-    ['2016',  1030,      540]
+    [
+        ['2013',  1000,      400],
+        ['2014',  1170,      460],
+        ['2015',  660,       1120],
+        ['2016',  1030,      540]
+    ]
 );
 
 $chart = $chartService->createAreaChart('performance', $data);

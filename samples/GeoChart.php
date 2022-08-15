@@ -26,14 +26,14 @@ $data = new DataTable();
 $data->addColumn(new Column(ColumnType::String, 'Country'));
 $data->addColumn(new Column(ColumnType::Number, 'Popularity'));
 
-$data->addRows(
+$data->addRows([
     ['Germany', 200],
     ['United States', 300],
     ['Brazil', 400],
     ['Canada', 500],
     ['France', 600],
     ['RU', 700]
-);
+]);
 
 $chart = $chartService->createGeoChart('popularity', $data);
 $chart->options->width = 900;
@@ -47,7 +47,7 @@ $data->addColumn(new Column(ColumnType::String, 'Country'));
 $data->addColumn(new Column(ColumnType::Number, 'Population'));
 $data->addColumn(new Column(ColumnType::Number, 'Area'));
 
-$data->addRows(
+$data->addRows([
     ['Rome',      2761477,    1285.31],
     ['Milan',     1324110,    181.76],
     ['Naples',    959574,     117.27],
@@ -59,7 +59,7 @@ $data->addRows(
     ['Fiumicino', 67370,      213.44],
     ['Anzio',     52192,      43.43],
     ['Ciampino',  38262,      11]
-);
+]);
 
 $chart = $chartService->createGeoChart('population', $data);
 $chart->options->width = 900;

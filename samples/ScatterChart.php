@@ -27,7 +27,7 @@ $data->addColumn(new Column(ColumnType::Number, 'Student ID'));
 $data->addColumn(new Column(ColumnType::Number, 'Hours Studied'));
 $data->addColumn(new Column(ColumnType::Number, 'Final'));
 
-$data->addRows(
+$data->addRows([
     [0, 0, 67],
     [1, 1, 88],
     [2, 2, 77],
@@ -58,7 +58,7 @@ $data->addRows(
     [27, 2, 81],
     [28, 8, 79],
     [29, 9, 83]
-);
+]);
 
 $chart = $chartService->createScatterChart('grades_classic', $data);
 $chart->options->width = 800;

@@ -18,11 +18,11 @@ $data->addColumn(new Column(ColumnType::String, 'Manager'));
 $data->addColumn(new Column(ColumnType::String, 'ToolTip'));
 $data->addRow(['Mike', '', 'President'], ['Mike<div style="color:red; font-style:italic">President</div>']);
 $data->addRow(['Jim', 'Mike', 'VP'], ['Jim<div style="color:red; font-style:italic">Vice President</div>']);
-$data->addRows(
+$data->addRows([
     ['Alice', 'Mike', ''],
     ['Bob', 'Jim', 'Bob Sponge'],
     ['Carol', 'Bob', '']
-);
+]);
 
 $chart = $chartService->createOrgChart('organization', $data);
 $chart->options->allowHtml = true;

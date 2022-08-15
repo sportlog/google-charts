@@ -16,7 +16,7 @@ $data = $chartService->createHistogramChart('dinosaurs');
 $data->addColumn(new Column(ColumnType::String, 'Dinosaur'));
 $data->addColumn(new Column(ColumnType::Number, 'Length'));
 
-$data->addRows(
+$data->addRows([
     ['Acrocanthosaurus (top-spined lizard)', 12.2],
     ['Albertosaurus (Alberta lizard)', 9.1],
     ['Allosaurus (other lizard)', 12.2],
@@ -45,7 +45,7 @@ $data->addRows(
     ['Tyrannosaurus (tyrant lizard)', 15.2],
     ['Ultrasaurus (ultra lizard)', 30.5],
     ['Velociraptor (swift robber)', 1.8]
-);
+]);
 
 $chartService = new ChartService();
 $chart->options->width = 900;

@@ -53,12 +53,12 @@ $data->addColumn(new Column(ColumnType::String, 'Element'));
 $data->addColumn(new Column(ColumnType::Number, 'Sales'));
 $data->addColumn(new Column(ColumnType::Number, 'Expenses'));
 $data->addColumn(new Column(ColumnType::Number, 'Profit'));
-$data->addRows(
+$data->addRows([
     ['2014', 1000, 400, 200],
     ['2015', 1170, 460, 250],
     ['2016', 660, 1120, 300],
     ['2017', 1030, 540, 350]
-);
+]);
 
 $chart = $chartService->createColumnChart('element', $data, design: ChartDesign::Material);
 $chart->options->height = 500;

@@ -67,7 +67,7 @@ class DataTable implements JsonSerializable
         foreach ($columns as $column) {
             $this->addColumn($column);
         }
-        $this->addRows(...$values);
+        $this->addRows($values);
     }
 
     /**
@@ -76,7 +76,7 @@ class DataTable implements JsonSerializable
     public function addRow(array $values, array $formatted = []): void
     {
         if (count($values) === 0) {
-            return;
+            throw new InvalidArgumentException('Array is empty');
         }
         if (count($this->columns) === 0) {
             throw new InvalidArgumentException('Must add columns before adding rows');
@@ -108,12 +108,16 @@ class DataTable implements JsonSerializable
      * Add multiple rows at once.
      * Use addRow() if you need to supply formatted values.
      *
-     * @param array ...$values
+     * @param array Array of $values
      * @return void
      */
-    public function addRows(array ...$values): void
+    public function addRows(array $values): void
     {
         foreach ($values as $value) {
+            if (!is_array($value)) {
+                throw new InvalidArgumentException('$value must be a two dimensional array');
+            }
+
             $this->addRow($value);
         }
     }

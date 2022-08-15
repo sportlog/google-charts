@@ -27,11 +27,11 @@ $date = function (int $year, int $month = 1, int $day = 1): DateTime {
     return $result;
 };
 
-$data->addRows(
+$data->addRows([
     ['Washington', $date(1789, 3, 30), $date(1797, 2, 4)],
     ['Adams',      $date(1797, 2, 4),  $date(1801, 2, 4)],
     ['Jefferson',  $date(1801, 2, 4),  $date(1809, 2, 4)]
-);
+]);
 
 $chart = $chartService->createTimelineChart('presidents', $data);
 $chart->options->height = 180;

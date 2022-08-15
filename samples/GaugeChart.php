@@ -20,11 +20,11 @@ $chartService = new ChartService();
 $data = new DataTable();
 $data->addColumn(new Column(ColumnType::String, 'Label'));
 $data->addColumn(new Column(ColumnType::Number, 'Value'));
-$data->addRows(
+$data->addRows([
     ['Memory', 80],
     ['CPU', 55],
     ['Network', 68]
-);
+]);
 
 $chart = $chartService->createGaugeChart('compresources', $data);
 $chart->options->height = 120;
