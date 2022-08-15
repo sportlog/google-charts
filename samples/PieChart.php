@@ -6,8 +6,6 @@ error_reporting(E_ALL);
 
 require_once '../vendor/autoload.php';
 
-use Sportlog\GoogleCharts\Charts\Base\Column;
-use Sportlog\GoogleCharts\Charts\Base\ColumnType;
 use Sportlog\GoogleCharts\Charts\Base\DataTable;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegend;
 use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegendPosition;

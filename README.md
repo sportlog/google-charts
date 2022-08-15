@@ -3,8 +3,8 @@ PHP Wrapper for Google charts library (https://developers.google.com/chart/)
 
 Features:
 * Typed chart options. You can use intellisense to set any chart option.
-* 
 * Supported charts: Annotation, Area, Bar, Bubble, Calendar, Candlestick, Column, Combo, Gantt, Gauge, Geo, Histogram, Line, Map, Org, Pie, Scatter, SteppedArea, Table, Timeline, TreeMap and WordTree.
+* Draw charts in either Classic or Material design. Material design is restriced to Bar, Column, Line and ScatterChart. (still in Beta from Google)
 
 # Install using composer
 You can install sportlg/google-charts by using composer:
@@ -18,7 +18,6 @@ Minimum PHP version required is 8.1.
 ## 1. Create the chart service
 Create the chart service instance. You can optionally provide two parameters:
 * Settings: some charts require a mapsApiKey to work
-* Suports both Classic and Material design. Materal design is restriced to Bar, Column, Line and ScatterChart. (still in Beta from Google)
 * ScriptNonceProvider: The chart service needs to load the Google Charts API (https://www.gstatic.com/charts/loader.js). If you're using [CSP](https://en.wikipedia.org/wiki/Content_Security_Policy) you may want to provide a nonce for the script.
 
 ``` php
