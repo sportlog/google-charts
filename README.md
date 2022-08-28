@@ -76,5 +76,5 @@ Use the ChartService to render your chart. If you're using a templating enginge 
 echo $chartService->render('dailyActivities');
 ```
 
-# Examples
-You can find at least one example for each chart in the samples folder.
+# Samples
+You can find at least one sample for each chart in the samples folder.
