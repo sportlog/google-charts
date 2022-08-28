@@ -13,7 +13,6 @@ namespace Sportlog\GoogleCharts\Charts\Base;
 
 use DateTimeInterface;
 use JsonSerializable;
-use Stringable;
 
 /**
  * Row
@@ -61,9 +60,7 @@ class Row implements JsonSerializable
         if ($value instanceof DateTimeInterface) {
             return $this->getDateString($value);
         }
-        if ($value instanceof Stringable) {
-            return $value->__toString();
-        }
+      
         return $value;
     }
 

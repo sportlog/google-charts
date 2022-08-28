@@ -12,9 +12,7 @@ declare(strict_types=1);
 namespace Sportlog\GoogleCharts\Charts\Base;
 
 use DateTimeInterface;
-use Exception;
 use InvalidArgumentException;
-use Stringable;
 
 enum ColumnType: string
 {
@@ -37,7 +35,7 @@ enum ColumnType: string
         $type = gettype($value);
         return match (true) {
             $type === 'boolean' => self::Bool,
-            $type === 'string' || $value instanceof Stringable => self::String,
+            $type === 'string' => self::String,
             $type === 'integer' || $type === 'double' => self::Number,
             $type === 'array' && (count($value) === 3 || count($value) === 4) &&
                 array_reduce($value, fn ($acc, $item) => $acc && is_int($item), true) => self::TimeOfDay,
