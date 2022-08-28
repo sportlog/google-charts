@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@types/google.visualization": "^0.0.68",
-    "ts2php": "^0.30.3"
-  }
-}
