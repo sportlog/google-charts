@@ -311,4 +311,14 @@ final class DataTableTest extends TestCase
         $json = json_encode($data, JSON_PRETTY_PRINT);
         $this->assertEquals($expectedJson, $json);
     }
+
+    public function testCreateFromArrayWihEmptyInputThrows(): void {
+        $this->expectException(InvalidArgumentException::class);
+        DataTable::fromArray([]);
+    }
+
+    public function testCreateFromArrayWithLabelsOnlyThrows(): void {
+        $this->expectException(InvalidArgumentException::class);
+        DataTable::fromArray([['Col1', 'Col2']]);
+    }
 }

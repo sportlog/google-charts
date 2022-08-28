@@ -34,23 +34,25 @@ class DataTable implements JsonSerializable
 
     /**
      * Creates columns and rows from the two dimensional array.
-     * Treats the first row as column labels and infers the column
-     * type from the second row (= first data row.)
+     * 
+     * If $firstRowIsData is set to false treats the first row as column labels
+     * and infers the column type from the second row (= first data row.)
+     * Otherwise all rows are treated as data and created columns won't have labels.
      *
      * @param array $data Array of arrays containing data
      * @param bool $firstRowIsData Indicates if the first row is treated as data. If false
      * first row is used for column labels.
      * @return self
      */
-    public static function fromArray(array $data, $firstRowIsData = false): self
+    public static function fromArray(array $data, bool $firstRowIsData = false): self
     {
-        if (count($data) < 2) {
-            throw new InvalidArgumentException('$data must be a two dimensional array and contain at least two entries');
-        }
-
         // If first row does not contain data, pop it for labeling
         $labels = $firstRowIsData ? [] : array_shift($data);
-        // Infer the column type of the columsn from the first data row
+        if (count($data) === 0) {
+            throw new InvalidArgumentException('$data must contain at least one data row');
+        }
+
+        // Infer the column type of the columns from the first data row
         $columns = array_map(fn (mixed $value, $label) => new Column(ColumnType::fromValue($value), $label), $data[0], $labels);
 
         return new self($columns, $data);
@@ -108,14 +110,14 @@ class DataTable implements JsonSerializable
      * Add multiple rows at once.
      * Use addRow() if you need to supply formatted values.
      *
-     * @param array Array of $values
+     * @param mixed[] $values Array of $values (two dimensional array)
      * @return void
      */
     public function addRows(array $values): void
     {
         foreach ($values as $value) {
             if (!is_array($value)) {
-                throw new InvalidArgumentException('$value must be a two dimensional array');
+                throw new InvalidArgumentException('$values must be a two dimensional array');
             }
 
             $this->addRow($value);
