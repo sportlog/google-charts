@@ -24,6 +24,7 @@ use Sportlog\GoogleCharts\Charts\Options\GaugeChart\GaugeChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\GeoChart\GeoChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\HistogramChart\HistogramChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\LineChart\LineChartOptions;
+use Sportlog\GoogleCharts\Charts\Options\Map\MapOptions;
 use Sportlog\GoogleCharts\Charts\Options\OrgChart\OrgChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\PieChart\PieChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\ScatterChart\ScatterChartOptions;
@@ -31,7 +32,7 @@ use Sportlog\GoogleCharts\Charts\Options\SteppedAreaChart\SteppedAreaChartOption
 use Sportlog\GoogleCharts\Charts\Options\TableChart\TableChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\TimelineChart\TimelineChartOptions;
 use Sportlog\GoogleCharts\Charts\Options\WordTreeChart\WordTreeChartOptions;
-use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, OrgChart, PieChart, ScatterChart, SteppedAreaChart, TableChart, TimelineChart, WordTreeChart};
+use Sportlog\GoogleCharts\Charts\{Base\ChartDesign, Base\DataTable, Base\GoogleChart, AreaChart, BarChart, BubbleChart, CandlestickChart, ColumnChart, ComboChart, GanttChart, GaugeChart, GeoChart, HistogramChart, LineChart, Map, OrgChart, PieChart, ScatterChart, SteppedAreaChart, TableChart, TimelineChart, WordTreeChart};
 
 /**
  * Service for creating and loading charts
@@ -222,6 +223,21 @@ class ChartService
     }
 
     /**
+     * Creates a new Map.
+     *
+     * @param string $id
+     * @param MapOptions $options
+     * @throws InvalidArgumentException A chart with the given id was already created.
+     */
+    public function createMap(string $id, DataTable $data, MapOptions $options = new MapOptions()): Map
+    {
+        $chart = new Map($id, $data, $options);
+        $this->addChart($chart);
+        return $chart;
+    }
+
+
+    /**
      * Creates a new Org chart.
      *
      * @param string $id
@@ -362,14 +378,7 @@ class ChartService
             throw new Exception('scripts have already been loaded');
         }
 
-        // Charts is an associative array which would get encoded as on object.
-        // So only take the values to encode it as an array.
-        $data = ['charts' => array_values($this->charts)];
-        if (!is_null($this->chartSettings)) {
-            $data['settings'] = $this->chartSettings;
-        }
-
-        return $this->chartLoader->load($data);
+        return $this->chartLoader->load($this->charts, $this->chartSettings);
     }
 
     private function renderChart(string|GoogleChart $chartOrId): string

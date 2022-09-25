@@ -42,22 +42,33 @@ class ChartLoader
      *
      * @return array
      */
-    public function load(array $data): array
+    public function load(array $charts, ?ChartSettings $chartSettings = null): array
     {
         $chartTemplateJsFile = realpath(__DIR__ . self::CHART_TEMPLATE_SCRIPT);
         $chartTemplateJs = file_get_contents($chartTemplateJsFile);
 
-        $serializedData = json_encode($data);
-        if ($serializedData === false) {
-            throw new Exception('failed to encode chart data to JSON');
-        }
-        $chartJs = sprintf(self::CHART_LOAD_SCRIPT, $serializedData);
-
-        return [
+        $scripts = [
             $this->getScriptTag(self::GOOGLE_CHART_LOADER_SCRIPT),
-            $this->getScriptTag($chartTemplateJs, false),
-            $this->getScriptTag($chartJs, false)
+            $this->getScriptTag($chartTemplateJs, false)
         ];
+
+        if (count($charts) > 0) {
+            // Charts is an associative array which would get encoded as on object.
+            // So only take the values to encode it as an array.
+            $data = ['charts' => array_values($charts)];
+            if (!is_null($chartSettings)) {
+                $data['settings'] = $chartSettings;
+            }
+            
+            $serializedData = json_encode($data);
+            if ($serializedData === false) {
+                throw new Exception('failed to encode chart data to JSON');
+            }
+            $chartJs = sprintf(self::CHART_LOAD_SCRIPT, $serializedData);
+            $scripts[] = $this->getScriptTag($chartJs, false);
+        }
+
+        return $scripts;
     }
 
     private function getScriptTag(string $fileOrContent, bool $isFile = true): string

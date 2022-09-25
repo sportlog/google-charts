@@ -39,7 +39,7 @@ class DataTable implements JsonSerializable
      * and infers the column type from the second row (= first data row.)
      * Otherwise all rows are treated as data and created columns won't have labels.
      *
-     * @param array $data Array of arrays containing data
+     * @param mixed[][] $data Array of arrays containing data
      * @param bool $firstRowIsData Indicates if the first row is treated as data. If false
      * first row is used for column labels.
      * @return self
