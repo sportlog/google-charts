@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Sportlog\GoogleCharts\Charts\Base;
 
+use Exception;
 use InvalidArgumentException;
 use JsonSerializable;
 
@@ -77,11 +78,11 @@ class DataTable implements JsonSerializable
      */
     public function addRow(array $values, array $formatted = []): void
     {
+        if (count($this->columns) === 0) {
+            throw new Exception('Must add columns before adding rows');
+        }
         if (count($values) === 0) {
             throw new InvalidArgumentException('Array is empty');
-        }
-        if (count($this->columns) === 0) {
-            throw new InvalidArgumentException('Must add columns before adding rows');
         }
         // Google charts do not draw if column count does not match the values count.
         if (count($values) !== count($this->columns)) {

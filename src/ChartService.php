@@ -398,7 +398,7 @@ class ChartService
         }
     }
 
-    private function addChart(GoogleChart $chart): GoogleChart
+    private function addChart(GoogleChart $chart): void
     {
         $id = $chart->getId();
         if (isset($this->charts[$id])) {
@@ -406,6 +406,5 @@ class ChartService
         }
 
         $this->charts[$id] = $chart;
-        return $chart;
     }
 }

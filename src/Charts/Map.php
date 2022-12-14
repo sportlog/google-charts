@@ -24,7 +24,7 @@ class Map extends GoogleChart
      *
      * @param string $id
      * @param DataTable $data
-     * @param BarChartOptions $options
+     * @param MapOptions $options
      */
     public function __construct(
         string $id,
