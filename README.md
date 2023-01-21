@@ -4,7 +4,7 @@ PHP Wrapper for Google charts library (https://developers.google.com/chart/)
 Features:
 * Typed chart options. You can use intellisense to set any chart option.
 * Supported charts: Annotation, Area, Bar, Bubble, Calendar, Candlestick, Column, Combo, Gantt, Gauge, Geo, Histogram, Line, Map, Org, Pie, Scatter, SteppedArea, Table, Timeline, TreeMap and WordTree.
-* Draw charts in either Classic or Material design. Material design is restriced to Bar, Column, Line and ScatterChart. (still in Beta from Google)
+* Draw charts in either Classic or Material design. Material design is restricted to Bar, Column, Line and ScatterChart. (still in Beta from Google)
 
 # Install using composer
 You can install sportlg/google-charts by using composer:
@@ -69,7 +69,7 @@ $chart->options->height = 500;
 ```
 
 ## 4. Draw the chart
-Use the ChartService to render your chart. If you're using a templating enginge (like Latte, Twig, ...) you should add a filter for this.
+Use the ChartService to render your chart. If you're using a template engine (like Latte, Twig, ...) you should add a filter for this.
 
 ``` php
 // draw the chart; you can omit the id if you want to draw all charts
