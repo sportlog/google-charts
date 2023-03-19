@@ -47,12 +47,6 @@ class ChartService
      * @var GoogleChart[]
      */
     private array $charts = [];
-    /**
-     * Indicates if the javascript files haven been loaded.
-     *
-     * @var boolean
-     */
-    private bool $loaded = false;
     private readonly ChartLoader $chartLoader;
 
     /**
@@ -347,55 +341,43 @@ class ChartService
      */
     public function render(string|GoogleChart|null $chartOrId = null): string
     {
-        $buffer = [];
-        if (!$this->loaded) {
-            $buffer = $this->load();
-            $this->loaded = true;
-        }
-
-        if (is_null($chartOrId)) {
-            foreach ($this->charts as $chart) {
-                $buffer[] = $this->renderChart($chart);
-            }
-        } else {
-            $buffer[] = $this->renderChart($chartOrId);
+        $charts = $this->getCharts($chartOrId);
+        $buffer = $this->chartLoader->load($charts, $this->chartSettings);
+        foreach ($charts as $chart) {
+            $buffer[] = $this->renderChart($chart);
         }
 
         return implode($buffer);
     }
 
     /**
-     * Get array of script tags to load the required JS files.
-     * This method is automatically called on chart rendering, so
-     * usually you don't need to call it manually.
+     * List of charts to render
      *
-     * @throws Exception Charts have already been loaded.
-     * @return array
+     * @param string|GoogleChart|null|null $chartOrId
+     * @return GoogleChart[]
      */
-    public function load(): array
+    private function getCharts(string|GoogleChart|null $chartOrId = null): array
     {
-        if ($this->loaded) {
-            throw new Exception('scripts have already been loaded');
+        if (is_null($chartOrId)) {
+            return $this->charts;
         }
-
-        return $this->chartLoader->load($this->charts, $this->chartSettings);
-    }
-
-    private function renderChart(string|GoogleChart $chartOrId): string
-    {
         if (is_string($chartOrId)) {
             if (!isset($this->charts[$chartOrId])) {
                 throw new InvalidArgumentException("No chart with id '{$chartOrId}' found");
             }
-
-            return sprintf(self::CHART_DIV, $chartOrId);
-        } else {
-            if (!in_array($chartOrId, $this->charts)) {
-                throw new InvalidArgumentException("Chart is not handled by ChartService");
-            }
-
-            return sprintf(self::CHART_DIV, $chartOrId->getId());
+            return [$this->charts[$chartOrId]];
         }
+
+        if (!in_array($chartOrId, $this->charts)) {
+            throw new InvalidArgumentException("Chart is not handled by ChartService. Do you have multiple ChartService instances?");
+        }
+
+        return [$chartOrId];
+    }
+
+    private function renderChart(GoogleChart $chart): string
+    {
+        return sprintf(self::CHART_DIV, $chart->getId());
     }
 
     private function addChart(GoogleChart $chart): void

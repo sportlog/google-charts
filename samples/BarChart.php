@@ -104,6 +104,4 @@ $chart->options->chart = new ChartTitle('Company Performance', 'Sales, Expenses,
 $chart->options->bars = ChartOrientation::Horizontal;
 
 // Draw all charts
-echo $chartService->render('population');
-echo $chartService->render('genre');
-echo $chartService->render('element');
+echo $chartService->render();
