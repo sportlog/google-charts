@@ -7,7 +7,7 @@ Features:
 * Draw charts in either Classic or Material design. Material design is restricted to Bar, Column, Line and ScatterChart. (still in Beta from Google)
 
 # Install using composer
-You can install sportlg/google-charts by using composer:
+You can install sportlog/google-charts by using composer:
 ```
 $ composer require sportlog/google-charts
 ```
