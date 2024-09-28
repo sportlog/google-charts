@@ -17,8 +17,10 @@ use JsonSerializable;
 /**
  * Json Seralizer which omits Null values (properties)
  */
-class NotNullSerializer implements JsonSerializable {
-    public function jsonSerialize(): mixed {
+abstract class NotNullSerializer implements JsonSerializable
+{
+    public function jsonSerialize(): mixed
+    {
         // Filter null values
         return new ArrayObject(array_filter(get_object_vars($this), fn ($item) => !is_null($item)));
     }

@@ -1,0 +1,21 @@
+{
+  "name": "google-charts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "buildWatch": "tsc && vite build --watch",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.8",
+    "@types/google.visualization": "^0.0.74",
+    "@types/node": "^22.7.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "vite": "^5.4.8"
+  }
+}
