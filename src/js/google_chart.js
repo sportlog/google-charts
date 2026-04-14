@@ -6,310 +6,349 @@
  * @license https://opensource.org/licenses/mit-license.php MIT License
  */
 class GoogleCharts {
-    static chartLoadCallback;
+  static chartLoadCallback;
+  static resizeListenerRegistered = false;
+  static resizeDrawTimeout;
 
-    /**
-     * A callback which is executed whenever a chart is drawn
-     * 
-     * @param {*} callback A callback accepting 4 parameters (chartId, chart, data, options)
-     */
-    static setOnLoadCallback(callback) {
-        this.chartLoadCallback = callback;
+  /**
+   * A callback which is executed whenever a chart is drawn
+   *
+   * @param {*} callback A callback accepting 4 parameters (chartId, chart, data, options)
+   */
+  static setOnLoadCallback(callback) {
+    this.chartLoadCallback = callback;
+  }
+
+  /**
+   * Draws a list of charts.
+   *
+   * @param [] chartsData Array of charts to draw
+   */
+  static loadCharts(chartsData) {
+    // get distinct list of packages
+    const packages = [
+      ...new Set(
+        chartsData.charts.map((c) => this.getPackage(c.type, c.design)),
+      ),
+    ];
+
+    const mapsApiKey = chartsData?.settings?.mapsApiKey;
+
+    // Load the Visualization API and the packages.
+    google.charts.load("current", { packages, mapsApiKey }).then(() => {
+      this.drawCharts(chartsData.charts);
+
+      if (chartsData?.settings?.redrawOnResize) {
+        console.log("registering resize listener for charts redraw");
+        this.registerResizeRedraw(chartsData.charts);
+      }
+    });
+  }
+
+  /**
+   * Registers a debounced resize listener and redraws the current charts.
+   *
+   * @param {*} charts
+   */
+  static registerResizeRedraw(charts) {
+    if (this.resizeListenerRegistered) {
+      return;
     }
 
-    /**
-     * Draws a list of charts.
-     *
-     * @param [] chartsData Array of charts to draw
-     */
-    static loadCharts(chartsData) {
-        // get distinct list of packages
-        const packages = [
-            ...new Set(chartsData.charts.map((c) => this.getPackage(c.type, c.design))),
-        ];
+    window.addEventListener("resize", () => {
+      clearTimeout(this.resizeDrawTimeout);
 
-        const mapsApiKey = chartsData?.settings?.mapsApiKey;
+      this.resizeDrawTimeout = setTimeout(() => {
+        this.drawCharts(charts);
+      }, 150);
+    });
 
-        // Load the Visualization API and the packages.
-        google.charts.load('current', { packages, mapsApiKey }).then(() => {
-            this.drawCharts(chartsData.charts);
-        });
-    }
+    this.resizeListenerRegistered = true;
+  }
 
-    /**
-     * Draws the charts
-     *
-     * @param {*} charts
-     */
-    static drawCharts(charts) {
-        charts.forEach((chart) => {
-            let element = document.getElementById(chart.id);
-            if (element) {
-                let data = new google.visualization.DataTable(chart.data);
-                let c = this.drawChart(chart.type, chart.design, data, chart.options, element);
-                if (this.chartLoadCallback) {
-                    this.chartLoadCallback(chart.id, c, data, chart.options);
-                }
-            }
-        });
-    }
-
-    /**
-     * Gets the package which needs to be loaded for the chart type
-     *
-     * @param string chartType
-     * @param string design Either 'classic' for classic design, or 'material' for material design.
-     * @returns
-     */
-    static getPackage(chartType, design) {
-        switch (design) {
-            case 'classic':
-                return this.getClassicPackage(chartType);
-
-            case 'material':
-                return this.getMaterialPackage(chartType);
-
-            default:
-                throw new Error(`unhandled design type ${design}`)
+  /**
+   * Draws the charts
+   *
+   * @param {*} charts
+   */
+  static drawCharts(charts) {
+    charts.forEach((chart) => {
+      let element = document.getElementById(chart.id);
+      if (element) {
+        let data = new google.visualization.DataTable(chart.data);
+        let c = this.drawChart(
+          chart.type,
+          chart.design,
+          data,
+          chart.options,
+          element,
+        );
+        if (this.chartLoadCallback) {
+          this.chartLoadCallback(chart.id, c, data, chart.options);
         }
+      }
+    });
+  }
+
+  /**
+   * Gets the package which needs to be loaded for the chart type
+   *
+   * @param string chartType
+   * @param string design Either 'classic' for classic design, or 'material' for material design.
+   * @returns
+   */
+  static getPackage(chartType, design) {
+    switch (design) {
+      case "classic":
+        return this.getClassicPackage(chartType);
+
+      case "material":
+        return this.getMaterialPackage(chartType);
+
+      default:
+        throw new Error(`unhandled design type ${design}`);
     }
+  }
 
-      /**
-     * Gets the classic design package for the chart type.
-     * 
-     * @param string chartType 
-     * @returns 
-     */
-    static getClassicPackage(chartType) {
-        switch (chartType) {
-            case 'Annotation':
-                return 'annotationchart';
-            case 'Calendar':
-                return 'calendar';
-            case 'Gantt':
-                return 'gantt';
-            case 'Gauge':
-                return 'gauge';
-            case 'Geo':
-                return 'geochart';
-            case 'Map':
-                return 'map';
-            case 'Org':
-                return 'orgchart';
-            case 'Sankey':
-                return 'sankey';
-            case 'Table':
-                return 'table';
-            case 'Timeline':
-                return 'timeline';
-            case 'TreeMap':
-                return 'treemap';
-            case 'WordTree':
-                return 'wordtree';
-            default: {
-                return 'corechart';
-            }
-        }
+  /**
+   * Gets the classic design package for the chart type.
+   *
+   * @param string chartType
+   * @returns
+   */
+  static getClassicPackage(chartType) {
+    switch (chartType) {
+      case "Annotation":
+        return "annotationchart";
+      case "Calendar":
+        return "calendar";
+      case "Gantt":
+        return "gantt";
+      case "Gauge":
+        return "gauge";
+      case "Geo":
+        return "geochart";
+      case "Map":
+        return "map";
+      case "Org":
+        return "orgchart";
+      case "Sankey":
+        return "sankey";
+      case "Table":
+        return "table";
+      case "Timeline":
+        return "timeline";
+      case "TreeMap":
+        return "treemap";
+      case "WordTree":
+        return "wordtree";
+      default: {
+        return "corechart";
+      }
     }
+  }
 
-    /**
-     * Gets the material design package for the chart type.
-     * 
-     * @param string chartType 
-     * @returns 
-     */
-    static getMaterialPackage(chartType) {
-        switch (chartType) {
-            case 'Bar':
-            case 'Column':
-                return 'bar';
+  /**
+   * Gets the material design package for the chart type.
+   *
+   * @param string chartType
+   * @returns
+   */
+  static getMaterialPackage(chartType) {
+    switch (chartType) {
+      case "Bar":
+      case "Column":
+        return "bar";
 
-            case 'Line':
-                return 'line';
+      case "Line":
+        return "line";
 
-            case 'Scatter':
-                return 'scatter';
+      case "Scatter":
+        return "scatter";
 
-            default:
-                throw new Error(`material design not supported for chart type '${chartType}'`);
-        }
+      default:
+        throw new Error(
+          `material design not supported for chart type '${chartType}'`,
+        );
     }
+  }
 
-   
-    /**
-     * Creates the chart and draws it.
-     * 
-     * @param string chartType 
-     * @param string design 
-     * @param DataTable dataTable 
-     * @param unkown options 
-     * @param HtmlElement element 
-     */
-    static drawChart(chartType, design, dataTable, options, element) {
-        switch (design) {
-            case 'classic':
-                return this.drawClassicChart(chartType, dataTable, options, element);
+  /**
+   * Creates the chart and draws it.
+   *
+   * @param string chartType
+   * @param string design
+   * @param DataTable dataTable
+   * @param unkown options
+   * @param HtmlElement element
+   */
+  static drawChart(chartType, design, dataTable, options, element) {
+    switch (design) {
+      case "classic":
+        return this.drawClassicChart(chartType, dataTable, options, element);
 
-            case 'material':
-                return this.drawMaterialChart(chartType, dataTable, options, element);
+      case "material":
+        return this.drawMaterialChart(chartType, dataTable, options, element);
 
-            default:
-                throw new Error(`unhandled design type ${design}`)
-        }
+      default:
+        throw new Error(`unhandled design type ${design}`);
     }
+  }
 
-    /**
-     * Draws chart in classic style.
-     */
-    static drawClassicChart(chartType, dataTable, options, element) {
-        switch (chartType) {
-            case 'Annotation': {
-                const chart = new google.visualization.AnnotationChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Area': {
-                const chart = new google.visualization.AreaChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Bar': {
-                const chart = new google.visualization.BarChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Bubble': {
-                const chart = new google.visualization.BubbleChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Calendar': {
-                const chart = new google.visualization.Calendar(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Candlestick': {
-                const chart = new google.visualization.CandlestickChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Column': {
-                const chart = new google.visualization.ColumnChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Combo': {
-                const chart = new google.visualization.ComboChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Gantt': {
-                const chart = new google.visualization.Gantt(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Gauge': {
-                const chart = new google.visualization.Gauge(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Geo': {
-                const chart = new google.visualization.GeoChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Histogram': {
-                const chart = new google.visualization.Histogram(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Line': {
-                const chart = new google.visualization.LineChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Org': {
-                const chart = new google.visualization.OrgChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Map': {
-                const chart = new google.visualization.Map(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Pie': {
-                const chart = new google.visualization.PieChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Sankey': {
-                const chart = new google.visualization.Sankey(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Scatter': {
-                const chart = new google.visualization.ScatterChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'SteppedArea': {
-                const chart = new google.visualization.SteppedAreaChart(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Table': {
-                const chart = new google.visualization.Table(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'Timeline': {
-                const chart = new google.visualization.Timeline(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'TreeMap': {
-                const chart = new google.visualization.TreeMap(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            case 'WordTree': {
-                const chart = new google.visualization.WordTree(element);
-                chart.draw(dataTable, options);
-                return chart;
-            }
-            default:
-                throw new Error(`chart not supported: ${chartType}`);
-        }
+  /**
+   * Draws chart in classic style.
+   */
+  static drawClassicChart(chartType, dataTable, options, element) {
+    switch (chartType) {
+      case "Annotation": {
+        const chart = new google.visualization.AnnotationChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Area": {
+        const chart = new google.visualization.AreaChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Bar": {
+        const chart = new google.visualization.BarChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Bubble": {
+        const chart = new google.visualization.BubbleChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Calendar": {
+        const chart = new google.visualization.Calendar(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Candlestick": {
+        const chart = new google.visualization.CandlestickChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Column": {
+        const chart = new google.visualization.ColumnChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Combo": {
+        const chart = new google.visualization.ComboChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Gantt": {
+        const chart = new google.visualization.Gantt(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Gauge": {
+        const chart = new google.visualization.Gauge(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Geo": {
+        const chart = new google.visualization.GeoChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Histogram": {
+        const chart = new google.visualization.Histogram(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Line": {
+        const chart = new google.visualization.LineChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Org": {
+        const chart = new google.visualization.OrgChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Map": {
+        const chart = new google.visualization.Map(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Pie": {
+        const chart = new google.visualization.PieChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Sankey": {
+        const chart = new google.visualization.Sankey(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Scatter": {
+        const chart = new google.visualization.ScatterChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "SteppedArea": {
+        const chart = new google.visualization.SteppedAreaChart(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Table": {
+        const chart = new google.visualization.Table(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "Timeline": {
+        const chart = new google.visualization.Timeline(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "TreeMap": {
+        const chart = new google.visualization.TreeMap(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      case "WordTree": {
+        const chart = new google.visualization.WordTree(element);
+        chart.draw(dataTable, options);
+        return chart;
+      }
+      default:
+        throw new Error(`chart not supported: ${chartType}`);
     }
+  }
 
-    /**
-     * Draws chart in material design.
-     * All core charts are supported.
-     */
-    static drawMaterialChart(chartType, dataTable, options, element) {
-        switch (chartType) {
-            case 'Bar':
-            case 'Column': {
-                const chart = new google.charts.Bar(element);
-                chart.draw(dataTable, google.charts.Bar.convertOptions(options));
-                return chart;
-            }
+  /**
+   * Draws chart in material design.
+   * All core charts are supported.
+   */
+  static drawMaterialChart(chartType, dataTable, options, element) {
+    switch (chartType) {
+      case "Bar":
+      case "Column": {
+        const chart = new google.charts.Bar(element);
+        chart.draw(dataTable, google.charts.Bar.convertOptions(options));
+        return chart;
+      }
 
-            case 'Line': {
-                const chart = new google.charts.Line(element);
-                chart.draw(dataTable, google.charts.Line.convertOptions(options));
-                return chart;
-            }
+      case "Line": {
+        const chart = new google.charts.Line(element);
+        chart.draw(dataTable, google.charts.Line.convertOptions(options));
+        return chart;
+      }
 
-            case 'Scatter': {
-                const chart = new google.charts.Scatter(element);
-                chart.draw(dataTable, google.charts.Scatter.convertOptions(options));
-                return chart;
-            }
+      case "Scatter": {
+        const chart = new google.charts.Scatter(element);
+        chart.draw(dataTable, google.charts.Scatter.convertOptions(options));
+        return chart;
+      }
 
-            default:
-                throw new Error(`material design not supported for chart type '${chartType}'`);
-        }
+      default:
+        throw new Error(
+          `material design not supported for chart type '${chartType}'`,
+        );
     }
+  }
 }

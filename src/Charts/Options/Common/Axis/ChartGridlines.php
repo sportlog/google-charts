@@ -25,6 +25,5 @@ class ChartGridlines extends NotNullSerializer
         public ?float $minSpacing = null,
         public ?int $multiple = null,
         public ?ChartGridlinesUnit $units = null
-    ) {
-    }
+    ) {}
 }

@@ -14,7 +14,8 @@ namespace Sportlog\GoogleCharts\Charts\Options\Common;
 use ArrayObject;
 use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 
-class ChartSeriesOptionsCollection extends NotNullSerializer {
+class ChartSeriesOptionsCollection extends NotNullSerializer
+{
     /** @var array<int, ChartSeriesOptions> */
     private array $items = [];
 

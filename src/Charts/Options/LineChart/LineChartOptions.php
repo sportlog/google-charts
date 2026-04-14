@@ -54,6 +54,6 @@ class LineChartOptions extends ChartBaseOptions
     public ?ChartTextStyle $titleTextStyle = null;
     public ?ChartTooltip $tooltip = null;
     public ?ChartTrendlineCollection $trendlines = null;
-    public mixed $vAxes = null; 
-    public ?ChartAxis $vAxis = null; 
+    public mixed $vAxes = null;
+    public ?ChartAxis $vAxis = null;
 }

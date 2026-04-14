@@ -26,6 +26,5 @@ class ChartColorAxis extends NotNullSerializer
         public ?array $values = null,
         public ?array $colors = null,
         public ?ChartLegend $legend = null
-    ) {
-    }
+    ) {}
 }
