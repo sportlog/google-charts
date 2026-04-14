@@ -13,6 +13,7 @@ namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
 abstract class ChartBaseOptions extends ChartSizeable
 {
+    /** @var array<string>|null */
     public ?array $colors = null;
     public ?bool $enableInteractivity = null;
     public ?string $fontName = null;

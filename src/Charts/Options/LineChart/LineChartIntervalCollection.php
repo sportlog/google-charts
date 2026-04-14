@@ -21,6 +21,7 @@ use JsonSerializable;
  */
 class LineChartIntervalCollection implements JsonSerializable
 {
+    /** @var array<string, LineChartInterval> */
     private array $items = [];
 
     /**

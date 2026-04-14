@@ -15,6 +15,9 @@ use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 
 class ChartGridlines extends NotNullSerializer
 {
+    /**
+     * @param array<int|float>|null $interval
+     */
     public function __construct(
         public ?string $color = null,
         public ?int $count = null,

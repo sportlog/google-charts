@@ -16,6 +16,7 @@ use JsonSerializable;
 
 class ChartTrendlineCollection implements JsonSerializable
 {
+    /** @var array<int, ChartTrendline> */
     private array $trendlines = [];
 
     /**

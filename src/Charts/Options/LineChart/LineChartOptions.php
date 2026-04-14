@@ -37,6 +37,7 @@ class LineChartOptions extends ChartBaseOptions
     public ?LineChartInterval $intervals = null;
     public ?LineChartIntervalCollection $interval = null;
     public ?ChartLegend $legend = null;
+    /** @var array<mixed>|null */
     public ?array $lineDashStyle = null;
     public ?int $lineWidth = null;
     public ?ChartOrientation $orientation = null;

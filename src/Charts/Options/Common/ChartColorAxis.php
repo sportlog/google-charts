@@ -16,6 +16,10 @@ use Sportlog\GoogleCharts\Charts\Options\Common\ChartLegend\ChartLegend;
 
 class ChartColorAxis extends NotNullSerializer
 {
+    /**
+     * @param array<int|float>|null $values
+     * @param array<string>|null $colors
+     */
     public function __construct(
         public ?int $minValue = null,
         public ?int $maxValue = null,

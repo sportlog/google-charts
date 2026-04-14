@@ -16,6 +16,7 @@ use JsonSerializable;
 
 class ChartAxisCollection implements JsonSerializable
 {
+    /** @var array<int, ChartAxis> */
     private array $items = [];
 
     /**

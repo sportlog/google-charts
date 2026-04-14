@@ -31,7 +31,7 @@ class Row implements JsonSerializable
     /**
      * Serialize row values
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize(): mixed
     {
         return ['c' => array_map(
             fn($value, $formatted) => $this->serializeValue($value, $formatted),

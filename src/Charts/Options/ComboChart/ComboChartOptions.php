@@ -36,6 +36,7 @@ class ComboChartOptions extends ChartBaseOptions
     public ?bool $interpolateNulls = null;
     public ?bool $isStacked = null;
     public ?ChartLegend $legend = null;
+    /** @var array<mixed>|null */
     public ?array $lineDashStyle = null;
     public ?int $lineWidth = null;
     public ?ChartOrientation $orientation = null;

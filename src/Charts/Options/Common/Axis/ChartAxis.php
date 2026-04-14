@@ -16,6 +16,9 @@ use Sportlog\GoogleCharts\Charts\Options\Common\{ChartAxisTitlePosition, ChartTe
 
 class ChartAxis extends NotNullSerializer
 {
+    /**
+     * @param array<mixed>|null $ticks
+     */
     public function __construct(
         public ?float $baseline = null,
         public ?string $baselineColor = null,
