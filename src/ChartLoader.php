@@ -24,7 +24,7 @@ class ChartLoader
 {
     private const GOOGLE_CHART_LOADER_SCRIPT = 'https://www.gstatic.com/charts/loader.js';
     private const CHART_TEMPLATE_SCRIPT = '/js/google_chart.js';
-    private const CHART_LOAD_SCRIPT = 'GoogleCharts.loadCharts(%s);';
+    private const CHART_LOAD_SCRIPT = 'GoogleCharts.loadCharts(%s, true);';
     private const SCRIPT_TAG = '<script%s>%s</script>';
 
     /**

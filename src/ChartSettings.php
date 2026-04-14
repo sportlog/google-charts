@@ -15,7 +15,5 @@ use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 
 class ChartSettings extends NotNullSerializer
 {
-    public function __construct(public readonly ?string $mapsApiKey = null)
-    {
-    }
+    public function __construct(public readonly ?string $mapsApiKey = null, public readonly bool $redrawOnResize = false) {}
 }

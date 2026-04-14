@@ -52,6 +52,6 @@ class ComboChartOptions extends ChartBaseOptions
     public ?ChartAxisTitlePosition $titlePosition = null;
     public ?ChartTextStyle $titleTextStyle = null;
     public ?ChartTooltip $tooltip = null;
-    public ?ChartAxisCollection $vAxes = null; 
-    public ?ChartAxis $vAxis = null; 
+    public ?ChartAxisCollection $vAxes = null;
+    public ?ChartAxis $vAxis = null;
 }
