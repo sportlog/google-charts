@@ -16,6 +16,9 @@ use JsonSerializable;
 
 class MapIconCollection implements JsonSerializable
 {
+    /**
+     * @var array<string,MapIcon> $items
+     */
     private array $items = [];
 
     /**

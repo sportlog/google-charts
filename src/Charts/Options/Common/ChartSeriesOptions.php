@@ -13,7 +13,24 @@ namespace Sportlog\GoogleCharts\Charts\Options\Common;
 
 use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 
-class ChartSeriesOptions extends NotNullSerializer {
+class ChartSeriesOptions extends NotNullSerializer
+{
+    /**
+     * ctor
+     * 
+     * @param ChartAnnotations|null $annotations
+     * @param float|null $areaOpacity
+     * @param string|null $color
+     * @param string|null $labelInLegend
+     * @param array<string>|null $lineDashStyle
+     * @param float|null $lineWidth
+     * @param ChartPointShape|null $pointShape
+     * @param float|null $pointSize
+     * @param bool|null $pointsVisible
+     * @param float|null $targetAxisIndex
+     * @param bool|null $visibleInLegend
+     * @param ChartSeriesType|null $type
+     */
     public function __construct(
         public readonly ?ChartAnnotations $annotations = null,
         public readonly ?float $areaOpacity = null,
@@ -27,7 +44,5 @@ class ChartSeriesOptions extends NotNullSerializer {
         public readonly ?float $targetAxisIndex = null,
         public readonly ?bool $visibleInLegend = null,
         public readonly ?ChartSeriesType $type = null
-    )
-    {
-    }
+    ) {}
 }

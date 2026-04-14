@@ -16,6 +16,7 @@ use JsonSerializable;
 
 class PieChartSliceCollection implements JsonSerializable
 {
+    /** @var array<int, PieChartSlice> */
     private array $slices = [];
 
     /**

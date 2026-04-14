@@ -54,7 +54,7 @@ class DataTable implements JsonSerializable
         }
 
         // Infer the column type of the columns from the first data row
-        $columns = array_map(fn (mixed $value, $label) => new Column(ColumnType::fromValue($value), $label), $data[0], $labels);
+        $columns = array_map(fn(mixed $value, $label) => new Column(ColumnType::fromValue($value), $label), $data[0], $labels);
 
         return new self($columns, $data);
     }
@@ -75,6 +75,9 @@ class DataTable implements JsonSerializable
 
     /**
      * Adds a row.
+     * @param mixed[] $values Array of values
+     * @param mixed[] $formatted Array of formatted values (optional)
+     * @return void
      */
     public function addRow(array $values, array $formatted = []): void
     {
@@ -99,7 +102,7 @@ class DataTable implements JsonSerializable
 
             /** @var ColumnType $columnType */
             $columnType = $this->columns[$key]->type;
-            if (!$columnType->equalsValueType($value)) {                
+            if (!$columnType->equalsValueType($value)) {
                 throw new InvalidArgumentException("Value with index {$key} does not match the column type. Expected columnType is {$columnType->value}");
             }
         }

@@ -16,8 +16,17 @@ use Sportlog\GoogleCharts\Charts\Base\NotNullSerializer;
 
 class MapStyle extends NotNullSerializer
 {
+    /**
+     * @var ArrayObject<string,mixed>[] $stylers
+     */
     public array $stylers;
 
+    /**
+     * ctor
+     * @param array<string,mixed> $stylers
+     * @param string|null $elementType
+     * @param string|null $featureType
+     */
     public function __construct(array $stylers, public ?string $elementType = null, public ?string $featureType = null)
     {
         $this->stylers = [];

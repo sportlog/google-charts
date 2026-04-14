@@ -16,6 +16,25 @@ use Sportlog\GoogleCharts\Charts\Options\Common\ChartSizeable;
 
 class TableChartOptions extends ChartSizeable
 {
+    /**
+     * ctor
+     * 
+     * @param bool|null $allowHtml
+     * @param bool|null $alternatingRowStyle
+     * @param ArrayObject<string,string>|null $cssClassNames
+     * @param int|null $firstRowNumber
+     * @param int|null $frozenColumns
+     * @param TablePaging|null $page
+     * @param int|null $pageSize
+     * @param TablePagingButtons|int|null $pagingButtons
+     * @param bool|null $rtlTable
+     * @param int|null $scrollLeftStartPosition
+     * @param bool|null $showRowNumber
+     * @param TableSorting|null $sort
+     * @param bool|null $sortAscending
+     * @param int|null $sortColumn
+     * @param int|null $startPage
+     */
     public function __construct(
         public ?bool $allowHtml = null,
         public ?bool $alternatingRowStyle = null,
@@ -32,6 +51,5 @@ class TableChartOptions extends ChartSizeable
         public ?bool $sortAscending = null,
         public ?int $sortColumn = null,
         public ?int $startPage = null,
-    ) {
-    }
+    ) {}
 }

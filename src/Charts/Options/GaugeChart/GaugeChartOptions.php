@@ -18,12 +18,16 @@ use Sportlog\GoogleCharts\Charts\Options\Common\{ChartAnimation, ChartSizeable};
  * 
  * @see https://developers.google.com/chart/interactive/docs/gallery/gaugechart#Configuration_Options
  */
-class GaugeChartOptions extends ChartSizeable {
+class GaugeChartOptions extends ChartSizeable
+{
     public ?ChartAnimation $animation = null;
     public ?bool $forceIFrame = null;
     public ?string $greenColor = null;
     public ?int $greenFrom = null;
     public ?int $greenTo = null;
+    /**
+     * @var array<string>|null $majorTicks
+     */
     public ?array $majorTicks = null;
     public ?int $max = null;
     public ?int $min = null;

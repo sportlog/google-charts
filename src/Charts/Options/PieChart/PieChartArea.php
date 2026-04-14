@@ -15,6 +15,16 @@ use Sportlog\GoogleCharts\Charts\Options\Common\{ChartArea, ChartBackgroundColor
 
 class PieChartArea extends ChartArea
 {
+    /**
+     * ctor
+     * 
+     * @param ChartBackgroundColor|null $backgroundColor
+     * @param string|int|null $left
+     * @param string|int|null $top
+     * @param string|int|null $width
+     * @param string|int|null $height
+     * @param array<string>|null $colors
+     */
     public function __construct(
         public readonly ?ChartBackgroundColor $backgroundColor = null,
         string|int|null $left = null,

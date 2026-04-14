@@ -16,6 +16,9 @@ use JsonSerializable;
 
 class MapDefinitionCollection implements JsonSerializable
 {
+    /**
+     * @var array<string,MapDefinition> $items
+     */
     private array $items = [];
 
     /**

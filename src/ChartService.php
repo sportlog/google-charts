@@ -370,7 +370,7 @@ class ChartService
      * usually you don't need to call it manually.
      *
      * @throws Exception Charts have already been loaded.
-     * @return array
+     * @return array<string> Array of script tags
      */
     public function load(): array
     {

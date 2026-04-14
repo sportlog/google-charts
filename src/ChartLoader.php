@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Sportlog\GoogleCharts;
 
 use Exception;
+use Sportlog\GoogleCharts\Charts\Base\GoogleChart;
 
 /**
  * Loads the charts by adding script tags for
@@ -31,16 +32,16 @@ class ChartLoader
      *
      * @param ScriptNonceProviderInterface|null $scriptNonceProvider 
      */
-    public function __construct(private readonly ?ScriptNonceProviderInterface $scriptNonceProvider = null)
-    {
-    }
+    public function __construct(private readonly ?ScriptNonceProviderInterface $scriptNonceProvider = null) {}
 
     /**
      * Get array of script tags to load the required JS files.
      * This method is automatically called on chart rendering, so
      * usually you don't need to call it manually.
      *
-     * @return array
+     * @param array<GoogleChart> $charts Array of charts to load
+     * @param ChartSettings|null $chartSettings Optional chart settings
+     * @return array<string> Array of script tags
      */
     public function load(array $charts, ?ChartSettings $chartSettings = null): array
     {
@@ -59,7 +60,7 @@ class ChartLoader
             if (!is_null($chartSettings)) {
                 $data['settings'] = $chartSettings;
             }
-            
+
             $serializedData = json_encode($data);
             if ($serializedData === false) {
                 throw new Exception('failed to encode chart data to JSON');

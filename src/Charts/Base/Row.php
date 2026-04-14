@@ -22,23 +22,19 @@ class Row implements JsonSerializable
     /**
      * Creates a new row
      *
-     * @param array $values The row values
-     * @param array $formatted The formatted values. It's length can be lower
+     * @param mixed[] $values The row values
+     * @param mixed[] $formatted The formatted values. It's length can be lower
      * than $values, if formtting applies only to the starting values.
      */
-    public function __construct(private array $values, private array $formatted = [])
-    {
-    }
+    public function __construct(private array $values, private array $formatted = []) {}
 
     /**
      * Serialize row values
-     *
-     * @return array
      */
     public function jsonSerialize(): array
     {
         return ['c' => array_map(
-            fn ($value, $formatted) => $this->serializeValue($value, $formatted),
+            fn($value, $formatted) => $this->serializeValue($value, $formatted),
             $this->values,
             $this->formatted
         )];
@@ -60,7 +56,7 @@ class Row implements JsonSerializable
         if ($value instanceof DateTimeInterface) {
             return $this->getDateString($value);
         }
-      
+
         return $value;
     }
 

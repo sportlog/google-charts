@@ -2,7 +2,11 @@
   "name": "sportlog/google-charts",
   "description": "PHP Wrapper for Google charts",
   "type": "project",
-  "keywords": ["google", "charts", "graphs"],
+  "keywords": [
+    "google",
+    "charts",
+    "graphs"
+  ],
   "license": "MIT",
   "authors": [
     {
@@ -15,8 +19,7 @@
     }
   },
   "autoload-dev": {
-    "psr-4": {
-    }
+    "psr-4": {}
   },
   "require": {
     "php": ">=8.1"
@@ -24,8 +27,8 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "phpstan/phpstan": "^1.6",
-    "phpunit/phpunit": "^9.5"
+    "phpstan/phpstan": "^2.1",
+    "phpunit/phpunit": "^12.5"
   },
   "scripts": {
     "test": "vendor/bin/phpunit --testsuite googlecharts",

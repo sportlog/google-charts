@@ -16,10 +16,14 @@ use Sportlog\GoogleCharts\Charts\Options\Common\ChartSizeable;
 /**
  * WordTreeChart options.
  * 
- * @see https://developers.google.com/chart/interactive/docs/gallery/wordtree#Configuration_Options
+ * @link https://developers.google.com/chart/interactive/docs/gallery/wordtree#Configuration_Options
  */
 class WordTreeChartOptions extends ChartSizeable
 {
+    /**
+     * The colors to use for the chart.
+     * @var string[]|null
+     */
     public ?array $colors = null;
     public ?bool $forceIFrame = null;
     public ?string $fontName = null;
